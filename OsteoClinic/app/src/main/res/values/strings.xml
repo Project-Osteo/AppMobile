@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">OsteoClinic</string>
     <string name="bt_login">Entrar</string>
+    <string name="bt_registo">Registar</string>
 </resources>
