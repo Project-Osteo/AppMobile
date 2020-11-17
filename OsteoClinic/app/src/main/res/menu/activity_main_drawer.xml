@@ -12,7 +12,7 @@
                 <menu>
                     <item
                         android:id="@+id/nav_ultima_consulta"
-                        android:icon="@drawable/ic_last_consulta_foreground"
+                        android:icon="@drawable/ic_foot_massage"
                         android:title="@string/ultima_consulta" />
                 </menu>
             </item>
@@ -24,22 +24,21 @@
                 <menu>
                     <item
                         android:id="@+id/nav_ultimo_treino"
-                        android:icon="@drawable/ic_last_consulta_foreground"
+                        android:icon="@drawable/ic_workout_1"
                         android:title="@string/ultimo_treino" />
                 </menu>
             </item>
 
             <item android:id="@+id/nav_user_profile"
-                android:icon="@drawable/ic_last_consulta_foreground"
+                android:icon="@drawable/ic_dumbbell"
                 android:title="@string/perfil" />
 
-
             <item android:id="@+id/nav_options"
-                android:icon="@drawable/ic_last_consulta_foreground"
+                android:icon="@drawable/ic_workout"
                 android:title="@string/options" />
 
             <item android:id="@+id/nav_logout"
-                android:icon="@drawable/ic_last_consulta_foreground"
+                android:icon="@drawable/ic_foot_massage"
                 android:title="@string/logout" />
 
     </group>

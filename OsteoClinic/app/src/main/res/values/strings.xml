@@ -12,4 +12,6 @@
     <string name="password">Password</string>
     <string name="email">E-mail</string>
     <string name="registar">Registar</string>
+    <string name="ndOpen">Open</string>
+    <string name="ndClose">Close</string>
 </resources>
