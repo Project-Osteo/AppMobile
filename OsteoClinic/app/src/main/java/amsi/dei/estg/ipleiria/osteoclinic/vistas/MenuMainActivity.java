@@ -8,6 +8,8 @@ import amsi.dei.estg.ipleiria.osteoclinic.R;
 
 public class MenuMainActivity extends AppCompatActivity {
 
+    public static final String EMAIL = "amsi.dei.estg.ipleiria.osteoclinic.vistas.email";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
