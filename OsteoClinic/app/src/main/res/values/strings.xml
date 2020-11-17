@@ -2,4 +2,6 @@
     <string name="app_name">OsteoClinic</string>
     <string name="bt_login">Entrar</string>
     <string name="bt_registo">Registar</string>
+    <string name="consultas">Consultas</string>
+    <string name="ultima_consulta">Última consulta</string>
 </resources>
