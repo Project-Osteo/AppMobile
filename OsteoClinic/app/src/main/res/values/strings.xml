@@ -4,4 +4,9 @@
     <string name="bt_registo">Registar</string>
     <string name="consultas">Consultas</string>
     <string name="ultima_consulta">Última consulta</string>
+    <string name="treinos">Treinos</string>
+    <string name="ultimo_treino">Último treino</string>
+    <string name="perfil">Perfil Utilizador</string>
+    <string name="logout">Sair</string>
+    <string name="options">Definições</string>
 </resources>
