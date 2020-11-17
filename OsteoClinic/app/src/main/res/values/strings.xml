@@ -9,4 +9,7 @@
     <string name="perfil">Perfil Utilizador</string>
     <string name="logout">Sair</string>
     <string name="options">Definições</string>
+    <string name="password">Password</string>
+    <string name="email">E-mail</string>
+    <string name="registar">Registar</string>
 </resources>
