@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -38,7 +39,14 @@ public class MenuMainActivity extends AppCompatActivity
         toggle.syncState();
         drawer.addDrawerListener(toggle);
 
+        carregarFragmentoInicial();
+    }
 
+    private void carregarFragmentoInicial() {
+        Fragment fragmento = new InicialFragment();
+        if(fragmento != null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmento).commit();
+        }
     }
 
 
