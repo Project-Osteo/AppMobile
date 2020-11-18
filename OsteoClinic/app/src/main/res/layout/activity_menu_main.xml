@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     android:id="@+id/drawer_layout"
     tools:context=".vistas.MenuMainActivity"
-    tools:ignore="MissingClass">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
 
     <include
         layout="@layout/app_bar_main"
