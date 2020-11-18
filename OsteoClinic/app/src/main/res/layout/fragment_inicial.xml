@@ -14,11 +14,12 @@
         <Button
             android:id="@+id/btConsultas"
             android:layout_width="match_parent"
-            android:layout_height="90dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
+            android:drawableStart="@mipmap/ic_footmassage2_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_ir_consultas"
             android:textSize="24sp" />
@@ -26,11 +27,12 @@
         <Button
             android:id="@+id/btTreinos"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
+            android:drawableStart="@mipmap/ic_workout_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_ir_treinos"
             android:textSize="24sp" />
@@ -38,11 +40,12 @@
         <Button
             android:id="@+id/btIMC"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="80dp"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
+            android:drawableStart="@mipmap/ic_imc_calculator_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_calcular_imc"
             android:textSize="24sp" />
