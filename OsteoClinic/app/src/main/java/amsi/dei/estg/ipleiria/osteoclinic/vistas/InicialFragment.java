@@ -36,8 +36,10 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_inicial, container, false);
 
         button1 = view.findViewById(R.id.btConsultas);
+        button2 = view.findViewById(R.id.btTreinos);
 
         button1.setOnClickListener(this);
+        button2.setOnClickListener(this);
 
         return view;
     }
@@ -48,6 +50,11 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
         switch (view.getId()) {
             case R.id.btConsultas:
                 fragmento = new ListaConsultasFragment();
+                replaceFragment(fragmento);
+                break;
+
+            case R.id.btTreinos:
+                fragmento = new ListaTreinosFragment();
                 replaceFragment(fragmento);
                 break;
         }
