@@ -5,9 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".vistas.ListaConsultasFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Olá estou na lista de consultas" />
+    <ListView
+        android:id="@+id/list_consultas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>

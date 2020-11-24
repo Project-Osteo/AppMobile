@@ -6,19 +6,17 @@ public class Consulta {
     private long id;
     private Date data_consulta;
     private String descricao;
-    private long paciente_id;
-    private long terapeuta_id;
+    //private long terapeuta_id;
     private float peso;
     private String tratamento;
     private String obs;
     private String recomendacao;
 
-    public Consulta(Date data_consulta, String descricao, long paciente_id, long terapeuta_id,
+    public Consulta(Date data_consulta, String descricao,
                     float peso, String tratamento, String obs, String recomendacao) {
         this.data_consulta = data_consulta;
         this.descricao = descricao;
-        this.paciente_id = paciente_id;
-        this.terapeuta_id = terapeuta_id;
+//        this.terapeuta_id = terapeuta_id;
         this.peso = peso;
         this.tratamento = tratamento;
         this.obs = obs;
@@ -37,13 +35,6 @@ public class Consulta {
         return descricao;
     }
 
-    public long getPaciente_id() {
-        return paciente_id;
-    }
-
-    public long getTerapeuta_id() {
-        return terapeuta_id;
-    }
 
     public float getPeso() {
         return peso;
