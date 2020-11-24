@@ -39,5 +39,5 @@ public class Utilizador {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
+
 }
