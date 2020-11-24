@@ -1,6 +1,6 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Consulta {
     private long id;
