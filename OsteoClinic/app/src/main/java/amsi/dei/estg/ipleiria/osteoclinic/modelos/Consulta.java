@@ -1,8 +1,11 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Consulta {
+
+    private static int ID_INCREMENT = 0;
+
     private long id;
     private Date data_consulta;
     private String descricao;
@@ -14,6 +17,7 @@ public class Consulta {
 
     public Consulta(Date data_consulta, String descricao,
                     float peso, String tratamento, String obs, String recomendacao) {
+        this.id = ++ID_INCREMENT;
         this.data_consulta = data_consulta;
         this.descricao = descricao;
 //        this.terapeuta_id = terapeuta_id;

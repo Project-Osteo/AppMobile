@@ -6,7 +6,7 @@
     tools:context=".vistas.ListaConsultasFragment">
 
     <ListView
-        android:id="@+id/list_consultas"
+        android:id="@+id/listview_consultas"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </FrameLayout>
