@@ -1,3 +1,5 @@
+package amsi.dei.estg.ipleiria.osteoclinic;
+
 import android.os.Build;
 
 import androidx.annotation.RequiresApi;
