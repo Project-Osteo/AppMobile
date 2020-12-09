@@ -28,7 +28,7 @@ public class Singleton {
     }
 
 
-    private Consulta getConsulta(long id){
+    public Consulta getConsulta(long id){
         for (Consulta consulta: this.lista_consultas){
             if(consulta.getId() == id)
                 return consulta;
@@ -53,6 +53,27 @@ public class Singleton {
                         "massacre e uv",
                         "muito negro",
                         "gelo 3x dia"));
+            this.lista_consultas.add(
+                    new Consulta(data1,
+                            "peses torcidos",
+                            85,
+                            "massacre e uv",
+                            "muito negro",
+                            "gelo 3x dia"));
+            this.lista_consultas.add(
+                    new Consulta(data1,
+                            "peses torcidos",
+                            85,
+                            "massacre e uv",
+                            "muito negro",
+                            "gelo 3x dia"));this.lista_consultas.add(
+                    new Consulta(data1,
+                            "peses torcidos",
+                            85,
+                            "massacre e uv",
+                            "muito negro",
+                            "gelo 3x dia"));
+
         } catch (Exception e) {
             e.printStackTrace();
         }

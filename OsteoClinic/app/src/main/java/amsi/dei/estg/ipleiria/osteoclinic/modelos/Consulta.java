@@ -31,7 +31,7 @@ public class Consulta {
         return id;
     }
 
-    public Date getData_consulta() {
+    public Date getDataConsulta() {
         return data_consulta;
     }
 

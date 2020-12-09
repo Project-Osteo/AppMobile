@@ -25,7 +25,6 @@ public class ListaConsultasFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +55,7 @@ public class ListaConsultasFragment extends Fragment {
             }
         });
 
-        return inflater.inflate(R.layout.fragment_lista_consultas, container, false);
+        return view;
 
 
     }
