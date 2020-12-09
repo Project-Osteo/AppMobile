@@ -23,4 +23,5 @@
     <string name="numero_consulta">Consulta n.º</string>
     <string name="data_consulta">Data:</string>
     <string name="descricao_consulta">Descrição:</string>
+    <string name="recomendacoes_consulta">Recomendações:</string>
 </resources>
