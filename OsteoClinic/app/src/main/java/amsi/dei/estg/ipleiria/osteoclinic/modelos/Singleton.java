@@ -38,16 +38,25 @@ public class Singleton {
 
 
     private void gerarFakeData() {
-        SimpleDateFormat sdf =  new SimpleDateFormat("dd/MM/yyyy");
-        Date data = null;
+
+        user = new Utilizador("mail", "pass", "nome");
+
+        String sDate1 = "11/11/2020";
+        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+
         try {
-            data = sdf.parse("15/06/2020");
-        } catch (ParseException e) {
+            Date data1 = formatter.parse(sDate1);
+            this.lista_consultas.add(
+                    new Consulta(data1,
+                        "peses torcidos",
+                        85,
+                        "massacre e uv",
+                        "muito negro",
+                        "gelo 3x dia"));
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        user = new Utilizador("mail", "pass", "nome");
-        this.lista_consultas.add(new Consulta(data,"peses torcidos", 85, "massacre e uv", "muito negro", "gelo 3x dia"));
 
     }
 

@@ -20,4 +20,7 @@
     <string name="bt_ir_treinos">Treinos</string>
     <string name="bt_calcular_imc">Calcular IMC</string>
     <string name="inicio">Menu inicial</string>
+    <string name="numero_consulta">Consulta n.º</string>
+    <string name="data_consulta">Data:</string>
+    <string name="descricao_consulta">Descrição:</string>
 </resources>

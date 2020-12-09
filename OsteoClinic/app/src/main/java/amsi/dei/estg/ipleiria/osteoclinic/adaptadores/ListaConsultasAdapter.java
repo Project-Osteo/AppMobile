@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 
 public class ListaConsultasAdapter extends BaseAdapter {
@@ -38,6 +40,32 @@ public class ListaConsultasAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        return null;
+        if(inflater == null){
+            this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        if(view == null){
+            view = inflater.inflate(R.layout.item_lista_consultas, null);
+        }
+
+        ViewHolderConsulta vHolder = (ViewHolderConsulta) view.getTag();
+        if(vHolder == null){
+            vHolder = new ViewHolderConsulta(view);
+            view.setTag(vHolder);
+        }
+
+        return view;
+    }
+
+    public class ViewHolderConsulta{
+        private TextView tvNumConsulta, tvDataConsulta, tvDescricaoConsulta;
+
+        public ViewHolderConsulta(View view){
+            tvNumConsulta = view.findViewById(R.id.tvNumConsulta);
+            tvDataConsulta = view.findViewById(R.id.tvDataConsulta);
+            tvDescricaoConsulta = view.findViewById(R.id.tvDescricaoConsulta);
+        }
+
+        //public void update(Consulta consulta) { ?!?!?!?
     }
 }
