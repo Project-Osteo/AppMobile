@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class Treino {
     private long id;
-    private long paciente_id;
+    //private long paciente_id;
     private Date data_treino;
     private String descricao;
     private String tipo_treino;
@@ -12,7 +12,7 @@ public class Treino {
 
     public Treino(long id, long paciente_id, Date data_treino, String descricao, String tipo_treino, String obs) {
         this.id = id;
-        this.paciente_id = paciente_id;
+        //this.paciente_id = paciente_id;
         this.data_treino = data_treino;
         this.descricao = descricao;
         this.tipo_treino = tipo_treino;
@@ -23,13 +23,13 @@ public class Treino {
         return id;
     }
 
-    public long getPaciente_id() {
+    /*public long getPaciente_id() {
         return paciente_id;
-    }
+    }*/
 
-    public void setPaciente_id(long paciente_id) {
+    /*public void setPaciente_id(long paciente_id) {
         this.paciente_id = paciente_id;
-    }
+    }*/
 
     public Date getData_treino() {
         return data_treino;
