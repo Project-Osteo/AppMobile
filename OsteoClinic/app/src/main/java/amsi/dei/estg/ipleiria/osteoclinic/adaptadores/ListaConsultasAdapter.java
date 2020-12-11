@@ -61,9 +61,9 @@ public class ListaConsultasAdapter extends BaseAdapter {
         private TextView tvNumConsulta, tvDataConsulta, tvDescricaoConsulta;
 
         public ViewHolderConsulta(View view){
-            tvNumConsulta = view.findViewById(R.id.tvNumConsulta);
-            tvDataConsulta = view.findViewById(R.id.tvDataConsulta);
-            tvDescricaoConsulta = view.findViewById(R.id.tvDescricaoConsulta);
+            tvNumConsulta = view.findViewById(R.id.tvNumConsultaItem);
+            tvDataConsulta = view.findViewById(R.id.tvDataConsultaItem);
+            tvDescricaoConsulta = view.findViewById(R.id.tvDescricaoConsultaItem);
         }
 
         //public void update(Consulta consulta) { ?!?!?!?
