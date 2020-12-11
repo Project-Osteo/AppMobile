@@ -3,6 +3,7 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
@@ -39,6 +40,8 @@ public class MenuMainActivity extends AppCompatActivity
         toggle.syncState();
         drawer.addDrawerListener(toggle);
 
+        navigationView.setNavigationItemSelectedListener(this);
+
         carregarFragmentoInicial();
     }
 
@@ -52,6 +55,29 @@ public class MenuMainActivity extends AppCompatActivity
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        Fragment fragmento = null;
+
+        switch(item.getItemId()){
+            case R.id.nav_inicio:
+                fragmento = new InicialFragment();
+                break;
+            case R.id.nav_consultas:
+                fragmento = new ListaConsultasFragment();
+                break;
+            case R.id.nav_treinos:
+                fragmento = new ListaTreinosFragment();
+                break;
+            case R.id.nav_user_profile:
+                break;
+            default:
+                break;
+        }
+
+        if(fragmento != null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.contentFragment, fragmento).commit();
+        }
+
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
 }
