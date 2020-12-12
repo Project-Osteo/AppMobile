@@ -24,6 +24,6 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
         tvTerapeutaTreino = findViewById(R.id.tvTerapeutaDetalheTreino);
         tvDescricaoTreino = findViewById(R.id.tvDescricaoTreinoDetalhe);
         tvRecomendacoesTreino = findViewById(R.id.tvRecomendacoesTreinoDetalhe);
-        
+
     }
 }
