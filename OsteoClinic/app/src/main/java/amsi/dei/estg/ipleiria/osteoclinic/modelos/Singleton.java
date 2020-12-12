@@ -36,6 +36,14 @@ public class Singleton {
         return null;
     }
 
+    public Treino getTreino(long id){
+        for (Treino treino: this.lista_treinos){
+            if(treino.getId() == id)
+                return treino;
+        }
+        return null;
+    }
+
 
     private void gerarFakeData() {
 
@@ -77,8 +85,24 @@ public class Singleton {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    private void gerarFakeDataTreinos(){
+        user = new Utilizador("mail", "pass", "nome");
 
+        String sDate1 = "12/12/2020";
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {
+            Date data1 = formatter.parse(sDate1);
+            this.lista_treinos.add(
+                    new Treino((java.sql.Date) data1, "Treino para recuperar de lesão",
+                            "Recuperação", "Repetir tudo 3 vezes"));
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public ArrayList<Consulta> getListaConsultas() { return lista_consultas; }
