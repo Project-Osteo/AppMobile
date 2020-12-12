@@ -83,4 +83,7 @@ public class Singleton {
 
     public ArrayList<Consulta> getListaConsultas() { return lista_consultas; }
 
+    public ArrayList<Treino> getListaTreinos() {
+        return lista_treinos;
+    }
 }

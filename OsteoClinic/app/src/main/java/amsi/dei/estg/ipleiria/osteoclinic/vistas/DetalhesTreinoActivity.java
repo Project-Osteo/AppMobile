@@ -9,7 +9,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.R;
 
 public class DetalhesTreinoActivity extends AppCompatActivity {
 
-    private static final String ID_TREINO = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
+    public static final String ID_TREINO = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
 
     private TextView tvTipoTreino, tvDataTreino, tvTerapeutaTreino, tvDescricaoTreino, tvRecomendacoesTreino;
 
