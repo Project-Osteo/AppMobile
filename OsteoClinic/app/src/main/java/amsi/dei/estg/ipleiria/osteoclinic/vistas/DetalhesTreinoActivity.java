@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
 
 public class DetalhesTreinoActivity extends AppCompatActivity {
 
@@ -24,6 +27,18 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
         tvTerapeutaTreino = findViewById(R.id.tvTerapeutaDetalheTreino);
         tvDescricaoTreino = findViewById(R.id.tvDescricaoTreinoDetalhe);
         tvRecomendacoesTreino = findViewById(R.id.tvRecomendacoesTreinoDetalhe);
+
+        long id = getIntent().getLongExtra(ID_TREINO, -1);
+        Treino treino = Singleton.getInstance().getTreino(id);
+
+        if(treino != null){
+            setTitle("Treinos");
+            tvTipoTreino.setText(treino.getTipo_treino());
+            tvDataTreino.setText(treino.getData_treino().toString());
+            tvTerapeutaTreino.setText("Osteo");
+            tvDescricaoTreino.setText(treino.getDescricao());
+            tvRecomendacoesTreino.setText(treino.getObs());
+        }
 
     }
 }
