@@ -74,13 +74,35 @@ public class Singleton {
                             85,
                             "massacre e uv",
                             "muito negro",
-                            "gelo 3x dia"));this.lista_consultas.add(
+                            "gelo 3x dia"));
+            this.lista_consultas.add(
                     new Consulta(data1,
                             "peses torcidos",
                             85,
                             "massacre e uv",
                             "muito negro",
                             "gelo 3x dia"));
+
+            this.lista_treinos.add(
+                    new Treino(data1,
+                            "30 min endurance",
+                            "recuperar forma",
+                            "durante 7 dias"));
+            this.lista_treinos.add(
+                    new Treino(data1,
+                            "30 min endurance",
+                            "recuperar forma",
+                            "durante 7 dias"));
+            this.lista_treinos.add(
+                    new Treino(data1,
+                            "30 min endurance",
+                            "recuperar forma",
+                            "durante 7 dias"));
+            this.lista_treinos.add(
+                    new Treino(data1,
+                            "30 min endurance",
+                            "recuperar forma",
+                            "durante 7 dias"));
 
         } catch (Exception e) {
             e.printStackTrace();

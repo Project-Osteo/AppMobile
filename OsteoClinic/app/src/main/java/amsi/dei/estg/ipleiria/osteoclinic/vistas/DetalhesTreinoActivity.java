@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;

@@ -11,7 +11,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class DetalhesConsultaActivity extends AppCompatActivity {
 
-    public static final String ID = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
+    public static final String ID_CONSULTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
 
     private TextView tvNumConsulta, tvDataConsulta, tvTerapeuta, tvDescricao, tvRecomendacoes;
 
@@ -27,7 +27,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
         tvDescricao = findViewById(R.id.tvDescricaoConsultaDetalhe);
         tvRecomendacoes = findViewById(R.id.tvRecomendacoesDetalhe);
 
-        long id = getIntent().getLongExtra(ID, -1);
+        long id = getIntent().getLongExtra(ID_CONSULTA, -1);
         Consulta consulta = Singleton.getInstance().getConsulta(id);
 
         if(consulta != null){

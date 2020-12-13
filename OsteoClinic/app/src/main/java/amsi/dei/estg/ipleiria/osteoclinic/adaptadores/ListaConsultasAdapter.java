@@ -45,7 +45,7 @@ public class ListaConsultasAdapter extends BaseAdapter {
         }
 
         if(view == null){
-            view = inflater.inflate(R.layout.item_lista_consultas, null);
+            view = inflater.inflate(R.layout.card_lista_consultas, null);
         }
 
         ViewHolderConsulta vHolder = (ViewHolderConsulta) view.getTag();
@@ -61,9 +61,9 @@ public class ListaConsultasAdapter extends BaseAdapter {
         private TextView tvNumConsulta, tvDataConsulta, tvDescricaoConsulta;
 
         public ViewHolderConsulta(View view){
-            tvNumConsulta = view.findViewById(R.id.tvNumConsultaItem);
-            tvDataConsulta = view.findViewById(R.id.tvDataConsultaItem);
-            tvDescricaoConsulta = view.findViewById(R.id.tvDescricaoConsultaItem);
+            tvNumConsulta = view.findViewById(R.id.tvNumConsultaCard);
+            tvDataConsulta = view.findViewById(R.id.tvDataConsultaCard);
+            tvDescricaoConsulta = view.findViewById(R.id.tvDescricaoConsultaCard);
         }
 
         //public void update(Consulta consulta) { ?!?!?!?

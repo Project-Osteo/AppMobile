@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:id="@+id/card_image"
+            android:src="@drawable/ic_massage" />
+
+        <TextView
+            android:id="@+id/tvNumConsultaCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/numero_consulta"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/card_image"
+            android:layout_toEndOf="@id/card_image"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="20dp" />
+
+        <TextView
+            android:id="@+id/tvDataConsultaCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="29 Jun 2020"
+            android:textColor="@color/colorPrimary"
+            android:textSize="22sp"
+            android:layout_toRightOf="@id/tvNumConsultaCard"
+            android:layout_toEndOf="@id/tvNumConsultaCard"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="30dp" />
+
+        <TextView
+            android:id="@+id/tvDescricaoConsultaCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvNumConsultaCard"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="13dp"
+            android:layout_toEndOf="@id/card_image"
+            android:layout_toRightOf="@id/card_image"
+            android:text="@string/descricao_consulta"
+            android:textColor="@color/Black"
+            android:textSize="18sp" />
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

@@ -18,7 +18,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class ListaConsultasFragment extends Fragment {
 
-    private ListView listview_consultas;
+    private ListView listviewConsultas;
     private ListaConsultasAdapter adapter;
 
     public ListaConsultasFragment() {
@@ -37,20 +37,20 @@ public class ListaConsultasFragment extends Fragment {
 
         setHasOptionsMenu(true);
 
-        listview_consultas = view.findViewById(R.id.listview_consultas);
+        listviewConsultas = view.findViewById(R.id.listview_consultas);
         Singleton gestor = Singleton.getInstance();
 
         adapter = new ListaConsultasAdapter(getActivity(), gestor.getListaConsultas());
-        listview_consultas.setAdapter(adapter);
+        listviewConsultas.setAdapter(adapter);
 
 
         //chamar atividade DetalhesConsulta do item da lista selecionado
-        listview_consultas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listviewConsultas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 //chamar atividade usando a posição do elemento clicado
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesConsultaActivity.class);
-                intent.putExtra(DetalhesConsultaActivity.ID, id);
+                intent.putExtra(DetalhesConsultaActivity.ID_CONSULTA, id);
                 startActivity(intent);
             }
         });

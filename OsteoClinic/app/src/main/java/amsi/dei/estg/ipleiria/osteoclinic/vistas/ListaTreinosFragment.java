@@ -18,7 +18,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 public class ListaTreinosFragment extends Fragment {
 
     private ListView listviewTreinos;
-    private ListaTreinosAdapter adaptador;
+    private ListaTreinosAdapter adapter;
 
     public ListaTreinosFragment() {
         // Required empty public constructor
@@ -32,7 +32,6 @@ public class ListaTreinosFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_lista_treinos, container, false);
 
         setHasOptionsMenu(true);
@@ -40,8 +39,8 @@ public class ListaTreinosFragment extends Fragment {
         listviewTreinos = view.findViewById(R.id.listview_treinos);
         Singleton gestor = Singleton.getInstance();
 
-        adaptador = new ListaTreinosAdapter(getActivity().getApplicationContext(), gestor.getListaTreinos());
-        listviewTreinos.setAdapter(adaptador);
+        adapter = new ListaTreinosAdapter(getActivity().getApplicationContext(), gestor.getListaTreinos());
+        listviewTreinos.setAdapter(adapter);
 
         listviewTreinos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -51,7 +50,6 @@ public class ListaTreinosFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
 
         return view;
     }

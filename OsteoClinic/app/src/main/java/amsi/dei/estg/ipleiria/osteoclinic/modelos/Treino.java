@@ -1,6 +1,6 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Treino {
     private long id;

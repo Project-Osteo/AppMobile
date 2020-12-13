@@ -20,9 +20,9 @@
     <string name="bt_ir_treinos">Treinos</string>
     <string name="bt_calcular_imc">Calcular IMC</string>
     <string name="inicio">Menu inicial</string>
-    <string name="numero_consulta">Consulta n.º:</string>
+    <string name="numero_consulta">N.º: 164</string>
     <string name="data">Data:</string>
-    <string name="descricao">Descrição:</string>
+    <string name="descricao_consulta">Dores agudas nas costas</string>
     <string name="recomendacoes_consulta">Recomendações:</string>
     <string name="tipo_treino">Tipo de treino:</string>
     <string name="descricao_treino">O que fazer:</string>
