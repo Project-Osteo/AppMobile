@@ -1,5 +1,6 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -32,17 +33,20 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_inicial, container, false);
 
         button1 = view.findViewById(R.id.btConsultas);
         button2 = view.findViewById(R.id.btTreinos);
+        button3 = view.findViewById(R.id.btCalcIMC);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
+        button3.setOnClickListener(this);
 
         return view;
     }
+
+
 
     @Override
     public void onClick(View view) {
@@ -56,6 +60,11 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
             case R.id.btTreinos:
                 fragmento = new ListaTreinosFragment();
                 replaceFragment(fragmento);
+                break;
+
+            case R.id.btCalcIMC:
+                Intent intent = new Intent(getActivity().getApplicationContext(), CalcularIMCActivity.class);
+                startActivity(intent);
                 break;
         }
     }

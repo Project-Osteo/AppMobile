@@ -3,20 +3,155 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".vistas.InicialFragment">
 
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:padding="20dp" >
+
+<!--        <GridLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:columnCount="1"-->
+<!--            android:rowCount="3">-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_row="0"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_column="0"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="50dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardElevation="11dp">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="158dp"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/card_image_consultas"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:src="@drawable/ic_massage" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvConsultas"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/card_image_consultas"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:text="CONSULTAS"-->
+<!--                        android:textColor="@color/colorPrimary"-->
+<!--                        android:textSize="22sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_row="1"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_column="0"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardElevation="11dp">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="160dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/card_image_treinos"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:src="@drawable/ic_workout" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvTreinos"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/card_image_treinos"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:text="TREINOS"-->
+<!--                        android:textColor="@color/colorPrimary"-->
+<!--                        android:textSize="22sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_row="2"-->
+<!--                android:layout_rowWeight="1"-->
+<!--                android:layout_column="0"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                app:cardCornerRadius="10dp"-->
+<!--                app:cardElevation="11dp">-->
+
+<!--                <RelativeLayout-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:padding="16dp">-->
+
+<!--                    <ImageView-->
+<!--                        android:id="@+id/card_image_imc"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="100dp"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:src="@mipmap/ic_imc_calculator_foreground" />-->
+
+<!--                    <TextView-->
+<!--                        android:id="@+id/tvIMC"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@id/card_image_imc"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:text="Calcular IMC"-->
+<!--                        android:textColor="@color/colorPrimary"-->
+<!--                        android:textSize="22sp"-->
+<!--                        android:textStyle="bold" />-->
+
+<!--                </RelativeLayout>-->
+
+<!--            </androidx.cardview.widget.CardView>-->
+
+<!--        </GridLayout>-->
 
         <Button
             android:id="@+id/btConsultas"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
             android:drawableStart="@mipmap/ic_footmassage2_foreground"
@@ -27,9 +162,10 @@
         <Button
             android:id="@+id/btTreinos"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/btConsultas"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
             android:drawableStart="@mipmap/ic_workout_foreground"
@@ -38,16 +174,17 @@
             android:textSize="24sp" />
 
         <Button
-            android:id="@+id/btIMC"
+            android:id="@+id/btCalcIMC"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/btTreinos"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="25dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
             android:drawableStart="@mipmap/ic_imc_calculator_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_calcular_imc"
             android:textSize="24sp" />
-    </LinearLayout>
+    </RelativeLayout>
 </FrameLayout>
