@@ -14,7 +14,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String ID_CONSULTA = "id";
     private static final String DATA_CONSULTA = "data";
     private static final String DESCRICAO_CONSULTA = "descricao_treino";
-    private static final String PACIENTE_CONSULTA = "id_paciente";
+    private static final String PACIENTE_CONSULTA = "paciente_id";
     private static final String TERAPEUTA_CONSULTA = "terapeuta_id";
     private static final String PESO = "peso";
     private static final String TRATAMENTO_CONSULTA = "tratamento";
@@ -24,9 +24,9 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     //dados da tabela treinos
     private static final String TABELA_TREINOS = "Treinos";
     private static final String ID_TREINO = "id";
-    private static final String PACIENTE_TREINO = "id_paciente";
     private static final String DATA_TREINO = "data";
     private static final String DESCRICAO_TREINO = "descricao_treino";
+    private static final String PACIENTE_TREINO = "paciente_id";
     private static final String TIPO_TREINO = "tipo_treino";
     private static final String OBS_TREINO = "observacos_treino";
 
@@ -52,7 +52,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_CONSULTA + " INTEGER PRIMARY KEY, " +
                 DATA_CONSULTA + " DATE NOT NULL, " +
                 DESCRICAO_CONSULTA + " TEXT NOT NULL, " +
-                PACIENTE_CONSULTA + " INTEGER FOREIGN KEY, " +
                 TERAPEUTA_CONSULTA + " INTEGER FOREIGN KEY, " +
                 PESO + " TEXT NOT NULL, " +
                 TRATAMENTO_CONSULTA + " TEXT NOT NULL, " +
@@ -62,7 +61,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
         String sqlTabelaTreinos = "CREATE TABLE " + TABELA_TREINOS + "( " +
                 ID_TREINO + " INTEGER PRIMARY KEY, " +
-                PACIENTE_TREINO + " INTEGER FOREIGN KEY, " +
                 DATA_TREINO + " DATE NOT NULL, " +
                 DESCRICAO_TREINO + " TEXT NOT NULL, " +
                 TIPO_TREINO + " TEXT NOT NULL, " +
@@ -71,9 +69,9 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
         String sqlTabelaFeedback = "CREATE TABLE " + TABELA_FEEDBACK + "( " +
                 ID_FEEDBACK + " INTEGER PRIMARY KEY, " +
-                USER_ID + " INTEGER FOREIGN KEY, " +
-                CONSULTA_ID_FEEDBACK + " INTEGER FOREIGN KEY, " +
-                TREINO_ID_FEEDBACK + " INTEGER FOREIGN KEY, " +
+                USER_ID + " INTEGER, " +
+                CONSULTA_ID_FEEDBACK + " INTEGER, " +
+                TREINO_ID_FEEDBACK + " INTEGER, " +
                 MENSAGEM + " TEXT NOT NULL, " +
                 DATAHORA + " DATETIME NOW()" +
                 ")";

@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btCalcIMC"
-        android:src="@drawable/tabela_calc_imc"/>
+        android:src="@drawable/tabela_calc_imc" />
 
 </RelativeLayout>
 

@@ -10,14 +10,14 @@ public class Consulta {
     private Date data_consulta;
     private String descricao;
     //private long terapeuta_id;
-    private float peso;
+    private double peso;
     private String tratamento;
     private String obs;
     private String recomendacao;
 
-    public Consulta(Date data_consulta, String descricao,
-                    float peso, String tratamento, String obs, String recomendacao) {
-        this.id = ++ID_INCREMENT;
+    public Consulta(long id, Date data_consulta, String descricao,
+                    double peso, String tratamento, String obs, String recomendacao) {
+        this.id = id;
         this.data_consulta = data_consulta;
         this.descricao = descricao;
 //        this.terapeuta_id = terapeuta_id;
@@ -40,7 +40,7 @@ public class Consulta {
     }
 
 
-    public float getPeso() {
+    public double getPeso() {
         return peso;
     }
 

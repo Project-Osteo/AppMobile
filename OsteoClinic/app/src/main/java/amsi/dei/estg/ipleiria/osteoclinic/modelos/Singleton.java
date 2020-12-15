@@ -55,28 +55,28 @@ public class Singleton {
         try {
             Date data1 = formatter.parse(sDate1);
             this.lista_consultas.add(
-                    new Consulta(data1,
+                    new Consulta(1,data1,
                         "peses torcidos",
                         85,
                         "massacre e uv",
                         "muito negro",
                         "gelo 3x dia"));
             this.lista_consultas.add(
-                    new Consulta(data1,
+                    new Consulta(2,data1,
                             "peses torcidos",
                             85,
                             "massacre e uv",
                             "muito negro",
                             "gelo 3x dia"));
             this.lista_consultas.add(
-                    new Consulta(data1,
+                    new Consulta(3,data1,
                             "peses torcidos",
                             85,
                             "massacre e uv",
                             "muito negro",
                             "gelo 3x dia"));
             this.lista_consultas.add(
-                    new Consulta(data1,
+                    new Consulta(4,data1,
                             "peses torcidos",
                             85,
                             "massacre e uv",
