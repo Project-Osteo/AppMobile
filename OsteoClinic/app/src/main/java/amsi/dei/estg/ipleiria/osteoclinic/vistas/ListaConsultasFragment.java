@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.text.ParseException;
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaConsultasAdapter;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -38,9 +40,13 @@ public class ListaConsultasFragment extends Fragment {
         setHasOptionsMenu(true);
 
         listviewConsultas = view.findViewById(R.id.listview_consultas);
-        Singleton gestor = Singleton.getInstance();
+        Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
 
-        adapter = new ListaConsultasAdapter(getActivity(), gestor.getListaConsultas());
+        try {
+            adapter = new ListaConsultasAdapter(getActivity(), gestor.getListaConsultas());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         listviewConsultas.setAdapter(adapter);
 
 

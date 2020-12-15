@@ -28,7 +28,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
         tvRecomendacoes = findViewById(R.id.tvRecomendacoesDetalhe);
 
         long id = getIntent().getLongExtra(ID_CONSULTA, -1);
-        Consulta consulta = Singleton.getInstance().getConsulta(id);
+        Consulta consulta = Singleton.getInstance(getApplicationContext()).getConsulta(id);
 
         if(consulta != null){
             setTitle("Consultas");

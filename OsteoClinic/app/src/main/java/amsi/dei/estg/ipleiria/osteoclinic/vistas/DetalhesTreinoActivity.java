@@ -31,7 +31,7 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
         tvRecomendacoesTreino = findViewById(R.id.tvRecomendacoesTreinoDetalhe);
 
         long id = getIntent().getLongExtra(ID_TREINO, -1);
-        Treino treino = Singleton.getInstance().getTreino(id);
+        Treino treino = Singleton.getInstance(getApplicationContext()).getTreino(id);
 
         if(treino != null){
             setTitle("Treinos");

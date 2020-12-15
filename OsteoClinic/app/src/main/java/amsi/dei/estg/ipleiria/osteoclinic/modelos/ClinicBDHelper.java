@@ -46,6 +46,12 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String MENSAGEM = "mensagem";
     private static final String DATAHORA = "data_e_hora";
 
+    //dados da tabela de Terapeutas
+    private static final String TABELA_TERAPEUTAS = "Terapeutas";
+    private static final String ID_TERAPEUTA = "id";
+    private static final String ESPECIALIDADE = "especialidade";
+    private static final String CONTACTO_TERAPEUTA = "contacto";
+
 
     private final SQLiteDatabase database;
 
@@ -85,9 +91,16 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 DATAHORA + " DATETIME " +
                 ")";
 
+        String sqlTabelaTerapeutas = "CREATE TABLE " + TABELA_TERAPEUTAS + "( " +
+                ID_TERAPEUTA + " INTEGER PRIMARY KEY, " +
+                ESPECIALIDADE + " TEXT, " +
+                CONTACTO_TERAPEUTA + " TEXT)";
+
+        db.execSQL(sqlTabelaTerapeutas);
         db.execSQL(sqlTabelaConsultas);
         db.execSQL(sqlTabelaTreinos);
         db.execSQL(sqlTabelaFeedback);
+
     }
 
     @Override

@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import java.text.ParseException;
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaTreinosAdapter;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -37,9 +39,13 @@ public class ListaTreinosFragment extends Fragment {
         setHasOptionsMenu(true);
 
         listviewTreinos = view.findViewById(R.id.listview_treinos);
-        Singleton gestor = Singleton.getInstance();
+        Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
 
-        adapter = new ListaTreinosAdapter(getActivity().getApplicationContext(), gestor.getListaTreinos());
+        try {
+            adapter = new ListaTreinosAdapter(getActivity().getApplicationContext(), gestor.getListaTreinos());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         listviewTreinos.setAdapter(adapter);
 
         listviewTreinos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
