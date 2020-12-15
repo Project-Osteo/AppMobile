@@ -1,8 +1,14 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class ClinicBDHelper extends SQLiteOpenHelper {
 
@@ -10,14 +16,14 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final int VERSAO_BD = 1;
 
     //dados da tabela consultas
-    private static final String TABELA_CONSULTA = "Consultas";
+    private static final String TABELA_CONSULTAS = "Consultas";
     private static final String ID_CONSULTA = "id";
     private static final String DATA_CONSULTA = "data";
     private static final String DESCRICAO_CONSULTA = "descricao_treino";
     private static final String PACIENTE_CONSULTA = "paciente_id";
     private static final String TERAPEUTA_CONSULTA = "terapeuta_id";
     private static final String PESO = "peso";
-    private static final String TRATAMENTO_CONSULTA = "tratamento";
+    private static final String TRATAMENTO = "tratamento";
     private static final String OBS_CONSULTA = "observacoes";
     private static final String RECOMENDACAO_CONSULTA = "recomendacao";
 
@@ -26,6 +32,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String ID_TREINO = "id";
     private static final String DATA_TREINO = "data";
     private static final String DESCRICAO_TREINO = "descricao_treino";
+    private static final String TERAPEUTA_TREINO = "terapeuta_id";
     private static final String PACIENTE_TREINO = "paciente_id";
     private static final String TIPO_TREINO = "tipo_treino";
     private static final String OBS_TREINO = "observacos_treino";
@@ -39,6 +46,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String MENSAGEM = "mensagem";
     private static final String DATAHORA = "data_e_hora";
 
+
     private final SQLiteDatabase database;
 
     public ClinicBDHelper(Context contexto){
@@ -48,13 +56,13 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sqlTabelaConsultas = "CREATE TABLE " + TABELA_CONSULTA + "( " +
+        String sqlTabelaConsultas = "CREATE TABLE " + TABELA_CONSULTAS + "( " +
                 ID_CONSULTA + " INTEGER PRIMARY KEY, " +
                 DATA_CONSULTA + " DATE NOT NULL, " +
                 DESCRICAO_CONSULTA + " TEXT NOT NULL, " +
-                TERAPEUTA_CONSULTA + " INTEGER FOREIGN KEY, " +
+               // TERAPEUTA_CONSULTA + " INTEGER FOREIGN KEY, " +
                 PESO + " TEXT NOT NULL, " +
-                TRATAMENTO_CONSULTA + " TEXT NOT NULL, " +
+                TRATAMENTO + " TEXT NOT NULL, " +
                 OBS_CONSULTA + " TEXT NOT NULL, " +
                 RECOMENDACAO_CONSULTA + " TEXT NOT NULL" +
                 ")";
@@ -63,6 +71,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_TREINO + " INTEGER PRIMARY KEY, " +
                 DATA_TREINO + " DATE NOT NULL, " +
                 DESCRICAO_TREINO + " TEXT NOT NULL, " +
+               // TERAPEUTA_TREINO + " INTEGER FOREIGN KEY, " +
                 TIPO_TREINO + " TEXT NOT NULL, " +
                 OBS_TREINO + " TEXT NOT NULL" +
                 ")";
@@ -73,7 +82,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 CONSULTA_ID_FEEDBACK + " INTEGER, " +
                 TREINO_ID_FEEDBACK + " INTEGER, " +
                 MENSAGEM + " TEXT NOT NULL, " +
-                DATAHORA + " DATETIME NOW()" +
+                DATAHORA + " DATETIME " +
                 ")";
 
         db.execSQL(sqlTabelaConsultas);
@@ -83,9 +92,60 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABELA_CONSULTA);
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_CONSULTAS);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_TREINOS);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_FEEDBACK);
         this.onCreate(db);
     }
+
+
+    public ArrayList<Consulta> getAllConsultasBD() throws ParseException {
+        ArrayList<Consulta> lista = new ArrayList<>();
+
+        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+
+        Cursor cursor = this.database.query(
+                TABELA_CONSULTAS,
+                new String[] {ID_CONSULTA, DATA_CONSULTA, DESCRICAO_CONSULTA, TERAPEUTA_CONSULTA,
+                    PESO, TRATAMENTO, OBS_CONSULTA, RECOMENDACAO_CONSULTA},
+                null, null,null, null, DATA_CONSULTA);
+        if(cursor.moveToFirst()){
+            do {
+                new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
+                        cursor.getString(2), cursor.getLong(3), cursor.getDouble(4),
+                        cursor.getString(5), cursor.getString(6), cursor.getString(7));
+            }while(cursor.moveToNext());
+        }
+        return lista;
+    }
+
+
+    public ArrayList<Treino> getAllTreinosBD() throws ParseException {
+        ArrayList<Treino> lista = new ArrayList<>();
+
+        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+
+        Cursor cursor = this.database.query(
+                TABELA_TREINOS,
+                new String[] {ID_TREINO, DATA_TREINO, DESCRICAO_TREINO, TERAPEUTA_TREINO, TIPO_TREINO, OBS_TREINO},
+                null, null,null, null, DATA_TREINO);
+        if(cursor.moveToFirst()){
+            do {
+                new Treino(cursor.getLong(0), formatter.parse(cursor.getString(1)),
+                        cursor.getString(2), cursor.getLong(3), cursor.getString(4),
+                        cursor.getString(6));
+            }while(cursor.moveToNext());
+        }
+        return lista;
+    }
+
+    public void removeAllConsultasBD(){
+        this.database.delete(TABELA_CONSULTAS, null, null);
+    }
+
+    public void removeAllTreinosBD(){
+        this.database.delete(TABELA_TREINOS, null, null);
+    }
+
+
 }

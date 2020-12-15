@@ -36,7 +36,7 @@ public class ConsultasJsonParser {
                 SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
                 Date data1 = formatter.parse(data);
 
-                Consulta consulta = new Consulta(id, data1, descricao, peso, tratamento, obs, rec);
+                Consulta consulta = new Consulta(id, data1, descricao, terapeuta, peso, tratamento, obs, rec);
 
                 listaconsultas.add(consulta);
             }
@@ -63,7 +63,7 @@ public class ConsultasJsonParser {
             SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
             Date data1 = formatter.parse(data);
 
-            consulta = new Consulta(id, data1, descricao, peso, tratamento, obs, rec);
+            consulta = new Consulta(id, data1, descricao, terapeuta, peso, tratamento, obs, rec);
         } catch (Exception e) {
             e.printStackTrace();
         }

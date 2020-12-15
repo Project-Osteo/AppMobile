@@ -1,32 +1,51 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
-import java.util.Date;
+import android.app.DownloadManager;
+import android.content.Context;
+import android.widget.Toast;
+
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Singleton {
     private Utilizador user;
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
     private static Singleton instance = null;
+    private ClinicBDHelper clinicBDHelper = null;
 
-    public static synchronized Singleton getInstance() {
+    private static RequestQueue volleyQueue = null;
+
+    //Endereços API
+    public static final String mUrlAPIConsultas = "http://localhost:3001/api/consultas";
+    public static final String mUrlAPIRegistar = "http://localhost:3001/api/registar";
+
+    public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
-            instance = new Singleton();
+            instance = new Singleton(context);
+            volleyQueue = Volley.newRequestQueue(context);
         }
         return instance;
     }
 
-    private Singleton() {
+    private Singleton(Context context) {
         this.lista_consultas = new ArrayList<>();
         this.lista_treinos = new ArrayList<>();
-        gerarFakeData();
+        this.clinicBDHelper = new ClinicBDHelper(context);
+        //gerarFakeData();
     }
-
 
     public Consulta getConsulta(long id){
         for (Consulta consulta: this.lista_consultas){
@@ -45,6 +64,54 @@ public class Singleton {
     }
 
 
+    /* ******************** MÉTODOS API ******************** */
+
+    public void registarUtilizador(final Utilizador user, final String token, final  Context context){
+        StringRequest request = new StringRequest(Request.Method.POST,
+                mUrlAPIRegistar,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("token", token);
+                params.put("id", ""+user.getId());
+                params.put("mail", user.getMail());
+                params.put("pwd", user.getPassword());
+                params.put("nome", user.getNome());
+                return params;
+            }
+        };
+    }
+
+
+
+    /* ******************** MÉTODOS BD ******************** */
+    public ArrayList<Consulta> getListaConsultas() throws ParseException {
+        lista_consultas = clinicBDHelper.getAllConsultasBD();
+        return lista_consultas;
+    }
+
+    public ArrayList<Treino> getListaTreinos() throws ParseException {
+        lista_treinos = clinicBDHelper.getAllTreinosBD();
+        return lista_treinos;
+    }
+
+
+
+
+
+
+
     private void gerarFakeData() {
 
         user = new Utilizador("mail", "pass", "nome");
@@ -57,6 +124,7 @@ public class Singleton {
             this.lista_consultas.add(
                     new Consulta(1,data1,
                         "peses torcidos",
+                            1,
                         85,
                         "massacre e uv",
                         "muito negro",
@@ -64,6 +132,7 @@ public class Singleton {
             this.lista_consultas.add(
                     new Consulta(2,data1,
                             "peses torcidos",
+                            1,
                             85,
                             "massacre e uv",
                             "muito negro",
@@ -71,6 +140,7 @@ public class Singleton {
             this.lista_consultas.add(
                     new Consulta(3,data1,
                             "peses torcidos",
+                            1,
                             85,
                             "massacre e uv",
                             "muito negro",
@@ -78,29 +148,34 @@ public class Singleton {
             this.lista_consultas.add(
                     new Consulta(4,data1,
                             "peses torcidos",
+                            1,
                             85,
                             "massacre e uv",
                             "muito negro",
                             "gelo 3x dia"));
 
             this.lista_treinos.add(
-                    new Treino(data1,
+                    new Treino(1, data1,
                             "30 min endurance",
+                            1,
                             "recuperar forma",
                             "durante 7 dias"));
             this.lista_treinos.add(
-                    new Treino(data1,
+                    new Treino(2, data1,
                             "30 min endurance",
+                            1,
                             "recuperar forma",
                             "durante 7 dias"));
             this.lista_treinos.add(
-                    new Treino(data1,
+                    new Treino(3, data1,
                             "30 min endurance",
+                            1,
                             "recuperar forma",
                             "durante 7 dias"));
             this.lista_treinos.add(
-                    new Treino(data1,
+                    new Treino(4, data1,
                             "30 min endurance",
+                            1,
                             "recuperar forma",
                             "durante 7 dias"));
 
@@ -109,27 +184,6 @@ public class Singleton {
         }
     }
 
-    private void gerarFakeDataTreinos(){
-        user = new Utilizador("mail", "pass", "nome");
 
-        String sDate1 = "12/12/2020";
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
-        try {
-            Date data1 = formatter.parse(sDate1);
-            this.lista_treinos.add(
-                    new Treino((java.sql.Date) data1, "Treino para recuperar de lesão",
-                            "Recuperação", "Repetir tudo 3 vezes"));
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
-    public ArrayList<Consulta> getListaConsultas() { return lista_consultas; }
-
-    public ArrayList<Treino> getListaTreinos() {
-        return lista_treinos;
-    }
 }

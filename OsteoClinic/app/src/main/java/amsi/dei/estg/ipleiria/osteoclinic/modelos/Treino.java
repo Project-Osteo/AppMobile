@@ -3,16 +3,19 @@ package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 import java.util.Date;
 
 public class Treino {
+
     private long id;
     //private long paciente_id;
+    private long terapeuta_id;
     private Date data_treino;
     private String descricao;
     private String tipo_treino;
     private String obs;
 
-    public Treino(Date data_treino, String descricao, String tipo_treino, String obs) {
+    public Treino(long id, Date data_treino, String descricao, long terapeuta_id, String tipo_treino, String obs) {
         this.id = id;
         //this.paciente_id = paciente_id;
+        this.terapeuta_id = terapeuta_id;
         this.data_treino = data_treino;
         this.descricao = descricao;
         this.tipo_treino = tipo_treino;
@@ -30,6 +33,8 @@ public class Treino {
     /*public void setPaciente_id(long paciente_id) {
         this.paciente_id = paciente_id;
     }*/
+
+    public long getTerapeuta_id() { return terapeuta_id; }
 
     public Date getData_treino() {
         return data_treino;

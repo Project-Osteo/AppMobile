@@ -4,23 +4,21 @@ import java.util.Date;
 
 public class Consulta {
 
-    private static int ID_INCREMENT = 0;
-
     private long id;
     private Date data_consulta;
     private String descricao;
-    //private long terapeuta_id;
+    private long terapeuta_id;
     private double peso;
     private String tratamento;
     private String obs;
     private String recomendacao;
 
-    public Consulta(long id, Date data_consulta, String descricao,
+    public Consulta(long id, Date data_consulta, String descricao, long terapeuta_id,
                     double peso, String tratamento, String obs, String recomendacao) {
         this.id = id;
         this.data_consulta = data_consulta;
         this.descricao = descricao;
-//        this.terapeuta_id = terapeuta_id;
+        this.terapeuta_id = terapeuta_id;
         this.peso = peso;
         this.tratamento = tratamento;
         this.obs = obs;
@@ -39,6 +37,7 @@ public class Consulta {
         return descricao;
     }
 
+    public long getTerapeuta_id() { return terapeuta_id; }
 
     public double getPeso() {
         return peso;
