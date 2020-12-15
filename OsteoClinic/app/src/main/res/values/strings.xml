@@ -28,4 +28,10 @@
     <string name="descricao_treino">O que fazer:</string>
     <string name="recomendacoes_treino">Porque fazer:</string>
     <string name="numero_treino">Treino n.º:</string>
+    <string name="calc_imc">Calcular Índice de Massa Corporal</string>
+    <string name="peso">Peso:</string>
+    <string name="altura">Altura:</string>
+    <string name="kilos">kg</string>
+    <string name="metros">m</string>
+    <string name="calcular">Calcular</string>
 </resources>
