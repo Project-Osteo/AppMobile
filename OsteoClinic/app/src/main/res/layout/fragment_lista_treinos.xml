@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vistas.ListaTreinosFragment">
+    tools:context=".vistas.ListaTreinosFragment"
+    android:background="@color/purple_backgroud">
 
     <ListView
         android:id="@+id/listview_treinos"
