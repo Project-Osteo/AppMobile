@@ -138,6 +138,10 @@ public class Singleton implements ConsultasListener {
         }
     }
 
+    public void getAllTreinosAPI(final Context contexto) {
+
+    }
+
 
 
     /* ******************** MÉTODOS BD ******************** */
