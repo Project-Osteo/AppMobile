@@ -7,6 +7,7 @@ public class Consulta {
     private long id;
     private Date data_consulta;
     private String descricao;
+    //private long paciente_id;
     private long terapeuta_id;
     private double peso;
     private String tratamento;
@@ -25,13 +26,24 @@ public class Consulta {
         this.recomendacao = recomendacao;
     }
 
+    public Consulta(long id, Date data_consulta, String descricao,
+                    double peso, String tratamento, String obs, String recomendacao) {
+        this.id = id;
+        this.data_consulta = data_consulta;
+        this.descricao = descricao;
+        this.peso = peso;
+        this.tratamento = tratamento;
+        this.obs = obs;
+        this.recomendacao = recomendacao;
+    }
+
     public long getId() {
         return id;
     }
 
-    public Date getDataConsulta() {
-        return data_consulta;
-    }
+    public void setId(long id) { this.id = id; }
+
+    public Date getDataConsulta() { return data_consulta; }
 
     public String getDescricao() {
         return descricao;
@@ -54,4 +66,6 @@ public class Consulta {
     public String getRecomendacao() {
         return recomendacao;
     }
+
+
 }

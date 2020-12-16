@@ -9,8 +9,11 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import amsi.dei.estg.ipleiria.osteoclinic.utils.ConsultasJsonParser;
 
 public class Singleton {
     private Utilizador user;
@@ -93,10 +98,43 @@ public class Singleton {
         };
     }
 
+    public void getAllConsultasAPI(final Context contexto){
+        if(!ConsultasJsonParser.isConnected(contexto)){
+            Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
+            try {
+                getListaConsultasBD();
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
+                    mUrlAPIConsultas, null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            lista_consultas = ConsultasJsonParser.parserJsonConsultas(response);
+                            adicionarConsultasBD(lista_consultas);
+
+//                            if (livrosListener != null) {
+//                                livrosListener.onRefreshListaLisvros(listalivros);
+//                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            volleyQueue.add(request);
+        }
+    }
+
 
 
     /* ******************** MÉTODOS BD ******************** */
-    public ArrayList<Consulta> getListaConsultas() throws ParseException {
+    public ArrayList<Consulta> getListaConsultasBD() throws ParseException {
         lista_consultas = clinicBDHelper.getAllConsultasBD();
         return lista_consultas;
     }
@@ -104,6 +142,12 @@ public class Singleton {
     public ArrayList<Treino> getListaTreinos() throws ParseException {
         lista_treinos = clinicBDHelper.getAllTreinosBD();
         return lista_treinos;
+    }
+
+    private void adicionarConsultasBD(ArrayList<Consulta> lista) {
+        clinicBDHelper.removeAllConsultasBD();
+        for(Consulta c: lista)
+            clinicBDHelper.adicionarConsultaBD(c);
     }
 
 

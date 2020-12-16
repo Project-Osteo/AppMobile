@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 
 public class InicialFragment extends Fragment implements View.OnClickListener {
@@ -38,6 +39,8 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
         button1 = view.findViewById(R.id.btConsultas);
         button2 = view.findViewById(R.id.btTreinos);
         button3 = view.findViewById(R.id.btCalcIMC);
+
+        Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);

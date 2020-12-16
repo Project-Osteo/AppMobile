@@ -1,5 +1,6 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,14 +13,14 @@ import java.util.Date;
 
 public class ClinicBDHelper extends SQLiteOpenHelper {
 
-    private static final String NOME_BD = "OsteoClinciBD";
+    private static final String NOME_BD = "OsteoClinicBD";
     private static final int VERSAO_BD = 1;
 
     //dados da tabela consultas
     private static final String TABELA_CONSULTAS = "Consultas";
     private static final String ID_CONSULTA = "id";
     private static final String DATA_CONSULTA = "data";
-    private static final String DESCRICAO_CONSULTA = "descricao_treino";
+    private static final String DESCRICAO_CONSULTA = "descricao";
     private static final String PACIENTE_CONSULTA = "paciente_id";
     private static final String TERAPEUTA_CONSULTA = "terapeuta_id";
     private static final String PESO = "peso";
@@ -38,7 +39,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String OBS_TREINO = "observacos_treino";
 
     //dados da tabela de feedback
-    private static final String TABELA_FEEDBACK = "feedback";
+    private static final String TABELA_FEEDBACK = "Feedbacks";
     private static final String ID_FEEDBACK = "id";
     private static final String USER_ID = "id_utilizador";
     private static final String CONSULTA_ID_FEEDBACK = "id_consulta";
@@ -52,7 +53,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String ESPECIALIDADE = "especialidade";
     private static final String CONTACTO_TERAPEUTA = "contacto";
 
-
     private final SQLiteDatabase database;
 
     public ClinicBDHelper(Context contexto){
@@ -62,25 +62,37 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        String sqlTabelaTerapeutas = "CREATE TABLE " + TABELA_TERAPEUTAS + "( " +
+                ID_TERAPEUTA + " INTEGER PRIMARY KEY, " +
+                ESPECIALIDADE + " TEXT, " +
+                CONTACTO_TERAPEUTA + " TEXT)";
+        db.execSQL(sqlTabelaTerapeutas);
+
         String sqlTabelaConsultas = "CREATE TABLE " + TABELA_CONSULTAS + "( " +
                 ID_CONSULTA + " INTEGER PRIMARY KEY, " +
                 DATA_CONSULTA + " DATE NOT NULL, " +
                 DESCRICAO_CONSULTA + " TEXT NOT NULL, " +
-               // TERAPEUTA_CONSULTA + " INTEGER FOREIGN KEY, " +
+                TERAPEUTA_CONSULTA + " INTEGER, " +
                 PESO + " TEXT NOT NULL, " +
                 TRATAMENTO + " TEXT NOT NULL, " +
                 OBS_CONSULTA + " TEXT NOT NULL, " +
-                RECOMENDACAO_CONSULTA + " TEXT NOT NULL" +
+                RECOMENDACAO_CONSULTA + " TEXT NOT NULL, " +
+                "CONSTRAINT fk_consultas_terapeuta FOREIGN KEY (" + TERAPEUTA_CONSULTA + ") REFERENCES " +
+                TABELA_TERAPEUTAS + "(" + ID_TERAPEUTA + ")" +
                 ")";
+        db.execSQL(sqlTabelaConsultas);
 
         String sqlTabelaTreinos = "CREATE TABLE " + TABELA_TREINOS + "( " +
                 ID_TREINO + " INTEGER PRIMARY KEY, " +
                 DATA_TREINO + " DATE NOT NULL, " +
                 DESCRICAO_TREINO + " TEXT NOT NULL, " +
-               // TERAPEUTA_TREINO + " INTEGER FOREIGN KEY, " +
+                TERAPEUTA_TREINO + " INTEGER, " +
                 TIPO_TREINO + " TEXT NOT NULL, " +
-                OBS_TREINO + " TEXT NOT NULL" +
+                OBS_TREINO + " TEXT NOT NULL, " +
+                "CONSTRAINT fk_treinos_terapeuta FOREIGN KEY (" + TERAPEUTA_TREINO + ") REFERENCES " +
+                TABELA_TERAPEUTAS + "(" + ID_TERAPEUTA + ")" +
                 ")";
+        db.execSQL(sqlTabelaTreinos);
 
         String sqlTabelaFeedback = "CREATE TABLE " + TABELA_FEEDBACK + "( " +
                 ID_FEEDBACK + " INTEGER PRIMARY KEY, " +
@@ -90,21 +102,13 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 MENSAGEM + " TEXT NOT NULL, " +
                 DATAHORA + " DATETIME " +
                 ")";
-
-        String sqlTabelaTerapeutas = "CREATE TABLE " + TABELA_TERAPEUTAS + "( " +
-                ID_TERAPEUTA + " INTEGER PRIMARY KEY, " +
-                ESPECIALIDADE + " TEXT, " +
-                CONTACTO_TERAPEUTA + " TEXT)";
-
-        db.execSQL(sqlTabelaTerapeutas);
-        db.execSQL(sqlTabelaConsultas);
-        db.execSQL(sqlTabelaTreinos);
         db.execSQL(sqlTabelaFeedback);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + TABELA_TERAPEUTAS);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_CONSULTAS);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_TREINOS);
         db.execSQL("DROP TABLE IF EXISTS " + TABELA_FEEDBACK);
@@ -124,7 +128,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 null, null,null, null, DATA_CONSULTA);
         if(cursor.moveToFirst()){
             do {
-                new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
+                Consulta consulta = new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
                         cursor.getString(2), cursor.getLong(3), cursor.getDouble(4),
                         cursor.getString(5), cursor.getString(6), cursor.getString(7));
             }while(cursor.moveToNext());
@@ -144,7 +148,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 null, null,null, null, DATA_TREINO);
         if(cursor.moveToFirst()){
             do {
-                new Treino(cursor.getLong(0), formatter.parse(cursor.getString(1)),
+                Treino treino = new Treino(cursor.getLong(0), formatter.parse(cursor.getString(1)),
                         cursor.getString(2), cursor.getLong(3), cursor.getString(4),
                         cursor.getString(6));
             }while(cursor.moveToNext());
@@ -158,6 +162,27 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     public void removeAllTreinosBD(){
         this.database.delete(TABELA_TREINOS, null, null);
+    }
+
+
+    public Consulta adicionarConsultaBD(Consulta c)  {
+        ContentValues valores = new ContentValues();
+        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+        valores.put(DATA_CONSULTA, formatter.format(c.getDataConsulta()));
+        valores.put(DESCRICAO_CONSULTA, c.getDescricao());
+        valores.put(TERAPEUTA_CONSULTA, c.getTerapeuta_id());
+        valores.put(PESO, c.getPeso());
+        valores.put(TRATAMENTO, c.getTratamento());
+        valores.put(OBS_CONSULTA, c.getObs());
+        valores.put(RECOMENDACAO_CONSULTA, c.getRecomendacao());
+
+        //instrução insert devolve o id do objeto adicionado
+        long id = this.database.insert(TABELA_CONSULTAS, null, valores);
+        if(id > -1){
+            c.setId(id);
+            return c;
+        }
+        return null;
     }
 
 

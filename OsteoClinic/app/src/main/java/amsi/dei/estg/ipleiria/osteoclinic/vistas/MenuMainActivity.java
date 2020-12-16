@@ -7,9 +7,11 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toolbar;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -20,17 +22,16 @@ public class MenuMainActivity extends AppCompatActivity
 
     public static final String EMAIL = "amsi.dei.estg.ipleiria.osteoclinic.vistas.email";
 
-
-
     private NavigationView navigationView;
     private DrawerLayout drawer;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_main);
 
-        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.app_toolbar);
+        Toolbar toolbar = findViewById(R.id.app_toolbar);
         setSupportActionBar(toolbar);
 
         navigationView = findViewById(R.id.nav_view);
@@ -40,9 +41,11 @@ public class MenuMainActivity extends AppCompatActivity
         toggle.syncState();
         drawer.addDrawerListener(toggle);
 
+        carregarFragmentoInicial();
+
         navigationView.setNavigationItemSelectedListener(this);
 
-        carregarFragmentoInicial();
+
     }
 
     private void carregarFragmentoInicial() {
@@ -66,6 +69,10 @@ public class MenuMainActivity extends AppCompatActivity
                 break;
             case R.id.nav_treinos:
                 fragmento = new ListaTreinosFragment();
+                break;
+            case R.id.nav_calc_imc:
+                Intent intent = new Intent(getApplicationContext(), CalcularIMCActivity.class);
+                startActivity(intent);
                 break;
             case R.id.nav_user_profile:
                 break;

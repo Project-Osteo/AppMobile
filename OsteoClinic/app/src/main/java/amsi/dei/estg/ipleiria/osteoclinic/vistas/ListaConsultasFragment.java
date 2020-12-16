@@ -43,7 +43,7 @@ public class ListaConsultasFragment extends Fragment {
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
 
         try {
-            adapter = new ListaConsultasAdapter(getActivity(), gestor.getListaConsultas());
+            adapter = new ListaConsultasAdapter(getActivity(), gestor.getListaConsultasBD());
         } catch (ParseException e) {
             e.printStackTrace();
         }

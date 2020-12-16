@@ -14,14 +14,18 @@
                 <item
                     android:id="@+id/nav_consultas"
                     android:icon="@drawable/ic_foot_massage"
-                    android:title="@string/consultas">
-                </item>
+                    android:title="@string/consultas" />
 
                 <item
                     android:id="@+id/nav_treinos"
                     android:icon="@drawable/ic_workout_1"
-                    android:title="@string/treinos">
-                </item>
+                    android:title="@string/treinos" />
+
+                <item
+                    android:id="@+id/nav_calc_imc"
+                    android:icon="@drawable/ic_calculadora"
+                    android:title="Calcular IMC" />
+
             </menu>
         </item>
 
@@ -29,18 +33,17 @@
         <item android:title="">
             <menu>
                 <item android:id="@+id/nav_user_profile"
-                    android:icon="@drawable/ic_dumbbell"
+                    android:icon="@android:drawable/ic_menu_myplaces"
                     android:title="@string/perfil" />
 
                 <item android:id="@+id/nav_options"
-                    android:icon="@drawable/ic_workout"
+                    android:icon="@android:drawable/ic_menu_preferences"
                     android:title="@string/options" />
 
                 <item android:id="@+id/nav_logout"
-                    android:icon="@drawable/ic_foot_massage"
+                    android:icon="@android:drawable/ic_lock_power_off"
                     android:title="@string/logout" />
             </menu>
         </item>
     </group>
-
 </menu>
