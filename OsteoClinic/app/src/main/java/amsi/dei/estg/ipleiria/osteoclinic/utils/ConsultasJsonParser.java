@@ -73,7 +73,7 @@ public class ConsultasJsonParser {
 
     public static boolean isConnected(Context contexto){
         ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo networkInfo =cm.getActiveNetworkInfo();
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
 }

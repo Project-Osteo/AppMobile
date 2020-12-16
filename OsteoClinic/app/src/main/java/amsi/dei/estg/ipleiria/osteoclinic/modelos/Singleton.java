@@ -22,20 +22,25 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ConsultasJsonParser;
 
-public class Singleton {
+public class Singleton implements ConsultasListener {
     private Utilizador user;
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
     private static Singleton instance = null;
-    private ClinicBDHelper clinicBDHelper = null;
+    private ClinicBDHelper clinicBDHelper;
 
     private static RequestQueue volleyQueue = null;
 
+    private ConsultasListener consultasListener;
+
     //Endereços API
-    public static final String mUrlAPIConsultas = "http://localhost:3001/api/consultas";
-    public static final String mUrlAPIRegistar = "http://localhost:3001/api/registar";
+    private static final String host = "10.0.2.2";
+    private static final String port = ":3001";
+    public static final String mUrlAPIConsultas = "https://10.0.2.2:3001/api/consultas";
+    public static final String mUrlAPIRegistar = host + port + "/api/registar";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -98,14 +103,15 @@ public class Singleton {
         };
     }
 
-    public void getAllConsultasAPI(final Context contexto){
+    public void getAllConsultasAPI(final Context contexto) {
         if(!ConsultasJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
-            try {
-                getListaConsultasBD();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+            if(consultasListener != null)
+                try {
+                    consultasListener.onRefreshListaConsultas(getListaConsultasBD());
+                }catch(ParseException e){
+                    e.printStackTrace();
+                }
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
@@ -116,14 +122,15 @@ public class Singleton {
                             lista_consultas = ConsultasJsonParser.parserJsonConsultas(response);
                             adicionarConsultasBD(lista_consultas);
 
-//                            if (livrosListener != null) {
-//                                livrosListener.onRefreshListaLisvros(listalivros);
-//                            }
+                            if (consultasListener != null) {
+                                consultasListener.onRefreshListaConsultas(lista_consultas);
+                            }
                         }
                     },
                     new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
                             Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -139,7 +146,7 @@ public class Singleton {
         return lista_consultas;
     }
 
-    public ArrayList<Treino> getListaTreinos() throws ParseException {
+    public ArrayList<Treino> getListaTreinosBD() throws ParseException {
         lista_treinos = clinicBDHelper.getAllTreinosBD();
         return lista_treinos;
     }
@@ -228,6 +235,13 @@ public class Singleton {
         }
     }
 
+    public void setConsultasListener(ConsultasListener consultasListener) {
+        this.consultasListener = consultasListener;
+    }
 
 
+    @Override
+    public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
+
+    }
 }

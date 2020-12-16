@@ -42,7 +42,7 @@ public class ListaTreinosFragment extends Fragment {
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
 
         try {
-            adapter = new ListaTreinosAdapter(getActivity().getApplicationContext(), gestor.getListaTreinos());
+            adapter = new ListaTreinosAdapter(getActivity().getApplicationContext(), gestor.getListaTreinosBD());
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -185,5 +185,9 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         return null;
     }
 
+    public Treino adicionarTreinoBD(Treino t) {
+        return null;
+    }
+
 
 }

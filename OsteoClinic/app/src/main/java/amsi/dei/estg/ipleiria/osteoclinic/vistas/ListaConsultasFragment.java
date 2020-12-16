@@ -12,13 +12,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaConsultasAdapter;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 
-public class ListaConsultasFragment extends Fragment {
+public class ListaConsultasFragment extends Fragment implements ConsultasListener {
 
     private ListView listviewConsultas;
     private ListaConsultasAdapter adapter;
@@ -61,11 +64,16 @@ public class ListaConsultasFragment extends Fragment {
             }
         });
 
+        Singleton.getInstance(getContext()).setConsultasListener(this);
+        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext());
+
         return view;
-
-
     }
 
 
-
+    @Override
+    public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
+        if(listaconsultas != null)
+            listviewConsultas.setAdapter(new ListaConsultasAdapter(getContext(), listaconsultas));
+    }
 }
