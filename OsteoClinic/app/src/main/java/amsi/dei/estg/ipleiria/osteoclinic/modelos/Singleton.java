@@ -23,7 +23,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ConsultasJsonParser;
+import amsi.dei.estg.ipleiria.osteoclinic.utils.TreinosJsonParser;
 
 public class Singleton implements ConsultasListener {
     private Utilizador user;
@@ -35,11 +37,13 @@ public class Singleton implements ConsultasListener {
     private static RequestQueue volleyQueue = null;
 
     private ConsultasListener consultasListener;
+    private TreinosListener treinosListener;
 
     //Endereços API
     private static final String host = "10.0.2.2";
     private static final String port = ":3001";
     public static final String mUrlAPIConsultas = "https://10.0.2.2:3001/api/consultas";
+    public static final String mUrlAPITreinos = "https://10.0.2.2:3001/api/treinos";
     public static final String mUrlAPIRegistar = host + port + "/api/registar";
 
     public static synchronized Singleton getInstance(Context context) {
@@ -139,7 +143,38 @@ public class Singleton implements ConsultasListener {
     }
 
     public void getAllTreinosAPI(final Context contexto) {
+        if(!TreinosJsonParser.isConnected(contexto)){
+            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
+            if(treinosListener != null)
+                try {
+                    treinosListener.onRefreshListaTreinos(getListaTreinosBD());
+                }catch (ParseException e){
+                    e.printStackTrace();
+                }
+        }
+        else{
+            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
+                    mUrlAPITreinos, null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            lista_treinos = TreinosJsonParser.parserJsonTreinos(response);
+                            adicionarTreinosBD(lista_treinos);
 
+                            if (treinosListener != null) {
+                                treinosListener.onRefreshListaTreinos(lista_treinos);
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            volleyQueue.add(request);
+        }
     }
 
 
@@ -159,6 +194,12 @@ public class Singleton implements ConsultasListener {
         clinicBDHelper.removeAllConsultasBD();
         for(Consulta c: lista)
             clinicBDHelper.adicionarConsultaBD(c);
+    }
+
+    private void adicionarTreinosBD(ArrayList<Treino> lista) {
+        clinicBDHelper.removeAllTreinosBD();
+        for(Treino t: lista)
+            clinicBDHelper.adicionarTreinoBD(t);
     }
 
 
@@ -237,6 +278,10 @@ public class Singleton implements ConsultasListener {
 
     public void setConsultasListener(ConsultasListener consultasListener) {
         this.consultasListener = consultasListener;
+    }
+
+    public void setTreinosListener (TreinosListener treinosListener) {
+        this.treinosListener = treinosListener;
     }
 
 
