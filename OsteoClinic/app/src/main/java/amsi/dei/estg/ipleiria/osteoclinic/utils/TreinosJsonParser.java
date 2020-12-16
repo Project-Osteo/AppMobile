@@ -1,5 +1,9 @@
 package amsi.dei.estg.ipleiria.osteoclinic.utils;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -60,5 +64,11 @@ public class TreinosJsonParser {
         }
 
         return treino;
+    }
+
+    public static boolean isConnected(Context contexto){
+        ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo !=null && networkInfo.isConnected();
     }
 }

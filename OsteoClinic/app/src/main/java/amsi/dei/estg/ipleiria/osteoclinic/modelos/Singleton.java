@@ -210,27 +210,23 @@ public class Singleton implements ConsultasListener {
                             "gelo 3x dia"));
 
             this.lista_treinos.add(
-                    new Treino(1, data1,
+                    new Treino(1, 1, data1,
                             "30 min endurance",
-                            1,
                             "recuperar forma",
                             "durante 7 dias"));
             this.lista_treinos.add(
-                    new Treino(2, data1,
+                    new Treino(2, 1, data1,
                             "30 min endurance",
-                            1,
                             "recuperar forma",
                             "durante 7 dias"));
             this.lista_treinos.add(
-                    new Treino(3, data1,
+                    new Treino(3, 1, data1,
                             "30 min endurance",
-                            1,
                             "recuperar forma",
                             "durante 7 dias"));
             this.lista_treinos.add(
-                    new Treino(4, data1,
+                    new Treino(4, 1, data1,
                             "30 min endurance",
-                            1,
                             "recuperar forma",
                             "durante 7 dias"));
 
