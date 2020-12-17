@@ -12,7 +12,7 @@ public class Treino {
     private String tipo_treino;
     private String obs;
 
-    public Treino(long id, Date data_treino, String descricao, long terapeuta_id, String tipo_treino, String obs) {
+    public Treino(long id, long terapeuta_id, Date data_treino, String descricao, String tipo_treino, String obs) {
         this.id = id;
         //this.paciente_id = paciente_id;
         this.terapeuta_id = terapeuta_id;

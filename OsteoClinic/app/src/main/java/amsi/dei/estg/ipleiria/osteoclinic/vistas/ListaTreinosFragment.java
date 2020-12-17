@@ -12,12 +12,15 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.text.ParseException;
+import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaTreinosAdapter;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
 
-public class ListaTreinosFragment extends Fragment {
+public class ListaTreinosFragment extends Fragment implements TreinosListener {
 
     private ListView listviewTreinos;
     private ListaTreinosAdapter adapter;
@@ -57,6 +60,16 @@ public class ListaTreinosFragment extends Fragment {
             }
         });
 
+        Singleton.getInstance(getContext()).setTreinosListener(this);
+        Singleton.getInstance(getContext()).getAllTreinosAPI(getContext());
+
         return view;
+    }
+
+
+    @Override
+    public void onRefreshListaTreinos(ArrayList<Treino> listatreinos) {
+        if(listatreinos != null)
+            listviewTreinos.setAdapter(new ListaTreinosAdapter(getContext(), listatreinos));
     }
 }
