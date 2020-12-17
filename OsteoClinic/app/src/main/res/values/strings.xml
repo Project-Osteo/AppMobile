@@ -34,4 +34,5 @@
     <string name="kilos">kg</string>
     <string name="metros">m</string>
     <string name="calcular">Calcular</string>
+    <string name="titulo_registar">Registar conta em OsteoClinic:</string>
 </resources>

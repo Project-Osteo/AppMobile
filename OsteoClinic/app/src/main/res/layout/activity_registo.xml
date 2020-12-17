@@ -7,14 +7,38 @@
     android:orientation="vertical"
     tools:context=".vistas.RegistoActivity">
 
+    <TextView
+        android:id="@+id/tvTituloRegistar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:ems="10"
+        android:text="@string/titulo_registar"
+        android:textSize="28dp"
+        android:textColor="@color/titleActivityColor" />
+
     <Space
         android:layout_width="match_parent"
-        android:layout_height="100dp" />
+        android:layout_height="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/etNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="textPersonName" />
 
         <EditText
             android:id="@+id/etEmail"
@@ -51,17 +75,6 @@
             android:inputType="textPassword" />
 
         <EditText
-            android:id="@+id/etNome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Nome"
-            android:inputType="textPersonName" />
-
-        <EditText
             android:id="@+id/etContacto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,7 +82,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Telemóvel"
+            android:hint="Telemóvel (opcional)"
             android:inputType="textPersonName" />
     </LinearLayout>
 
@@ -84,4 +97,5 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="@string/bt_registo" />
+
 </LinearLayout>
