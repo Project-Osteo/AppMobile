@@ -53,6 +53,8 @@ public class ListaTreinosAdapter extends BaseAdapter {
             view.setTag(vHolderTreino);
         }
 
+        vHolderTreino.update(this.listatreinos.get(position));
+
         return view;
     }
 
@@ -60,9 +62,16 @@ public class ListaTreinosAdapter extends BaseAdapter {
         private TextView tvNumTreino, tvDataTreino, tvTipoTreino;
 
         public ViewHolderTreino(View view){
-            tvNumTreino = view.findViewById(R.id.tvNumTreinoItem);
-            tvDataTreino = view.findViewById(R.id.tvDataTreinoItem);
-            tvTipoTreino = view.findViewById(R.id.tvTipoTreinoItem);
+            tvNumTreino = view.findViewById(R.id.tvNumTreinoCard);
+            tvDataTreino = view.findViewById(R.id.tvDataTreinoCard);
+            tvTipoTreino = view.findViewById(R.id.tvTipoTreinoCard);
         }
+
+        public void update(Treino treino){
+            this.tvNumTreino.setText(""+treino.getId());
+            this.tvDataTreino.setText(String.format("%tF",treino.getDataTreino()));
+            this.tvTipoTreino.setText(treino.getTipoTreino());
+        }
+
     }
 }

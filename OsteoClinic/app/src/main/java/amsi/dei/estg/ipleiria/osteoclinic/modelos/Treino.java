@@ -34,17 +34,15 @@ public class Treino {
         this.paciente_id = paciente_id;
     }*/
 
-    public long getTerapeuta_id() { return terapeuta_id; }
+    public long getTerapeutaId() { return terapeuta_id; }
 
-    public Date getData_treino() {
-        return data_treino;
-    }
+    public Date getDataTreino() { return data_treino; }
 
     public String getDescricao() {
         return descricao;
     }
 
-    public String getTipo_treino() {
+    public String getTipoTreino() {
         return tipo_treino;
     }
 

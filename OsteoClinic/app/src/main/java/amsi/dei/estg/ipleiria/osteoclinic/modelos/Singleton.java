@@ -202,6 +202,48 @@ public class Singleton implements ConsultasListener {
             clinicBDHelper.adicionarTreinoBD(t);
     }
 
+    public void setConsultasListener(ConsultasListener consultasListener) {
+        this.consultasListener = consultasListener;
+    }
+
+    public void setTreinosListener (TreinosListener treinosListener) {
+        this.treinosListener = treinosListener;
+    }
+
+
+    @Override
+    public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
+
+    }
+
+    public Date stringToDate(String str){
+        try {
+            SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'.000Z'");
+            Date date = sdfSource.parse(str);
+            SimpleDateFormat sdfDestination = new SimpleDateFormat("dd-MM-yyyy");
+            str = sdfDestination.format(date);
+        }catch(ParseException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -219,12 +261,12 @@ public class Singleton implements ConsultasListener {
             Date data1 = formatter.parse(sDate1);
             this.lista_consultas.add(
                     new Consulta(1,data1,
-                        "peses torcidos",
+                            "peses torcidos",
                             1,
-                        85,
-                        "massacre e uv",
-                        "muito negro",
-                        "gelo 3x dia"));
+                            85,
+                            "massacre e uv",
+                            "muito negro",
+                            "gelo 3x dia"));
             this.lista_consultas.add(
                     new Consulta(2,data1,
                             "peses torcidos",
@@ -274,19 +316,5 @@ public class Singleton implements ConsultasListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    public void setConsultasListener(ConsultasListener consultasListener) {
-        this.consultasListener = consultasListener;
-    }
-
-    public void setTreinosListener (TreinosListener treinosListener) {
-        this.treinosListener = treinosListener;
-    }
-
-
-    @Override
-    public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
-
     }
 }

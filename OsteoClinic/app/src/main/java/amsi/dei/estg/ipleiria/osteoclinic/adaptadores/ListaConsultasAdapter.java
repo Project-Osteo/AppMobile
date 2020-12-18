@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -16,6 +18,7 @@ public class ListaConsultasAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<Consulta> lista_consultas;
+
 
     public ListaConsultasAdapter(Context context, ArrayList<Consulta> lista_consultas) {
         this.context = context;
@@ -54,10 +57,12 @@ public class ListaConsultasAdapter extends BaseAdapter {
             view.setTag(vHolder);
         }
 
+        vHolder.update(this.lista_consultas.get(position));
+
         return view;
     }
 
-    public class ViewHolderConsulta{
+    private class ViewHolderConsulta{
         private TextView tvNumConsulta, tvDataConsulta, tvDescricaoConsulta;
 
         public ViewHolderConsulta(View view){
@@ -66,6 +71,11 @@ public class ListaConsultasAdapter extends BaseAdapter {
             tvDescricaoConsulta = view.findViewById(R.id.tvDescricaoConsultaCard);
         }
 
-        //public void update(Consulta consulta) { ?!?!?!?
+        public void update(Consulta consulta){
+            this.tvNumConsulta.setText(""+consulta.getId());
+            this.tvDataConsulta.setText(String.format("%tF",consulta.getDataConsulta()));
+            this.tvDescricaoConsulta.setText(consulta.getDescricao());
+        }
+
     }
 }

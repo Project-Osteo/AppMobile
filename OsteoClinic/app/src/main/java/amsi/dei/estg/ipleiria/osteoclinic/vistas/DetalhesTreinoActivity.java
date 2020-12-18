@@ -8,8 +8,6 @@ import android.widget.TextView;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
-import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
-import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
 
 public class DetalhesTreinoActivity extends AppCompatActivity {
@@ -35,8 +33,8 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
 
         if(treino != null){
             setTitle("Treinos");
-            tvTipoTreino.setText(treino.getTipo_treino());
-            tvDataTreino.setText(treino.getData_treino().toString());
+            tvTipoTreino.setText(treino.getTipoTreino());
+            tvDataTreino.setText(treino.getDataTreino().toString());
             tvTerapeutaTreino.setText("Osteo");
             tvDescricaoTreino.setText(treino.getDescricao());
             tvRecomendacoesTreino.setText(treino.getObs());
