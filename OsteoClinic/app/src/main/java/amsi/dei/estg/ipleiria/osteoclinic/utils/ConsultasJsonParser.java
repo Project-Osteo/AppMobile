@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
@@ -33,8 +34,10 @@ public class ConsultasJsonParser {
                 String obs = consultajson.getString("obs");
                 String rec = consultajson.getString("recomendacao");
 
-                SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
-                Date data1 = formatter.parse(data);
+
+                SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+                String data2 = data.substring(0,10);
+                Date data1 = formatter.parse(data2);
 
                 Consulta consulta = new Consulta(id, data1, descricao, terapeuta, peso, tratamento, obs, rec);
 
@@ -60,13 +63,14 @@ public class ConsultasJsonParser {
             String obs = consultajson.getString("obs");
             String rec = consultajson.getString("recomendacao");
 
-            SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
             Date data1 = formatter.parse(data);
 
             consulta = new Consulta(id, data1, descricao, terapeuta, peso, tratamento, obs, rec);
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         return consulta;
     }
 

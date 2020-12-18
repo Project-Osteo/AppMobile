@@ -144,13 +144,12 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
         Cursor cursor = this.database.query(
                 TABELA_TREINOS,
-                new String[] {ID_TREINO, DATA_TREINO, DESCRICAO_TREINO, TERAPEUTA_TREINO, TIPO_TREINO, OBS_TREINO},
+                new String[] {ID_TREINO, TERAPEUTA_TREINO, DATA_TREINO, DESCRICAO_TREINO, TIPO_TREINO, OBS_TREINO},
                 null, null,null, null, DATA_TREINO);
         if(cursor.moveToFirst()){
             do {
-                Treino treino = new Treino(cursor.getLong(0), formatter.parse(cursor.getString(1)),
-                        cursor.getString(2), cursor.getLong(3), cursor.getString(4),
-                        cursor.getString(6));
+                Treino treino = new Treino(cursor.getLong(0), cursor.getLong(1), formatter.parse(cursor.getString(2)),
+                        cursor.getString(3), cursor.getString(4), cursor.getString(5));
             }while(cursor.moveToNext());
         }
         return lista;

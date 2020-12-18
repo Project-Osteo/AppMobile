@@ -42,8 +42,8 @@ public class Singleton implements ConsultasListener {
     //Endereços API
     private static final String host = "10.0.2.2";
     private static final String port = ":3001";
-    public static final String mUrlAPIConsultas = "https://10.0.2.2:3001/api/consultas";
-    public static final String mUrlAPITreinos = "https://10.0.2.2:3001/api/treinos";
+    public static final String mUrlAPIConsultas = "http://10.0.2.2:3001/api/consultas";
+    public static final String mUrlAPITreinos = "http://10.0.2.2:3001/api/treinos";
     public static final String mUrlAPIRegistar = host + port + "/api/registar";
 
     public static synchronized Singleton getInstance(Context context) {
