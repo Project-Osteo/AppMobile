@@ -1,15 +1,15 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 
 public class CalcularIMCActivity extends AppCompatActivity {
-
-    private EditText etPeso, etAltura;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +18,9 @@ public class CalcularIMCActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        etPeso = findViewById(R.id.etPeso);
-        etAltura = findViewById(R.id.etAltura);
-
+        Fragment fragmento = new CalculoIMCFragment();
+        if(fragmento != null){
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayoutIMC, fragmento).commit();
+        }
     }
 }

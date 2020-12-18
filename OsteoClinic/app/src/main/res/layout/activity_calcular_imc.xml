@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,64 +9,76 @@
 
     <TextView
         android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/calc_imc"
+        android:textAlignment="center"
         android:textSize="25sp" />
 
-    <EditText
-        android:id="@+id/etPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitulo"
-        android:ems="10"
-        android:hint="Peso"
-        android:inputType="numberDecimal" />
+<!--    <EditText-->
+<!--        android:id="@+id/etPeso"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/tvTitulo"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Peso"-->
+<!--        android:inputType="numberDecimal" />-->
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitulo"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/etPeso"
-        android:paddingLeft="10dp"
-        android:text="@string/kilos"
-        android:textSize="20sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/tvTitulo"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_toRightOf="@id/etPeso"-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:text="@string/kilos"-->
+<!--        android:textSize="20sp" />-->
 
 
-    <EditText
-        android:id="@+id/etAltura"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etPeso"
-        android:ems="10"
-        android:hint="Altura"
-        android:inputType="numberDecimal"/>
+<!--    <EditText-->
+<!--        android:id="@+id/etAltura"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/etPeso"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Altura"-->
+<!--        android:inputType="numberDecimal"/>-->
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etPeso"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/etAltura"
-        android:paddingLeft="10dp"
-        android:text="@string/metros"
-        android:textSize="20sp" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView2"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/etPeso"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_toRightOf="@id/etAltura"-->
+<!--        android:paddingLeft="10dp"-->
+<!--        android:text="@string/metros"-->
+<!--        android:textSize="20sp" />-->
 
-    <Button
-        android:id="@+id/btCalcIMC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etAltura"
-        android:text="@string/calcular" />
+<!--    <Button-->
+<!--        android:id="@+id/btCalcIMC"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/etAltura"-->
+<!--        android:text="@string/calcular" />-->
+
+    <FrameLayout
+        android:id="@+id/frameLayoutIMC"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
+    </FrameLayout>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btCalcIMC"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:scaleType="centerCrop"
         android:src="@drawable/tabela_calc_imc" />
 
-</RelativeLayout>
+</LinearLayout>
 
