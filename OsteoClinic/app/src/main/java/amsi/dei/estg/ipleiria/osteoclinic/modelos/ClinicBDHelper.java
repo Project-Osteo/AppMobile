@@ -119,7 +119,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     public ArrayList<Consulta> getAllConsultasBD() throws ParseException {
         ArrayList<Consulta> lista = new ArrayList<>();
 
-        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
 
         Cursor cursor = this.database.query(
                 TABELA_CONSULTAS,
@@ -140,7 +140,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     public ArrayList<Treino> getAllTreinosBD() throws ParseException {
         ArrayList<Treino> lista = new ArrayList<>();
 
-        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
 
         Cursor cursor = this.database.query(
                 TABELA_TREINOS,
@@ -166,7 +166,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     public Consulta adicionarConsultaBD(Consulta c)  {
         ContentValues valores = new ContentValues();
-        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
         valores.put(DATA_CONSULTA, formatter.format(c.getDataConsulta()));
         valores.put(DESCRICAO_CONSULTA, c.getDescricao());
         valores.put(TERAPEUTA_CONSULTA, c.getTerapeuta_id());

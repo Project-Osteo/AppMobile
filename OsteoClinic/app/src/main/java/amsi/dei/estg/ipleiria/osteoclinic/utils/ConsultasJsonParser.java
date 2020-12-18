@@ -36,8 +36,7 @@ public class ConsultasJsonParser {
 
 
                 SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
-                String data2 = data.substring(0,10);
-                Date data1 = formatter.parse(data2);
+                Date data1 = formatter.parse(data.substring(0,10));
 
                 Consulta consulta = new Consulta(id, data1, descricao, terapeuta, peso, tratamento, obs, rec);
 
@@ -64,13 +63,13 @@ public class ConsultasJsonParser {
             String rec = consultajson.getString("recomendacao");
 
             SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
-            Date data1 = formatter.parse(data);
+            Date data1 = formatter.parse(data.substring(0,10));
 
             consulta = new Consulta(id, data1, descricao, terapeuta, peso, tratamento, obs, rec);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         return consulta;
     }
 
