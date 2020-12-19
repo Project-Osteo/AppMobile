@@ -1,38 +1,47 @@
 <resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
     <string name="app_name">OsteoClinic</string>
+
     <string name="bt_login">Entrar</string>
     <string name="bt_registo">Registar</string>
-    <string name="consultas">Consultas</string>
-    <string name="ultima_consulta">Última consulta</string>
-    <string name="treinos">Treinos</string>
-    <string name="ultimo_treino">Último treino</string>
-    <string name="perfil">Perfil Utilizador</string>
-    <string name="logout">Sair</string>
-    <string name="options">Definições</string>
     <string name="password">Password</string>
     <string name="email">E-mail</string>
     <string name="registar">Registar</string>
-    <string name="ndOpen">Open</string>
-    <string name="ndClose">Close</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="bt_ir_consultas">Consultas</string>
-    <string name="bt_ir_treinos">Treinos</string>
-    <string name="bt_calcular_imc">Calcular IMC</string>
+    <string name="titulo_registar">Registar conta em OsteoClinic:</string>
     <string name="inicio">Menu inicial</string>
-    <string name="numero_consulta">N.º: 164</string>
-    <string name="data">Data:</string>
-    <string name="descricao_consulta">Dores agudas nas costas</string>
-    <string name="recomendacoes_consulta">Recomendações:</string>
+    <string name="perfil">Perfil Utilizador</string>
+    <string name="options">Definições</string>
+    <string name="logout">Sair</string>
+
+
+    <string name="consultas">Consultas</string>
+    <string name="bt_ir_consultas">Consultas</string>
+    <string name="ultima_consulta">Última consulta</string>
+    <string name="numero_consulta">N.º Consulta:</string>
+
+    <string name="treinos">Treinos</string>
+    <string name="bt_ir_treinos">Treinos</string>
+    <string name="ultimo_treino">Último treino</string>
+    <string name="numero_treino">N.º Treino:</string>
     <string name="tipo_treino">Tipo de treino:</string>
     <string name="descricao_treino">O que fazer:</string>
     <string name="recomendacoes_treino">Porque fazer:</string>
-    <string name="numero_treino">Treino n.º:</string>
+
+    <string name="bt_calcular_imc">Calcular IMC</string>
+
+    <string name="descricao">Descrição:</string>
+    <string name="data">Data:</string>
+    <string name="recomendacoes">Recomendações:</string>
+
+    <string name="ndOpen">Open</string>
+    <string name="ndClose">Close</string>
+
     <string name="calc_imc">Calcular Índice de Massa Corporal</string>
     <string name="peso">Peso:</string>
     <string name="altura">Altura:</string>
     <string name="kilos">kg</string>
-    <string name="metros">m</string>
+    <string name="centimetros">cm</string>
     <string name="calcular">Calcular</string>
-    <string name="titulo_registar">Registar conta em OsteoClinic:</string>
 </resources>
