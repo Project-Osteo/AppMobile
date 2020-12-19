@@ -52,7 +52,7 @@
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/etAltura"
         android:paddingLeft="10dp"
-        android:text="@string/metros"
+        android:text="@string/centimetros"
         android:textSize="20sp" />
 
     <Button
