@@ -4,12 +4,12 @@ public class Utilizador {
     private long id;
     private String mail;
     private String password;
-    private String nome;
+    private String token;
 
-    public Utilizador(String mail, String password, String nome) {
+    public Utilizador(String mail, String password, String token) {
         this.mail = mail;
         this.password = password;
-        this.nome = nome;
+        this.token = token;
     }
 
     public long getId() {
@@ -32,12 +32,12 @@ public class Utilizador {
         this.password = password;
     }
 
-    public String getNome() {
-        return nome;
+    public String getToken() {
+        return token;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setToken(String token) {
+        this.token = token;
     }
 
 }

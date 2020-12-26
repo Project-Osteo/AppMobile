@@ -172,8 +172,8 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 null, null,null, null, DATA_TREINO);
         if(cursor.moveToFirst()){
             do {
-                Treino treino = new Treino(cursor.getLong(0), formatter.parse(cursor.getString(2)),
-                        cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                Treino treino = new Treino(cursor.getLong(0), formatter.parse(cursor.getString(1)),
+                        cursor.getString(2), cursor.getString(3), cursor.getString(4));
             }while(cursor.moveToNext());
         }
         return lista;

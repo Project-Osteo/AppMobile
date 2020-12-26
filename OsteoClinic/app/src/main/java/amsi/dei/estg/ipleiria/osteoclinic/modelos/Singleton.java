@@ -1,6 +1,5 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
-import android.app.DownloadManager;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -43,9 +42,9 @@ public class Singleton implements ConsultasListener, TreinosListener {
     //Endereços API
     private static final String host = "10.0.2.2";
     private static final String port = ":3001";
-    public static final String mUrlAPIConsultas = "http://10.0.2.2:3001/consultas";
-    public static final String mUrlAPITreinos = "http://10.0.2.2:3001/treinos";
-    public static final String mUrlAPIRegistar = host + port + "/api/registar";
+    public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas";
+    public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos";
+    public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -83,7 +82,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
     public void registarUtilizador(final Utilizador user, final String token, final  Context context){
         StringRequest request = new StringRequest(Request.Method.POST,
-                mUrlAPIRegistar,
+                mUrlAPIRegistarUtilizador,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -98,11 +97,10 @@ public class Singleton implements ConsultasListener, TreinosListener {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("token", token);
-                params.put("id", ""+user.getId());
+                params.put("id_user", ""+user.getId());
                 params.put("mail", user.getMail());
                 params.put("pwd", user.getPassword());
-                params.put("nome", user.getNome());
+                params.put("token", user.getToken());
                 return params;
             }
         };
@@ -122,7 +120,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
-                    mUrlAPIConsultas, null,
+                    mUrlAPIListaConsultas, null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
@@ -158,7 +156,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
-                    mUrlAPITreinos, null,
+                    mUrlAPIListaTreinos, null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
