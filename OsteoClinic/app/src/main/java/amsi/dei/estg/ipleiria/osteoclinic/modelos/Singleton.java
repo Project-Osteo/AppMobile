@@ -32,6 +32,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
     private static Singleton instance = null;
+
     private ClinicBDHelper clinicBDHelper = null;
 
     private static RequestQueue volleyQueue = null;
@@ -209,6 +210,18 @@ public class Singleton implements ConsultasListener, TreinosListener {
                 atual.setTratamento(consulta.getTratamento());
                 atual.setObs_consulta(consulta.getObs_consulta());
                 atual.setRecomendacao(consulta.getRecomendacao());
+            }
+        }
+        return false;
+    }
+
+    public boolean removerConsultaBD(long id){
+        Consulta consulta = getConsulta(id);
+        if(consulta != null){
+            boolean removeu = clinicBDHelper.removerConsultaBD(id);
+            if(removeu == true){
+                this.lista_consultas.remove(consulta);
+                return true;
             }
         }
         return false;

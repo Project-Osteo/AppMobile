@@ -155,6 +155,11 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         return registosalterados > 0;
     }
 
+    public boolean removerConsultaBD(long id){
+        return this.database.delete(TABELA_CONSULTAS, "id = ?",
+                new String [] {""+ id}) == 1;
+    }
+
     // --------------  métodos CRUD treinos ------------------------
 
     public ArrayList<Treino> getAllTreinosBD() throws ParseException {
