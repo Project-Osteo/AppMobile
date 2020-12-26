@@ -107,6 +107,8 @@ public class Singleton implements ConsultasListener, TreinosListener {
         };
     }
 
+
+    // get lista consultas
     public void getAllConsultasAPI(final Context contexto) {
         if(!ConsultasJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
@@ -142,6 +144,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
         }
     }
 
+    // get lista treinos
     public void getAllTreinosAPI(final Context contexto) {
         if(!TreinosJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
@@ -209,7 +212,6 @@ public class Singleton implements ConsultasListener, TreinosListener {
     public void setTreinosListener (TreinosListener treinosListener) {
         this.treinosListener = treinosListener;
     }
-
 
     @Override
     public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
