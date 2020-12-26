@@ -161,7 +161,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     }
 
     // --------------  métodos CRUD treinos ------------------------
-
     public ArrayList<Treino> getAllTreinosBD() throws ParseException {
         ArrayList<Treino> lista = new ArrayList<>();
 
@@ -185,7 +184,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     }
 
     public Treino adicionarTreinoBD(Treino t) {
-
         ContentValues valores = new ContentValues();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         valores.put(DATA_TREINO, formatter.format(t.getDataTreino()));

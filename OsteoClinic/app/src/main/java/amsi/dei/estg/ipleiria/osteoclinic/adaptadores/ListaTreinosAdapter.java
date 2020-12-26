@@ -44,7 +44,7 @@ public class ListaTreinosAdapter extends BaseAdapter {
         }
 
         if(view == null){
-            view = inflater.inflate(R.layout.item_lista_treino, null);
+            view = inflater.inflate(R.layout.card_lista_treinos, null);
         }
 
         ViewHolderTreino vHolderTreino = (ViewHolderTreino) view.getTag();

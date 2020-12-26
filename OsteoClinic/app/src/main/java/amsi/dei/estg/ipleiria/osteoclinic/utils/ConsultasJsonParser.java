@@ -67,7 +67,6 @@ public class ConsultasJsonParser {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return consulta;
     }
 

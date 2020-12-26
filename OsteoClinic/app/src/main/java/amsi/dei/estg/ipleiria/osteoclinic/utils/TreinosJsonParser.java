@@ -20,16 +20,16 @@ public class TreinosJsonParser {
         try{
             for(int i = 0; i < resposta.length(); i++){
                 JSONObject treinoJson = (JSONObject) resposta.get(i);
-                long id = treinoJson.getLong("id");
-                String data = treinoJson.getString("data_consulta");
-                String descricao = treinoJson.getString("descricao");
-                String tipo_treino = treinoJson.getString("tipo_treino");
-                String obs = treinoJson.getString("obs");
+                long id = treinoJson.getLong("id_treino");
+                String data = treinoJson.getString("data_treino");
+                String descricao = treinoJson.getString("descricao_treino");
+                String tipo = treinoJson.getString("tipo_treino");
+                String obs = treinoJson.getString("obs_treino");
 
-                SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
-                Date data1 = formatter.parse(data);
+                SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+                Date data1 = formatter.parse(data.substring(0,10));
 
-                Treino treino = new Treino(id, data1, descricao, tipo_treino, obs);
+                Treino treino = new Treino(id, data1, descricao, tipo, obs);
 
                 listatreinos.add(treino);
 
@@ -46,16 +46,16 @@ public class TreinosJsonParser {
 
         try {
             JSONObject treinoJson = new JSONObject(resposta);
-            long id = treinoJson.getLong("id");
-            String data = treinoJson.getString("data_consulta");
-            String descricao = treinoJson.getString("descricao");
-            String tipo_treino = treinoJson.getString("tipo_treino");
-            String obs = treinoJson.getString("obs");
+            long id = treinoJson.getLong("id_treino");
+            String data = treinoJson.getString("data_treino");
+            String descricao = treinoJson.getString("descricao_treino");
+            String tipo = treinoJson.getString("tipo_treino");
+            String obs = treinoJson.getString("obs_treino");
 
             SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
             Date data1 = formatter.parse(data);
 
-            treino = new Treino(id, data1, descricao, tipo_treino, obs);
+            treino = new Treino(id, data1, descricao, tipo, obs);
 
         }catch (Exception e) {
             e.printStackTrace();
