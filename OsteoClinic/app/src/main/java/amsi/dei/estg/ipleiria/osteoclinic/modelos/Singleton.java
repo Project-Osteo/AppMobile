@@ -246,7 +246,6 @@ public class Singleton implements ConsultasListener, TreinosListener {
     }
 
     public boolean editarTreinoBD(Treino treino){
-
         Treino atual = getTreino(treino.getId());
 
         if(atual != null){
@@ -260,6 +259,17 @@ public class Singleton implements ConsultasListener, TreinosListener {
         return false;
     }
 
+    public boolean removerTreinoBD(long id){
+        Treino treino = getTreino(id);
+        if(treino != null){
+            boolean removeu = clinicBDHelper.removerTreinoBD(id);
+            if(removeu == true){
+                this.lista_treinos.remove(treino);
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     public void setConsultasListener(ConsultasListener consultasListener) {

@@ -156,7 +156,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     }
 
     public boolean removerConsultaBD(long id){
-        return this.database.delete(TABELA_CONSULTAS, "id = ?",
+        return this.database.delete(TABELA_CONSULTAS, ID_CONSULTA + " = ?",
                 new String [] {""+ id}) == 1;
     }
 
@@ -213,4 +213,8 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         return registosalterados > 0;
     }
 
+    public boolean removerTreinoBD(long id){
+        return this.database.delete(TABELA_TREINOS, ID_TREINO + " = ?",
+                new String [] {""+ id}) == 1;
+    }
 }
