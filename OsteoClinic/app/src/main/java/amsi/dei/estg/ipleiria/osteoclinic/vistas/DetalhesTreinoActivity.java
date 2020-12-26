@@ -36,8 +36,8 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
             tvTipoTreino.setText(treino.getTipoTreino());
             tvDataTreino.setText(treino.getDataTreino().toString());
             tvTerapeutaTreino.setText("Osteo");
-            tvDescricaoTreino.setText(treino.getDescricao());
-            tvRecomendacoesTreino.setText(treino.getObs());
+            tvDescricaoTreino.setText(treino.getDescricao_treino());
+            tvRecomendacoesTreino.setText(treino.getObs_treino());
         }
 
     }

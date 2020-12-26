@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class ClinicBDHelper extends SQLiteOpenHelper {
 
@@ -95,6 +94,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         this.onCreate(db);
     }
 
+    // ----------- métodos CRUD consultas ---------------------------------
 
     public ArrayList<Consulta> getAllConsultasBD() throws ParseException {
         ArrayList<Consulta> lista = new ArrayList<>();
@@ -116,6 +116,46 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         return lista;
     }
 
+    public void removeAllConsultasBD(){
+        this.database.delete(TABELA_CONSULTAS, null, null);
+    }
+
+    public Consulta adicionarConsultaBD(Consulta c)  {
+        ContentValues valores = new ContentValues();
+        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(DATA_CONSULTA, formatter.format(c.getDataConsulta()));
+        valores.put(DESCRICAO_CONSULTA, c.getDescricao_consulta());
+        valores.put(PESO, c.getPeso());
+        valores.put(TRATAMENTO, c.getTratamento());
+        valores.put(OBS_CONSULTA, c.getObs_consulta());
+        valores.put(RECOMENDACAO_CONSULTA, c.getRecomendacao());
+
+        //instrução insert devolve o id do objeto adicionado
+        long id = this.database.insert(TABELA_CONSULTAS, null, valores);
+        if(id > -1){
+            c.setId(id);
+            return c;
+        }
+        return null;
+    }
+
+    public boolean editarConsultaBD(Consulta consulta){
+        ContentValues valores = new ContentValues();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(DATA_CONSULTA, formatter.format(consulta.getDataConsulta()));
+        valores.put(DESCRICAO_CONSULTA, consulta.getDescricao_consulta());
+        valores.put(PESO, consulta.getPeso());
+        valores.put(TRATAMENTO, consulta.getTratamento());
+        valores.put(OBS_CONSULTA, consulta.getObs_consulta());
+        valores.put(RECOMENDACAO_CONSULTA, consulta.getRecomendacao());
+
+        int registosalterados = this.database.update(TABELA_CONSULTAS, valores,
+                "id = ?", new String [] {""+ consulta.getId()});
+
+        return registosalterados > 0;
+    }
+
+    // --------------  métodos CRUD treinos ------------------------
 
     public ArrayList<Treino> getAllTreinosBD() throws ParseException {
         ArrayList<Treino> lista = new ArrayList<>();
@@ -135,38 +175,39 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         return lista;
     }
 
-    public void removeAllConsultasBD(){
-        this.database.delete(TABELA_CONSULTAS, null, null);
-    }
-
     public void removeAllTreinosBD(){
         this.database.delete(TABELA_TREINOS, null, null);
     }
 
+    public Treino adicionarTreinoBD(Treino t) {
 
-    public Consulta adicionarConsultaBD(Consulta c)  {
         ContentValues valores = new ContentValues();
-        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
-        valores.put(DATA_CONSULTA, formatter.format(c.getDataConsulta()));
-        valores.put(DESCRICAO_CONSULTA, c.getDescricao());
-        valores.put(PESO, c.getPeso());
-        valores.put(TRATAMENTO, c.getTratamento());
-        valores.put(OBS_CONSULTA, c.getObs());
-        valores.put(RECOMENDACAO_CONSULTA, c.getRecomendacao());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(DATA_TREINO, formatter.format(t.getDataTreino()));
+        valores.put(DESCRICAO_TREINO, t.getDescricao_treino());
+        valores.put(TIPO_TREINO, t.getTipoTreino());
+        valores.put(OBS_TREINO, t.getObs_treino());
 
-        //instrução insert devolve o id do objeto adicionado
-        long id = this.database.insert(TABELA_CONSULTAS, null, valores);
+        long id = this.database.insert(TABELA_TREINOS, null, valores);
         if(id > -1){
-            c.setId(id);
-            return c;
+            t.setId(id);
+            return t;
         }
         return null;
     }
 
-    public Treino adicionarTreinoBD(Treino t) {
+    public boolean editarTreinoBD(Treino treino){
+        ContentValues valores = new ContentValues();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(DATA_TREINO, formatter.format(treino.getDataTreino()));
+        valores.put(DESCRICAO_TREINO, treino.getDescricao_treino());
+        valores.put(TIPO_TREINO, treino.getTipoTreino());
+        valores.put(OBS_TREINO, treino.getObs_treino());
 
-        return null;
+        int registosalterados = this.database.update(TABELA_TREINOS, valores,
+                "id = ?", new String [] {""+ treino.getId()});
+
+        return registosalterados > 0;
     }
-
 
 }

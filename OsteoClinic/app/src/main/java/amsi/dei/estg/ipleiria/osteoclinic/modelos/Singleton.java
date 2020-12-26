@@ -27,7 +27,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ConsultasJsonParser;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.TreinosJsonParser;
 
-public class Singleton implements ConsultasListener {
+public class Singleton implements ConsultasListener, TreinosListener {
     private Utilizador user;
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
@@ -216,6 +216,11 @@ public class Singleton implements ConsultasListener {
 
     }
 
+    @Override
+    public void onRefreshListaTreinos(ArrayList<Treino> listatreinos) {
+
+    }
+
     public Date stringToDate(String str){
         try {
             SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'.000Z'");
@@ -227,15 +232,7 @@ public class Singleton implements ConsultasListener {
         }
         return null;
     }
-
-
-
-
-
-
-
-
-
+    
 
 //    private void gerarFakeData() {
 //

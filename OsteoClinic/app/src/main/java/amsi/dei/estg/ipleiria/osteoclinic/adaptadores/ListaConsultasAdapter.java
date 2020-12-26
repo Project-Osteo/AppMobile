@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -74,7 +72,7 @@ public class ListaConsultasAdapter extends BaseAdapter {
         public void update(Consulta consulta){
             this.tvNumConsulta.setText(""+consulta.getId());
             this.tvDataConsulta.setText(String.format("%tF",consulta.getDataConsulta()));
-            this.tvDescricaoConsulta.setText(consulta.getDescricao());
+            this.tvDescricaoConsulta.setText(consulta.getDescricao_consulta());
         }
 
     }

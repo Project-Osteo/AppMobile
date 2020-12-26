@@ -35,7 +35,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
             tvNumConsulta.setText(""+consulta.getId());
             tvDataConsulta.setText(consulta.getDataConsulta().toString());
             tvTerapeuta.setText("OsteoFla");
-            tvDescricao.setText(consulta.getDescricao());
+            tvDescricao.setText(consulta.getDescricao_consulta());
             tvRecomendacoes.setText(consulta.getRecomendacao());
         }
     }
