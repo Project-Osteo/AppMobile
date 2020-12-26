@@ -32,7 +32,8 @@ public class Singleton implements ConsultasListener, TreinosListener {
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
     private static Singleton instance = null;
-    private ClinicBDHelper clinicBDHelper;
+
+    private ClinicBDHelper clinicBDHelper = null;
 
     private static RequestQueue volleyQueue = null;
 
@@ -182,28 +183,86 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
 
 
-    /* ******************** MÉTODOS BD ******************** */
+    /* ******************** MÉTODOS BD Consultas******************** */
+
     public ArrayList<Consulta> getListaConsultasBD() throws ParseException {
         lista_consultas = clinicBDHelper.getAllConsultasBD();
         return lista_consultas;
     }
+
+    public void adicionarConsultasBD(ArrayList<Consulta> lista) {
+        clinicBDHelper.removeAllConsultasBD();
+        for(Consulta c: lista)
+            clinicBDHelper.adicionarConsultaBD(c);
+    }
+
+    public void adicionarConsultaBD(Consulta consulta){
+        clinicBDHelper.adicionarConsultaBD(consulta);
+    }
+
+
+    public boolean editarConsultaBD(Consulta consulta){
+
+        Consulta atual = getConsulta(consulta.getId());
+
+        if(atual != null){
+            boolean alterou = clinicBDHelper.editarConsultaBD(atual);
+            if(alterou == true){
+                atual.setDescricao_consulta(consulta.getDescricao_consulta());
+                atual.setPeso(consulta.getPeso());
+                atual.setTratamento(consulta.getTratamento());
+                atual.setObs_consulta(consulta.getObs_consulta());
+                atual.setRecomendacao(consulta.getRecomendacao());
+            }
+        }
+        return false;
+    }
+
+    public boolean removerConsultaBD(long id){
+        Consulta consulta = getConsulta(id);
+        if(consulta != null){
+            boolean removeu = clinicBDHelper.removerConsultaBD(id);
+            if(removeu == true){
+                this.lista_consultas.remove(consulta);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /* ******************** MÉTODOS BD treinos******************** */
 
     public ArrayList<Treino> getListaTreinosBD() throws ParseException {
         lista_treinos = clinicBDHelper.getAllTreinosBD();
         return lista_treinos;
     }
 
-    private void adicionarConsultasBD(ArrayList<Consulta> lista) {
-        clinicBDHelper.removeAllConsultasBD();
-        for(Consulta c: lista)
-            clinicBDHelper.adicionarConsultaBD(c);
-    }
-
-    private void adicionarTreinosBD(ArrayList<Treino> lista) {
+    public void adicionarTreinosBD(ArrayList<Treino> lista) {
         clinicBDHelper.removeAllTreinosBD();
         for(Treino t: lista)
             clinicBDHelper.adicionarTreinoBD(t);
     }
+
+    public void adicionarTreinoBD(Treino treino){
+        clinicBDHelper.adicionarTreinoBD(treino);
+    }
+
+    public boolean editarTreinoBD(Treino treino){
+
+        Treino atual = getTreino(treino.getId());
+
+        if(atual != null){
+            boolean alterou = clinicBDHelper.editarTreinoBD(atual);
+            if(alterou == true){
+                atual.setDescricao_treino(treino.getDescricao_treino());
+                atual.setTipo_treino(treino.getTipoTreino());
+                atual.setObs_treino(treino.getObs_treino());
+            }
+        }
+        return false;
+    }
+
+
 
     public void setConsultasListener(ConsultasListener consultasListener) {
         this.consultasListener = consultasListener;
@@ -234,7 +293,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
         }
         return null;
     }
-    
+
 
 //    private void gerarFakeData() {
 //

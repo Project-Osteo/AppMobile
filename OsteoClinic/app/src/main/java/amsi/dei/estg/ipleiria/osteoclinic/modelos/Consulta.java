@@ -36,21 +36,39 @@ public class Consulta {
         return descricao_consulta;
     }
 
+    public void setDescricao_consulta(String descricao_consulta) {
+        this.descricao_consulta = descricao_consulta;
+    }
+
     public double getPeso() {
         return peso;
+    }
+
+    public void setPeso(double peso) {
+        this.peso = peso;
     }
 
     public String getTratamento() {
         return tratamento;
     }
 
+    public void setTratamento(String tratamento) {
+        this.tratamento = tratamento;
+    }
+
     public String getObs_consulta() {
         return obs_consulta;
+    }
+
+    public void setObs_consulta(String obs_consulta) {
+        this.obs_consulta = obs_consulta;
     }
 
     public String getRecomendacao() {
         return recomendacao;
     }
 
-
+    public void setRecomendacao(String recomendacao) {
+        this.recomendacao = recomendacao;
+    }
 }

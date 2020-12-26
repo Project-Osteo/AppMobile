@@ -34,11 +34,23 @@ public class Treino {
         return descricao_treino;
     }
 
+    public void setDescricao_treino(String descricao_treino) {
+        this.descricao_treino = descricao_treino;
+    }
+
     public String getTipoTreino() {
         return tipo_treino;
     }
 
+    public void setTipo_treino(String tipo_treino) {
+        this.tipo_treino = tipo_treino;
+    }
+
     public String getObs_treino() {
         return obs_treino;
+    }
+
+    public void setObs_treino(String obs_treino) {
+        this.obs_treino = obs_treino;
     }
 }
