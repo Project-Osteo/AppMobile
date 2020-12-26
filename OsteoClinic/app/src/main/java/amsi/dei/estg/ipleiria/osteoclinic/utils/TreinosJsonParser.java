@@ -21,7 +21,6 @@ public class TreinosJsonParser {
             for(int i = 0; i < resposta.length(); i++){
                 JSONObject treinoJson = (JSONObject) resposta.get(i);
                 long id = treinoJson.getLong("id");
-                long terapeuta = treinoJson.getLong("terapeuta_id");
                 String data = treinoJson.getString("data_consulta");
                 String descricao = treinoJson.getString("descricao");
                 String tipo_treino = treinoJson.getString("tipo_treino");
@@ -30,7 +29,7 @@ public class TreinosJsonParser {
                 SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
                 Date data1 = formatter.parse(data);
 
-                Treino treino = new Treino(id, terapeuta, data1, descricao, tipo_treino, obs);
+                Treino treino = new Treino(id, data1, descricao, tipo_treino, obs);
 
                 listatreinos.add(treino);
 
@@ -48,7 +47,6 @@ public class TreinosJsonParser {
         try {
             JSONObject treinoJson = new JSONObject(resposta);
             long id = treinoJson.getLong("id");
-            long terapeuta = treinoJson.getLong("terapeuta_id");
             String data = treinoJson.getString("data_consulta");
             String descricao = treinoJson.getString("descricao");
             String tipo_treino = treinoJson.getString("tipo_treino");
@@ -57,7 +55,7 @@ public class TreinosJsonParser {
             SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
             Date data1 = formatter.parse(data);
 
-            treino = new Treino(id, terapeuta, data1, descricao, tipo_treino, obs);
+            treino = new Treino(id, data1, descricao, tipo_treino, obs);
 
         }catch (Exception e) {
             e.printStackTrace();

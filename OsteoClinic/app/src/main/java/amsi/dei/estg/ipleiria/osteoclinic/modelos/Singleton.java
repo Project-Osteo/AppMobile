@@ -42,8 +42,8 @@ public class Singleton implements ConsultasListener {
     //Endereços API
     private static final String host = "10.0.2.2";
     private static final String port = ":3001";
-    public static final String mUrlAPIConsultas = "http://10.0.2.2:3001/api/consultas";
-    public static final String mUrlAPITreinos = "http://10.0.2.2:3001/api/treinos";
+    public static final String mUrlAPIConsultas = "http://10.0.2.2:3001/consultas";
+    public static final String mUrlAPITreinos = "http://10.0.2.2:3001/treinos";
     public static final String mUrlAPIRegistar = host + port + "/api/registar";
 
     public static synchronized Singleton getInstance(Context context) {
@@ -237,84 +237,71 @@ public class Singleton implements ConsultasListener {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    private void gerarFakeData() {
-
-        user = new Utilizador("mail", "pass", "nome");
-
-        String sDate1 = "11/11/2020";
-        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
-
-        try {
-            Date data1 = formatter.parse(sDate1);
-            this.lista_consultas.add(
-                    new Consulta(1,data1,
-                            "peses torcidos",
-                            1,
-                            85,
-                            "massacre e uv",
-                            "muito negro",
-                            "gelo 3x dia"));
-            this.lista_consultas.add(
-                    new Consulta(2,data1,
-                            "peses torcidos",
-                            1,
-                            85,
-                            "massacre e uv",
-                            "muito negro",
-                            "gelo 3x dia"));
-            this.lista_consultas.add(
-                    new Consulta(3,data1,
-                            "peses torcidos",
-                            1,
-                            85,
-                            "massacre e uv",
-                            "muito negro",
-                            "gelo 3x dia"));
-            this.lista_consultas.add(
-                    new Consulta(4,data1,
-                            "peses torcidos",
-                            1,
-                            85,
-                            "massacre e uv",
-                            "muito negro",
-                            "gelo 3x dia"));
-
-            this.lista_treinos.add(
-                    new Treino(1, 1, data1,
-                            "30 min endurance",
-                            "recuperar forma",
-                            "durante 7 dias"));
-            this.lista_treinos.add(
-                    new Treino(2, 1, data1,
-                            "30 min endurance",
-                            "recuperar forma",
-                            "durante 7 dias"));
-            this.lista_treinos.add(
-                    new Treino(3, 1, data1,
-                            "30 min endurance",
-                            "recuperar forma",
-                            "durante 7 dias"));
-            this.lista_treinos.add(
-                    new Treino(4, 1, data1,
-                            "30 min endurance",
-                            "recuperar forma",
-                            "durante 7 dias"));
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+//    private void gerarFakeData() {
+//
+//        user = new Utilizador("mail", "pass", "nome");
+//
+//        String sDate1 = "11/11/2020";
+//        SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+//
+//        try {
+//            Date data1 = formatter.parse(sDate1);
+//            this.lista_consultas.add(
+//                    new Consulta(1,data1,
+//                            "peses torcidos",
+//                            1,
+//                            85,
+//                            "massacre e uv",
+//                            "muito negro",
+//                            "gelo 3x dia"));
+//            this.lista_consultas.add(
+//                    new Consulta(2,data1,
+//                            "peses torcidos",
+//                            1,
+//                            85,
+//                            "massacre e uv",
+//                            "muito negro",
+//                            "gelo 3x dia"));
+//            this.lista_consultas.add(
+//                    new Consulta(3,data1,
+//                            "peses torcidos",
+//                            1,
+//                            85,
+//                            "massacre e uv",
+//                            "muito negro",
+//                            "gelo 3x dia"));
+//            this.lista_consultas.add(
+//                    new Consulta(4,data1,
+//                            "peses torcidos",
+//                            1,
+//                            85,
+//                            "massacre e uv",
+//                            "muito negro",
+//                            "gelo 3x dia"));
+//
+//            this.lista_treinos.add(
+//                    new Treino(1, 1, data1,
+//                            "30 min endurance",
+//                            "recuperar forma",
+//                            "durante 7 dias"));
+//            this.lista_treinos.add(
+//                    new Treino(2, 1, data1,
+//                            "30 min endurance",
+//                            "recuperar forma",
+//                            "durante 7 dias"));
+//            this.lista_treinos.add(
+//                    new Treino(3, 1, data1,
+//                            "30 min endurance",
+//                            "recuperar forma",
+//                            "durante 7 dias"));
+//            this.lista_treinos.add(
+//                    new Treino(4, 1, data1,
+//                            "30 min endurance",
+//                            "recuperar forma",
+//                            "durante 7 dias"));
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
