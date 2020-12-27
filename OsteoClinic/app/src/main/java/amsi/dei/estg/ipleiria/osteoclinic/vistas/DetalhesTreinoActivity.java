@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 
+import java.text.SimpleDateFormat;
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
@@ -33,7 +35,8 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
         if(treino != null){
             setTitle("Treinos");
             tvTipoTreino.setText(treino.getTipoTreino());
-            tvDataTreino.setText(treino.getDataTreino().toString());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            tvDataTreino.setText(formatter.format(treino.getDataTreino()));
             tvDescricaoTreino.setText(treino.getDescricao_treino());
             tvRecomendacoesTreino.setText(treino.getObs_treino());
         }

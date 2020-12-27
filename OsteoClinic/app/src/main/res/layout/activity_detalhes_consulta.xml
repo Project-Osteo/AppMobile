@@ -22,25 +22,6 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvNumDetalheTitulo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/numero_consulta"
-                android:textColor="@color/colorAccent"
-                android:textSize="60px"/>
-
-            <TextView
-                android:id="@+id/tvNumConsultaDetalhe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="10dp"
-                android:text="TextView"
-                android:textSize="60px"
-                android:textColor="@color/colorText"/>
-
-        </LinearLayout>
-
-        <TextView
             android:id="@+id/tvDataConsultaDetalhe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -49,6 +30,8 @@
             android:text="TextView"
             android:textSize="50px"
             android:textColor="@color/colorText"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

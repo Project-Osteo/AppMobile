@@ -25,7 +25,7 @@
     <string name="bt_ir_treinos">Treinos</string>
     <string name="ultimo_treino">Último treino</string>
     <string name="numero_treino">N.º Treino:</string>
-    <string name="tipo_treino">Tipo de treino:</string>
+    <string name="tipo_treino">Tipo:</string>
     <string name="descricao_treino">Descrição do treino</string>
     <string name="obs_treino">Cuidados a ter</string>
 

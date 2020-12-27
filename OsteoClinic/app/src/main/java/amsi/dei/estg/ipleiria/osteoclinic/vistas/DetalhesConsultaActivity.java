@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -13,7 +15,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
 
     public static final String ID_CONSULTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
 
-    private TextView tvNumConsulta, tvDataConsulta, tvDescricao, tvRecomendacoes;
+    private TextView tvDataConsulta, tvDescricao, tvRecomendacoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +23,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detalhes_consulta);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        tvNumConsulta = findViewById(R.id.tvNumConsultaDetalhe);
         tvDataConsulta = findViewById(R.id.tvDataConsultaDetalhe);
         tvDescricao = findViewById(R.id.tvDescricaoConsultaDetalhe);
         tvRecomendacoes = findViewById(R.id.tvRecomendacoesDetalhe);
@@ -31,8 +32,8 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
 
         if(consulta != null){
             setTitle("Consultas");
-            tvNumConsulta.setText(""+consulta.getId());
-            tvDataConsulta.setText(consulta.getDataConsulta().toString());
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            tvDataConsulta.setText(formatter.format(consulta.getDataConsulta()));
             tvDescricao.setText(consulta.getDescricao_consulta());
             tvRecomendacoes.setText(consulta.getRecomendacao());
         }
