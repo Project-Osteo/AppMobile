@@ -23,8 +23,7 @@ import java.util.Map;
 
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
-import amsi.dei.estg.ipleiria.osteoclinic.utils.ConsultasJsonParser;
-import amsi.dei.estg.ipleiria.osteoclinic.utils.TreinosJsonParser;
+import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
 public class Singleton implements ConsultasListener, TreinosListener {
     private Utilizador user;
@@ -109,7 +108,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
     // get lista consultas
     public void getAllConsultasAPI(final Context contexto) {
-        if(!ConsultasJsonParser.isConnected(contexto)){
+        if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
             if(consultasListener != null)
                 try {
@@ -124,7 +123,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
-                            lista_consultas = ConsultasJsonParser.parserJsonConsultas(response);
+                            lista_consultas = ClinicJsonParser.parserJsonConsultas(response);
                             adicionarConsultasBD(lista_consultas);
 
                             if (consultasListener != null) {
@@ -145,7 +144,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
     // get lista treinos
     public void getAllTreinosAPI(final Context contexto) {
-        if(!TreinosJsonParser.isConnected(contexto)){
+        if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
             if(treinosListener != null)
                 try {
@@ -160,7 +159,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
-                            lista_treinos = TreinosJsonParser.parserJsonTreinos(response);
+                            lista_treinos = ClinicJsonParser.parserJsonTreinos(response);
                             adicionarTreinosBD(lista_treinos);
 
                             if (treinosListener != null) {

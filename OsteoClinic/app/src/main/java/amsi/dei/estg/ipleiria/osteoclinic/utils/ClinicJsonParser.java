@@ -3,22 +3,20 @@ package amsi.dei.estg.ipleiria.osteoclinic.utils;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.CpuUsageInfo;
-import android.util.JsonReader;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
 
-public class ConsultasJsonParser {
+public class ClinicJsonParser {
+
+    /* CONSULTAS JSON PARSER */
     public static ArrayList<Consulta> parserJsonConsultas(JSONArray resposta){
         ArrayList<Consulta> listaconsultas = new ArrayList<>();
 
@@ -47,6 +45,7 @@ public class ConsultasJsonParser {
         return listaconsultas;
     }
 
+
     public static Consulta parserJsonConsulta(String resposta){
         Consulta consulta = null;
 
@@ -71,9 +70,62 @@ public class ConsultasJsonParser {
     }
 
 
+    /* TREINOS JSON PARSER */
+    public static ArrayList<Treino> parserJsonTreinos(JSONArray resposta){
+        ArrayList<Treino> listatreinos = new ArrayList<>();
+
+        try{
+            for(int i = 0; i < resposta.length(); i++){
+                JSONObject treinoJson = (JSONObject) resposta.get(i);
+                long id = treinoJson.getLong("id_treino");
+                String data = treinoJson.getString("data_treino");
+                String descricao = treinoJson.getString("descricao_treino");
+                String tipo = treinoJson.getString("tipo_treino");
+                String obs = treinoJson.getString("obs_treino");
+
+                SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+                Date data1 = formatter.parse(data.substring(0,10));
+
+                Treino treino = new Treino(id, data1, descricao, tipo, obs);
+
+                listatreinos.add(treino);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return listatreinos;
+    }
+
+    public static Treino parserJsonTreino(String resposta){
+        Treino treino = null;
+
+        try {
+            JSONObject treinoJson = new JSONObject(resposta);
+            long id = treinoJson.getLong("id_treino");
+            String data = treinoJson.getString("data_treino");
+            String descricao = treinoJson.getString("descricao_treino");
+            String tipo = treinoJson.getString("tipo_treino");
+            String obs = treinoJson.getString("obs_treino");
+
+            SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+            Date data1 = formatter.parse(data);
+
+            treino = new Treino(id, data1, descricao, tipo, obs);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return treino;
+    }
+
+
     public static boolean isConnected(Context contexto){
         ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
     }
+
 }

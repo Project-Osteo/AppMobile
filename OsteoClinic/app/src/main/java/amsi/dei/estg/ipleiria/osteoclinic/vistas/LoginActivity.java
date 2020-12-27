@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
-import amsi.dei.estg.ipleiria.osteoclinic.utils.ConsultasJsonParser;
+import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginClick(View view) {
-        if(!ConsultasJsonParser.isConnected(getApplicationContext())){
+        if(!ClinicJsonParser.isConnected(getApplicationContext())){
             Toast.makeText(getApplicationContext(), "Não tem ligação à internet", Toast.LENGTH_SHORT).show();
         }
 

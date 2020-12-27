@@ -10,13 +10,25 @@
 <!--    <color name="titleActivityColor">#00a5ff</color>-->
 <!--</resources>-->
 
+<!--<resources>-->
+<!--    <color name="colorPrimary">#A80000CD</color>-->
+<!--    <color name="colorPrimaryDark">#00008B</color>-->
+<!--    <color name="colorSecondary">#4169E1</color>-->
+<!--    <color name="colorAccent">#0016A3</color>-->
+<!--    <color name="colorText">#FFFFFF</color>-->
+<!--    <color name="colorTextDark">#1C1C1C</color>-->
+<!--    <color name="colorTextEditText">#B0C4DE</color>-->
+<!--    <color name="colorTextHint">#836FFF</color>-->
+<!--</resources>-->
+
 <resources>
-    <color name="colorPrimary">#A9800000</color>
-    <color name="colorPrimaryDark">#800000</color>
-    <color name="colorSecondary">#CD5C5C</color>
-    <color name="colorAccent">#FF4500</color>
+    <color name="colorPrimary">#008000</color>
+    <color name="colorPrimaryDark">#006400</color>
+    <color name="colorSecondary">#7CB342</color>
+    <color name="colorAccent">#083A0A</color>
     <color name="colorText">#FFFFFF</color>
     <color name="colorTextDark">#1C1C1C</color>
     <color name="colorTextEditText">#40000000</color>
-    <color name="colorTextHint">#FA8072</color>
+    <color name="colorTextHint">#32CD32</color>
 </resources>
+
