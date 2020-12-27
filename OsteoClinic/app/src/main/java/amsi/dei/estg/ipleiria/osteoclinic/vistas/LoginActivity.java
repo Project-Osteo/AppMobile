@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.utils.ConsultasJsonParser;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -28,7 +30,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    public void Login(View view) {
+    public void onLoginClick(View view) {
+        if(!ConsultasJsonParser.isConnected(getApplicationContext())){
+            Toast.makeText(getApplicationContext(), "Não tem ligação à internet", Toast.LENGTH_SHORT).show();
+        }
+
         if(isEmailValido(etEmail.getText().toString())) {
             if(isPasswordValida(etPassword.getText().toString())) {
                 Intent intentMain = new Intent(this, MenuMainActivity.class);

@@ -95,7 +95,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     }
 
     // ----------- métodos CRUD consultas ---------------------------------
-
     public ArrayList<Consulta> getAllConsultasBD() throws ParseException {
         ArrayList<Consulta> lista = new ArrayList<>();
 
@@ -216,5 +215,10 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     public boolean removerTreinoBD(long id){
         return this.database.delete(TABELA_TREINOS, ID_TREINO + " = ?",
                 new String [] {""+ id}) == 1;
+    }
+
+    // --------------  métodos CRUD users ------------------------
+    public void addUtilizador(Utilizador user) {
+
     }
 }
