@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
-    <color name="Black">#000000</color>
-    <color name="teste_card_1">#C2D6C3</color>
-    <color name="whiteTextColor">#fff</color>
-    <color name="primaryTextColor">#00a5ff</color>
+<!--<resources>-->
+<!--    <color name="colorPrimary">#6200EE</color>-->
+<!--    <color name="colorPrimaryDark">#3700B3</color>-->
+<!--    <color name="colorAccent">#03DAC5</color>-->
+<!--    <color name="Black">#000000</color>-->
+<!--    <color name="teste_card_1">#C2D6C3</color>-->
+<!--    <color name="whiteTextColor">#fff</color>-->
+<!--    <color name="primaryTextColor">#00a5ff</color>-->
+<!--    <color name="titleActivityColor">#00a5ff</color>-->
+<!--</resources>-->
 
-    <color name="titleActivityColor">#00a5ff</color>
+<resources>
+    <color name="colorPrimary">#A9800000</color>
+    <color name="colorPrimaryDark">#800000</color>
+    <color name="colorSecondary">#CD5C5C</color>
+    <color name="colorAccent">#FF4500</color>
+    <color name="colorText">#FFFFFF</color>
+    <color name="colorTextDark">#1C1C1C</color>
+    <color name="colorTextEditText">#40000000</color>
+    <color name="colorTextHint">#FA8072</color>
 </resources>

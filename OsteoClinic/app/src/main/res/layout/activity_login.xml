@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
     tools:context=".vistas.LoginActivity">
 
     <LinearLayout
@@ -20,7 +21,8 @@
             android:fontFamily="sans-serif-black"
             android:text="@string/app_name"
             android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+            android:textColor="@color/colorTextHint" />
 
         <Space
             android:layout_width="match_parent"
@@ -43,7 +45,9 @@
             android:ems="10"
             android:hint="@string/email"
             android:inputType="textEmailAddress"
-            android:importantForAutofill="no" />
+            android:importantForAutofill="no"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"/>
 
         <EditText
             android:id="@+id/etPassword"
@@ -56,7 +60,9 @@
             android:ems="10"
             android:hint="@string/password"
             android:importantForAutofill="no"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"/>
 
         <Button
             android:id="@+id/btLogin"
@@ -67,7 +73,9 @@
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:onClick="Login"
-            android:text="@string/bt_login" />
+            android:text="@string/bt_login"
+            android:background="@color/colorTextHint"
+            android:textColor="@color/colorPrimary"/>
 
         <TextView
             android:id="@+id/tvRegisto"
@@ -75,6 +83,7 @@
             android:layout_height="wrap_content"
             android:onClick="onClickRegisto"
             android:text="@string/registar"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="@color/colorTextHint"/>
     </LinearLayout>
 </LinearLayout>

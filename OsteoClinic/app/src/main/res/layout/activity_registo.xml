@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".vistas.RegistoActivity">
+    tools:context=".vistas.RegistoActivity"
+    android:background="@color/colorPrimaryDark">
 
     <TextView
         android:id="@+id/tvTituloRegistar"
@@ -18,7 +19,7 @@
         android:ems="10"
         android:text="@string/titulo_registar"
         android:textAlignment="center"
-        android:textColor="@color/titleActivityColor"
+        android:textColor="@color/colorTextHint"
         android:textSize="40dp" />
 
     <Space
@@ -40,7 +41,9 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Nome"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"/>
 
         <EditText
             android:id="@+id/etEmail"
@@ -51,7 +54,9 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="E-mail"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"/>
 
         <EditText
             android:id="@+id/etPassword"
@@ -62,7 +67,9 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"/>
 
         <EditText
             android:id="@+id/etConfirmar"
@@ -73,7 +80,9 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Confirmar Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"/>
 
         <EditText
             android:id="@+id/etContacto"
@@ -84,7 +93,9 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Telemóvel (opcional)"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorText"/>
     </LinearLayout>
 
     <Space
@@ -97,6 +108,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="@string/bt_registo" />
+        android:text="@string/bt_registo"
+        android:background="@color/colorTextHint"
+        android:textColor="@color/colorText"/>
 
 </LinearLayout>

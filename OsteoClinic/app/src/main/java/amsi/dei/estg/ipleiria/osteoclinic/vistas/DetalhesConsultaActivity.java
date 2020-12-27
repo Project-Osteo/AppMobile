@@ -13,7 +13,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
 
     public static final String ID_CONSULTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
 
-    private TextView tvNumConsulta, tvDataConsulta, tvTerapeuta, tvDescricao, tvRecomendacoes;
+    private TextView tvNumConsulta, tvDataConsulta, tvDescricao, tvRecomendacoes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +23,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
 
         tvNumConsulta = findViewById(R.id.tvNumConsultaDetalhe);
         tvDataConsulta = findViewById(R.id.tvDataConsultaDetalhe);
-        tvTerapeuta = findViewById(R.id.tvTerapeutaDetalhe);
         tvDescricao = findViewById(R.id.tvDescricaoConsultaDetalhe);
         tvRecomendacoes = findViewById(R.id.tvRecomendacoesDetalhe);
 
@@ -34,7 +33,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
             setTitle("Consultas");
             tvNumConsulta.setText(""+consulta.getId());
             tvDataConsulta.setText(consulta.getDataConsulta().toString());
-            tvTerapeuta.setText("OsteoFla");
             tvDescricao.setText(consulta.getDescricao_consulta());
             tvRecomendacoes.setText(consulta.getRecomendacao());
         }

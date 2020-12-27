@@ -10,7 +10,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:layout_width="75dp"
@@ -24,7 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/numero_treino"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorTextDark"
             android:textSize="22sp"
             android:textStyle="bold"
             android:layout_toEndOf="@id/card_image"
@@ -35,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="29 Jun 2020"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorTextDark"
             android:textSize="22sp"
             android:layout_toEndOf="@id/tvNumTreinoCard"
             android:layout_marginStart="30dp" />
@@ -49,7 +50,7 @@
             android:layout_marginTop="13dp"
             android:layout_toEndOf="@id/card_image"
             android:text="@string/tipo_treino"
-            android:textColor="@color/Black"
+            android:textColor="@color/colorTextDark"
             android:textSize="18sp" />
 
 

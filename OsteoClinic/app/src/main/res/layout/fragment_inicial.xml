@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".vistas.InicialFragment">
+    tools:context=".vistas.InicialFragment"
+    android:background="@color/colorPrimaryDark">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="20dp" >
+        android:padding="20dp">
 
 <!--        <GridLayout-->
 <!--            android:layout_width="match_parent"-->
@@ -157,7 +158,10 @@
             android:drawableStart="@mipmap/ic_footmassage2_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_ir_consultas"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:background="@color/colorTextHint"
+            android:textColor="@color/colorTextDark"/>
+
 
         <Button
             android:id="@+id/btTreinos"
@@ -171,7 +175,9 @@
             android:drawableStart="@mipmap/ic_workout_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_ir_treinos"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:background="@color/colorTextHint"
+            android:textColor="@color/colorTextDark"/>
 
         <Button
             android:id="@+id/btCalcIMC"
@@ -185,6 +191,8 @@
             android:drawableStart="@mipmap/ic_imc_calculator_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_calcular_imc"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:background="@color/colorTextHint"
+            android:textColor="@color/colorTextDark"/>
     </RelativeLayout>
 </FrameLayout>

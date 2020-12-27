@@ -14,7 +14,7 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
 
     public static final String ID_TREINO = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
 
-    private TextView tvTipoTreino, tvDataTreino, tvTerapeutaTreino, tvDescricaoTreino, tvRecomendacoesTreino;
+    private TextView tvTipoTreino, tvDataTreino, tvDescricaoTreino, tvRecomendacoesTreino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,6 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
 
         tvTipoTreino = findViewById(R.id.tvTipoTreinoDetalhe);
         tvDataTreino = findViewById(R.id.tvDataTreinoDetalhe);
-        tvTerapeutaTreino = findViewById(R.id.tvTerapeutaDetalheTreino);
         tvDescricaoTreino = findViewById(R.id.tvDescricaoTreinoDetalhe);
         tvRecomendacoesTreino = findViewById(R.id.tvRecomendacoesTreinoDetalhe);
 
@@ -35,7 +34,6 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
             setTitle("Treinos");
             tvTipoTreino.setText(treino.getTipoTreino());
             tvDataTreino.setText(treino.getDataTreino().toString());
-            tvTerapeutaTreino.setText("Osteo");
             tvDescricaoTreino.setText(treino.getDescricao_treino());
             tvRecomendacoesTreino.setText(treino.getObs_treino());
         }

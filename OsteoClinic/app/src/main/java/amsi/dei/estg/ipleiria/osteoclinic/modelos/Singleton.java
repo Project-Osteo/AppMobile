@@ -200,7 +200,6 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
 
     public boolean editarConsultaBD(Consulta consulta){
-
         Consulta atual = getConsulta(consulta.getId());
 
         if(atual != null){
