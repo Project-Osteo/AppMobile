@@ -9,7 +9,7 @@
     <string name="password">Password</string>
     <string name="email">E-mail</string>
     <string name="registar">Registar</string>
-    <string name="titulo_registar">Registar conta em OsteoClinic:</string>
+    <string name="titulo_registar">Registar nova conta:</string>
     <string name="inicio">Menu inicial</string>
     <string name="perfil">Perfil Utilizador</string>
     <string name="options">Definições</string>

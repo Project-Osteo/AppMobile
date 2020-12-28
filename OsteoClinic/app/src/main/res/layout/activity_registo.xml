@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:ems="10"
@@ -21,10 +21,6 @@
         android:textAlignment="center"
         android:textColor="@color/colorTextHint"
         android:textSize="40dp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -42,8 +38,9 @@
             android:ems="10"
             android:hint="Nome"
             android:inputType="textPersonName"
+            android:textColor="@color/colorTextEditText"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorText"/>
+            android:textSize="16dp" />
 
         <EditText
             android:id="@+id/etEmail"
@@ -55,8 +52,9 @@
             android:ems="10"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
+            android:textColor="@color/colorTextEditText"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorText"/>
+            android:textSize="16dp" />
 
         <EditText
             android:id="@+id/etPassword"
@@ -68,8 +66,9 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
+            android:textColor="@color/colorTextEditText"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorText"/>
+            android:textSize="16dp" />
 
         <EditText
             android:id="@+id/etConfirmar"
@@ -81,26 +80,67 @@
             android:ems="10"
             android:hint="Confirmar Password"
             android:inputType="textPassword"
+            android:textColor="@color/colorTextEditText"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorText"/>
+            android:textSize="16dp" />
 
         <EditText
-            android:id="@+id/etContacto"
+            android:id="@+id/etTelemovel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="10dp"
             android:ems="10"
-            android:hint="Telemóvel (opcional)"
+            android:hint="Telemóvel"
             android:inputType="textPersonName"
+            android:textColor="@color/colorTextEditText"
             android:textColorHint="@color/colorTextHint"
-            android:textColor="@color/colorText"/>
-    </LinearLayout>
+            android:textSize="16dp" />
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="30dp" />
+        <EditText
+            android:id="@+id/etGenero"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Genero"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/etNacionalidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Nacionalidade"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/etLocalidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Localidade"
+            android:inputType="textPersonName"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/button"
@@ -108,8 +148,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:text="@string/bt_registo"
         android:background="@color/colorTextHint"
-        android:textColor="@color/colorText"/>
+        android:text="@string/bt_registo"
+        android:textColor="@color/colorText" />
 
 </LinearLayout>
