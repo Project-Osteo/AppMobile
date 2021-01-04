@@ -221,4 +221,8 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     public void addUtilizador(Utilizador user) {
 
     }
+
+    // ------------ métodos CRUD feedback ------------------------
+
+
 }
