@@ -241,4 +241,22 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         return lista;
     }
 
+    public void removeAllFeedbackBD() {
+        this.database.delete(TABELA_FEEDBACK, null, null);
+    }
+
+    public Feedback adcionarFeedbackBD(Feedback f){
+        ContentValues valores = new ContentValues();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(MENSAGEM, f.getMensagem());
+        valores.put(DATAHORA, formatter.format(f.getDatahora()));
+
+        long id = this.database.insert(TABELA_FEEDBACK, null, valores);
+        if(id > -1){
+            f.setId(id);
+            return f;
+        }
+        return null;
+    }
+
 }
