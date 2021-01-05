@@ -110,7 +110,7 @@ public class ClinicJsonParser {
             String tipo = treinoJson.getString("tipo_treino");
             String obs = treinoJson.getString("obs_treino");
 
-            SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
             Date data1 = formatter.parse(data);
 
             treino = new Treino(id, data1, descricao, tipo, obs);
@@ -124,7 +124,7 @@ public class ClinicJsonParser {
 
 
     /* Feedback JSON Parser */
-    public static ArrayList<Feedback> parserJsonFeedback(JSONArray resposta){
+    public static ArrayList<Feedback> parserJsonFeedbacks(JSONArray resposta){
         ArrayList<Feedback> listafeedback = new ArrayList<>();
 
         try{
@@ -147,6 +147,27 @@ public class ClinicJsonParser {
         }
 
         return listafeedback;
+    }
+
+    public static Feedback parserJsonFeedback(String resposta){
+        Feedback feedback = null;
+
+        try{
+            JSONObject feedbacksjon = new JSONObject(resposta);
+            long id = feedbacksjon.getLong("id_feedback");
+            String mensagem = feedbacksjon.getString("mensagem");
+            String datahora = feedbacksjon.getString("datahora");
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date data1 = formatter.parse(datahora);
+
+            feedback = new Feedback(id, mensagem, data1);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return feedback;
     }
 
 
