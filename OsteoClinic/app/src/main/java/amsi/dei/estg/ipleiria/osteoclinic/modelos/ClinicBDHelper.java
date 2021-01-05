@@ -221,4 +221,62 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     public void addUtilizador(Utilizador user) {
 
     }
+
+    // ------------ métodos CRUD feedback ------------------------
+
+    // acertar a data para data e hora ??
+
+    public ArrayList<Feedback> getAllFeedbackBD() throws ParseException {
+        ArrayList<Feedback> lista = new ArrayList<>();
+
+        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+
+        Cursor cursor = this.database.query(
+                TABELA_FEEDBACK,
+                new String [] {ID_FEEDBACK, MENSAGEM, DATAHORA},
+                null, null, null, null, DATAHORA);
+        if(cursor.moveToFirst()){
+            do{
+                Feedback feedback = new Feedback(cursor.getLong(0), cursor.getString(1),
+                        formatter.parse(cursor.getString(2)));
+            }while(cursor.moveToNext());
+        }
+        return lista;
+    }
+
+    public void removeAllFeedbackBD() {
+        this.database.delete(TABELA_FEEDBACK, null, null);
+    }
+
+    public Feedback adcionarFeedbackBD(Feedback f){
+        ContentValues valores = new ContentValues();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(MENSAGEM, f.getMensagem());
+        valores.put(DATAHORA, formatter.format(f.getDatahora()));
+
+        long id = this.database.insert(TABELA_FEEDBACK, null, valores);
+        if(id > -1){
+            f.setId(id);
+            return f;
+        }
+        return null;
+    }
+
+    public boolean editarFeedbackBD(Feedback feedback){
+        ContentValues valores = new ContentValues();
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(MENSAGEM, feedback.getMensagem());
+        valores.put(DATAHORA, formatter.format(feedback.getDatahora()));
+
+        int registosalterados = this.database.update(TABELA_FEEDBACK, valores,
+                "id = ?", new String [] {""+ feedback.getId()});
+
+        return registosalterados > 0;
+    }
+
+    public boolean removerFeedbackBD(long id){
+        return this.database.delete(TABELA_FEEDBACK, ID_FEEDBACK + " = ?",
+                new String [] {""+ id}) == 1;
+    }
+
 }

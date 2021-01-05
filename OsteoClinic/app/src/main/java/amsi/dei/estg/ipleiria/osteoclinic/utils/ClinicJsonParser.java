@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
 
 public class ClinicJsonParser {
@@ -110,7 +111,7 @@ public class ClinicJsonParser {
             String tipo = treinoJson.getString("tipo_treino");
             String obs = treinoJson.getString("obs_treino");
 
-            SimpleDateFormat formatter =  new SimpleDateFormat("dd/MM/yyyy");
+            SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
             Date data1 = formatter.parse(data);
 
             treino = new Treino(id, data1, descricao, tipo, obs);
@@ -121,6 +122,55 @@ public class ClinicJsonParser {
 
         return treino;
     }
+
+
+    /* Feedback JSON Parser */
+    public static ArrayList<Feedback> parserJsonFeedbacks(JSONArray resposta){
+        ArrayList<Feedback> listafeedback = new ArrayList<>();
+
+        try{
+            for(int i = 0; i < resposta.length(); i++){
+                JSONObject feedbackJson = (JSONObject) resposta.get(i);
+                long id = feedbackJson.getLong("id_treino");
+                String mensagem = feedbackJson.getString("mensagem");
+                String datahora = feedbackJson.getString("datahora");
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date data1 = formatter.parse(datahora.substring(0, 10));
+
+                Feedback feedback = new Feedback(id, mensagem, data1);
+
+                listafeedback.add(feedback);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return listafeedback;
+    }
+
+    public static Feedback parserJsonFeedback(String resposta){
+        Feedback feedback = null;
+
+        try{
+            JSONObject feedbacksjon = new JSONObject(resposta);
+            long id = feedbacksjon.getLong("id_feedback");
+            String mensagem = feedbacksjon.getString("mensagem");
+            String datahora = feedbacksjon.getString("datahora");
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date data1 = formatter.parse(datahora);
+
+            feedback = new Feedback(id, mensagem, data1);
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return feedback;
+    }
+
 
 
     public static boolean isConnected(Context contexto){
