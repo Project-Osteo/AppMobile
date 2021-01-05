@@ -223,6 +223,22 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     }
 
     // ------------ métodos CRUD feedback ------------------------
+    public ArrayList<Feedback> getAllFeedbackBD() throws ParseException {
+        ArrayList<Feedback> lista = new ArrayList<>();
 
+        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+
+        Cursor cursor = this.database.query(
+                TABELA_FEEDBACK,
+                new String [] {ID_FEEDBACK, MENSAGEM, DATAHORA},
+                null, null, null, null, DATAHORA);
+        if(cursor.moveToFirst()){
+            do{
+                Feedback feedback = new Feedback(cursor.getLong(0), cursor.getString(1),
+                        formatter.parse(cursor.getString(2)));
+            }while(cursor.moveToNext());
+        }
+        return lista;
+    }
 
 }

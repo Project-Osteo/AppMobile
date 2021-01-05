@@ -11,6 +11,12 @@ public class Feedback {
     private String mensagem;
     private Date datahora;
 
+    public Feedback(long id, String mensagem, Date datahora) {
+        this.id = id;
+        this.mensagem = mensagem;
+        this.datahora = datahora;
+    }
+
     public long getId() {
         return id;
     }
