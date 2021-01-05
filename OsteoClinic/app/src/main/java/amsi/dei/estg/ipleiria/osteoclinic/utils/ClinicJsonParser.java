@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
 
 public class ClinicJsonParser {
@@ -120,6 +121,34 @@ public class ClinicJsonParser {
 
         return treino;
     }
+
+
+    /* Feedback JSON Parser */
+    public static ArrayList<Feedback> parserJsonFeedback(JSONArray resposta){
+        ArrayList<Feedback> listafeedback = new ArrayList<>();
+
+        try{
+            for(int i = 0; i < resposta.length(); i++){
+                JSONObject feedbackJson = (JSONObject) resposta.get(i);
+                long id = feedbackJson.getLong("id_treino");
+                String mensagem = feedbackJson.getString("mensagem");
+                String datahora = feedbackJson.getString("datahora");
+
+                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                Date data1 = formatter.parse(datahora.substring(0, 10));
+
+                Feedback feedback = new Feedback(id, mensagem, data1);
+
+                listafeedback.add(feedback);
+
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        return listafeedback;
+    }
+
 
 
     public static boolean isConnected(Context contexto){

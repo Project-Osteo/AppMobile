@@ -223,6 +223,9 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     }
 
     // ------------ métodos CRUD feedback ------------------------
+
+    // acertar a data para data e hora ??
+
     public ArrayList<Feedback> getAllFeedbackBD() throws ParseException {
         ArrayList<Feedback> lista = new ArrayList<>();
 
