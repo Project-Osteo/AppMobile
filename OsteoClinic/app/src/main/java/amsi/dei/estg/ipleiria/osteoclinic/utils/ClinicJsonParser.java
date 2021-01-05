@@ -5,6 +5,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
@@ -126,6 +127,20 @@ public class ClinicJsonParser {
         ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnected();
+    }
+
+    public static String parserJsonLogin(String resposta){
+        String token = null;
+
+        try {
+            JSONObject login = new JSONObject(resposta);
+            if(login.getBoolean("success")){
+                token = login.getString("token");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return token;
     }
 
 }

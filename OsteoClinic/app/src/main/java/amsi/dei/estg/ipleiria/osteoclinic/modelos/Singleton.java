@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
@@ -37,6 +38,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
     private ConsultasListener consultasListener;
     private TreinosListener treinosListener;
+    private LoginListener loginListener;
 
     //Endereços API
     private static final String host = "10.0.2.2";
@@ -44,6 +46,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
     public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas";
     public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos";
     public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores";
+    public static final String mUrlAPILogin = "http://10.0.2.2:3001/login";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -78,7 +81,6 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
 
     /* ******************** MÉTODOS API ******************** */
-
     public void registarUtilizador(final Utilizador user, final String token, final  Context context){
         StringRequest request = new StringRequest(Request.Method.POST,
                 mUrlAPIRegistarUtilizador,
@@ -104,6 +106,33 @@ public class Singleton implements ConsultasListener, TreinosListener {
             }
         };
     }
+
+
+    public void loginAPI(final Context context, final String email, final String password) {
+        StringRequest request = new StringRequest(Request.Method.POST,
+                mUrlAPILogin,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loginListener.onValidateLogin(ClinicJsonParser.parserJsonLogin(response), email);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("email", email);
+                params.put("password", password);
+                return params;
+            }
+        };
+        volleyQueue.add(request);
+    }
+
 
 
     // get lista consultas
@@ -181,7 +210,6 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
 
     /* ******************** MÉTODOS BD Consultas******************** */
-
     public ArrayList<Consulta> getListaConsultasBD() throws ParseException {
         lista_consultas = clinicBDHelper.getAllConsultasBD();
         return lista_consultas;
@@ -196,7 +224,6 @@ public class Singleton implements ConsultasListener, TreinosListener {
     public void adicionarConsultaBD(Consulta consulta){
         clinicBDHelper.adicionarConsultaBD(consulta);
     }
-
 
     public boolean editarConsultaBD(Consulta consulta){
         Consulta atual = getConsulta(consulta.getId());
@@ -226,8 +253,8 @@ public class Singleton implements ConsultasListener, TreinosListener {
         return false;
     }
 
-    /* ******************** MÉTODOS BD treinos******************** */
 
+    /* ******************** MÉTODOS BD treinos******************** */
     public ArrayList<Treino> getListaTreinosBD() throws ParseException {
         lista_treinos = clinicBDHelper.getAllTreinosBD();
         return lista_treinos;
@@ -276,6 +303,10 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
     public void setTreinosListener (TreinosListener treinosListener) {
         this.treinosListener = treinosListener;
+    }
+
+    public void setLoginListener(LoginListener loginListener) {
+        this.loginListener = loginListener;
     }
 
     @Override

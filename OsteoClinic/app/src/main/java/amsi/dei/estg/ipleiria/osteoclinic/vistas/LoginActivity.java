@@ -10,9 +10,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements LoginListener {
 
     private EditText etEmail, etPassword;
 
@@ -27,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         etEmail.setText("user@mail.com");
         etPassword.setText("12345");
 
-
+        Singleton.getInstance(getApplicationContext()).setLoginListener(this);
     }
 
     public void onLoginClick(View view) {
@@ -37,9 +39,11 @@ public class LoginActivity extends AppCompatActivity {
 
         if(isEmailValido(etEmail.getText().toString())) {
             if(isPasswordValida(etPassword.getText().toString())) {
-                Intent intentMain = new Intent(this, MenuMainActivity.class);
-                intentMain.putExtra(MenuMainActivity.EMAIL, etEmail.getText().toString());
-                startActivity(intentMain);
+//                Intent intentMain = new Intent(this, MenuMainActivity.class);
+//                intentMain.putExtra(MenuMainActivity.EMAIL, etEmail.getText().toString());
+//                startActivity(intentMain);
+                Singleton.getInstance(getApplicationContext()).loginAPI(getApplicationContext(),
+                        etEmail.getText().toString(), etPassword.getText().toString());
             }
             else {
                 etPassword.setError("Palavra passe incorreta! \nTem de ter pelo menos 4 caracteres!");
@@ -64,6 +68,12 @@ public class LoginActivity extends AppCompatActivity {
         return password.length() >= 4;
     }
 
+
+
+    @Override
+    public void onValidateLogin(String token, String email) {
+
+    }
 }
 
 //NOTA 1:perguntar ao professor como fazer com que o Login seja a atividade principal caso o utilizador não tenha sessão iniciada,
