@@ -1,5 +1,9 @@
 package amsi.dei.estg.ipleiria.osteoclinic.listeners;
 
+import java.util.ArrayList;
+
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
+
 public interface FeedbacksListener {
-    //o que se vai meter aqui ou é necessário ter este listener ?
+    void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback);
 }
