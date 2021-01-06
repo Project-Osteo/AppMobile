@@ -12,6 +12,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaFeedbackAdapter;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.FeedbacksListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 
@@ -36,6 +37,6 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
 
     @Override
     public void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback) {
-
+        
     }
 }
