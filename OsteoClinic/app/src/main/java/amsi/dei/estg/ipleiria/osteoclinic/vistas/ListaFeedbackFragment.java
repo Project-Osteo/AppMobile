@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -42,8 +43,14 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
 
         try{
-
+            adapter = new ListaFeedbackAdapter(getActivity(), gestor.getListaFeedbackBD());
+        }catch (ParseException e){
+            e.printStackTrace();
         }
+
+        listafeedback.setAdapter(adapter);
+
+        return view;
     }
 
     @Override
