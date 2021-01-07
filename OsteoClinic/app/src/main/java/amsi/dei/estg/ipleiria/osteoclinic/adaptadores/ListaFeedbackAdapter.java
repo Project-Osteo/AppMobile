@@ -5,9 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 
 public class ListaFeedbackAdapter extends BaseAdapter {
@@ -37,7 +39,24 @@ public class ListaFeedbackAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+    public View getView(int position, View view, ViewGroup parent) {
+        if(inflater == null){
+            this.inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        }
+
+        if(view == null){
+            view = inflater.inflate(R.layout.card_lista_feedback, null);
+        }
+
+        ViewHolderFeedback vHolder = (ViewHolderFeedback) view.getTag();
+        if(vHolder == null){
+            vHolder = new ViewHolderFeedback(view);
+            view.setTag(vHolder);
+        }
+
+        return view;
+    }
+
+    private class ViewHolderFeedback {
     }
 }
