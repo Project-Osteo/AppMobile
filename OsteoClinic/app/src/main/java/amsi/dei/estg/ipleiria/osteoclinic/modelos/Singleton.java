@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.FeedbacksListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
@@ -30,6 +31,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
     private Utilizador user;
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
+    private ArrayList<Feedback> lista_feedback;
     private static Singleton instance = null;
 
     private ClinicBDHelper clinicBDHelper = null;
@@ -39,6 +41,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
     private ConsultasListener consultasListener;
     private TreinosListener treinosListener;
     private LoginListener loginListener;
+    private FeedbacksListener feedbacksListener;
 
     //Endereços API
     private static final String host = "10.0.2.2";
@@ -59,6 +62,7 @@ public class Singleton implements ConsultasListener, TreinosListener {
     private Singleton(Context context) {
         this.lista_consultas = new ArrayList<>();
         this.lista_treinos = new ArrayList<>();
+        this.lista_feedback = new ArrayList<>();
         this.clinicBDHelper = new ClinicBDHelper(context);
         //gerarFakeData();
     }
@@ -76,6 +80,15 @@ public class Singleton implements ConsultasListener, TreinosListener {
             if(treino.getId() == id)
                 return treino;
         }
+        return null;
+    }
+
+    public Feedback getFeedback(long id){
+        for (Feedback feedback: this.lista_feedback){
+            if(feedback.getId() == id)
+                return feedback;
+        }
+
         return null;
     }
 
@@ -294,6 +307,13 @@ public class Singleton implements ConsultasListener, TreinosListener {
             }
         }
         return false;
+    }
+
+
+    /* ******************** Métodos BD feedback ************************ */
+    public ArrayList<Feedback> getListaFeedbackBD() throws ParseException {
+        lista_feedback = clinicBDHelper.getAllFeedbackBD();
+        return lista_feedback;
     }
 
 
