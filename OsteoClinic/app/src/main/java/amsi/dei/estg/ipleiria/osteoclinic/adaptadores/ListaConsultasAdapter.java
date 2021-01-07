@@ -74,6 +74,5 @@ public class ListaConsultasAdapter extends BaseAdapter {
             this.tvDataConsulta.setText(String.format("%tF",consulta.getDataConsulta()));
             this.tvDescricaoConsulta.setText(consulta.getDescricao_consulta());
         }
-
     }
 }

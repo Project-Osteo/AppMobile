@@ -54,9 +54,22 @@ public class ListaFeedbackAdapter extends BaseAdapter {
             view.setTag(vHolder);
         }
 
+        vHolder.update(this.lista_feedback.get(position));
+
         return view;
     }
 
     private class ViewHolderFeedback {
+        private TextView tvDataFeedback, tvMensagemFeedback;
+
+        public ViewHolderFeedback(View view){
+            tvDataFeedback = view.findViewById(R.id.tvDataFeedbackCard);
+            tvMensagemFeedback = view.findViewById(R.id.tvFeedbackCard);
+        }
+
+        public void update(Feedback feedback){
+            this.tvDataFeedback.setText(String.format("%tF", feedback.getDatahora()));
+            this.tvMensagemFeedback.setText(feedback.getMensagem());
+        }
     }
 }
