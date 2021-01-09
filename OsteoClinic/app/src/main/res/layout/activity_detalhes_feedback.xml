@@ -27,7 +27,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="350dp"
         android:layout_marginTop="20dp"
         android:orientation="vertical">
 
@@ -35,16 +35,27 @@
             android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="60px"
-            android:text="@string/mensagem_feedback_detalhe" />
+            android:text="@string/mensagem_feedback_detalhe"
+            android:textSize="60px" />
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/etMensagemFeedbackDetalhe"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
             android:textSize="50px" />
+
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="10dp"
+        android:backgroundTint="#E91E63"
+        android:clickable="true" />
+
 </LinearLayout>
