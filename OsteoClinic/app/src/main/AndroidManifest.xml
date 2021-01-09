@@ -7,45 +7,40 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="DuplicateActivity">
-
+        <activity android:name=".vistas.DetalhesFeedbackActivity"></activity>
         <activity
             android:name=".vistas.CalcularIMCActivity"
             android:parentActivityName=".vistas.MenuMainActivity" />
-
         <activity
             android:name=".vistas.DetalhesTreinoActivity"
             android:parentActivityName=".vistas.MenuMainActivity" />
-
         <activity
             android:name=".vistas.MenuMainActivity"
             android:label="@string/app_name"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".vistas.RegistoActivity"
             android:parentActivityName=".vistas.LoginActivity" />
-
         <activity android:name=".vistas.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".vistas.DetalhesConsultaActivity"
             android:parentActivityName=".vistas.MenuMainActivity" />
-
     </application>
 
 </manifest>
