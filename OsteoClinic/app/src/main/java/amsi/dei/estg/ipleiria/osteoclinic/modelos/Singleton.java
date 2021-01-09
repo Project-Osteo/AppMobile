@@ -48,6 +48,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     private static final String port = ":3001";
     public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas";
     public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos";
+    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedback";
     public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores";
     public static final String mUrlAPILogin = "http://10.0.2.2:3001/login";
 
@@ -220,6 +221,41 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
         }
     }
 
+    //get lista feedback
+    public void getAllFeedbacksAPI(final Context contexto){
+        if(!ClinicJsonParser.isConnected(contexto)){
+            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
+            if(feedbacksListener != null)
+                try{
+                    feedbacksListener.onRefreshListaFeedbacks(getListaFeedbackBD());
+                }catch (ParseException e){
+                    e.printStackTrace();
+                }
+        }
+        else{
+            JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
+                    mUrlAPIListaFeedback, null,
+                    new Response.Listener<JSONArray>() {
+                        @Override
+                        public void onResponse(JSONArray response) {
+                            lista_feedback = ClinicJsonParser.parserJsonFeedbacks(response);
+                            adicionarFeedbacksBD(lista_feedback);
+
+                            if (feedbacksListener != null) {
+                                feedbacksListener.onRefreshListaFeedbacks(lista_feedback);
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            volleyQueue.add(request);
+        }
+    }
 
 
     /* ******************** MÉTODOS BD Consultas******************** */

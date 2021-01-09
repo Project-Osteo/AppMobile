@@ -132,13 +132,15 @@ public class ClinicJsonParser {
             for(int i = 0; i < resposta.length(); i++){
                 JSONObject feedbackJson = (JSONObject) resposta.get(i);
                 long id = feedbackJson.getLong("id_treino");
+                long consulta_id = feedbackJson.getLong("consulta_id");
+                long treino_id = feedbackJson.getLong("treino_id");
                 String mensagem = feedbackJson.getString("mensagem");
                 String datahora = feedbackJson.getString("datahora");
 
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 Date data1 = formatter.parse(datahora.substring(0, 10));
 
-                Feedback feedback = new Feedback(id, mensagem, data1);
+                Feedback feedback = new Feedback(id, consulta_id, treino_id, mensagem, data1);
 
                 listafeedback.add(feedback);
 
@@ -156,13 +158,15 @@ public class ClinicJsonParser {
         try{
             JSONObject feedbacksjon = new JSONObject(resposta);
             long id = feedbacksjon.getLong("id_feedback");
+            long consulta_id = feedbacksjon.getLong("consulta_id");
+            long treino_id = feedbacksjon.getLong("treino_id");
             String mensagem = feedbacksjon.getString("mensagem");
             String datahora = feedbacksjon.getString("datahora");
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date data1 = formatter.parse(datahora);
 
-            feedback = new Feedback(id, mensagem, data1);
+            feedback = new Feedback(id, consulta_id, treino_id, mensagem, data1);
 
         }catch (Exception e) {
             e.printStackTrace();
