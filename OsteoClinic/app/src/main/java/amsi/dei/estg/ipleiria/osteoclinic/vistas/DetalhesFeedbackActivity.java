@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class DetalhesFeedbackActivity extends AppCompatActivity {
 
@@ -22,6 +24,8 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
 
     private FloatingActionButton fab_action;
 
+    private Feedback feedback;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,19 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
         etMensagem = findViewById(R.id.etMensagemFeedbackDetalhe);
         fab_action = findViewById(R.id.fab_action);
 
-        
+        int id = (int)getIntent().getLongExtra(ID_FEEDBACK, -1);
+
+        if(id == -1){
+            feedback = null;
+        }
+        else{
+            Singleton gestor = Singleton.getInstance(getApplicationContext());
+            feedback = gestor.getFeedback(id);
+        }
+
+        if(feedback == null){
+            setTitle("Novo Feedback");
+            fab_action.setImageResource(R.drawable.ic_action_add_foreground);
+        }
     }
 }
