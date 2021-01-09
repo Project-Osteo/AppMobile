@@ -20,7 +20,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class ListaFeedbackFragment extends Fragment implements FeedbacksListener {
 
-    private ListView listafeedback;
+    private ListView listviewfeedback;
     private ListaFeedbackAdapter adapter;
 
     public ListaFeedbackFragment() {
@@ -39,7 +39,7 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
 
         setHasOptionsMenu(true);
 
-        listafeedback = view.findViewById(R.id.listview_feedback);
+        listviewfeedback = view.findViewById(R.id.listview_feedback);
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
 
         try{
@@ -47,14 +47,15 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
         }catch (ParseException e){
             e.printStackTrace();
         }
-
-        listafeedback.setAdapter(adapter);
+        listviewfeedback.setAdapter(adapter);
 
         return view;
     }
 
     @Override
     public void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback) {
-        
+        if(listafeedback != null){
+            listviewfeedback.setAdapter(new ListaFeedbackAdapter(getContext(), listafeedback));
+        }
     }
 }

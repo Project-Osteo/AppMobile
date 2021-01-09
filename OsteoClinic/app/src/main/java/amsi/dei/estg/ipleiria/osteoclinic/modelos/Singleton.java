@@ -27,7 +27,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
-public class Singleton implements ConsultasListener, TreinosListener {
+public class Singleton implements ConsultasListener, TreinosListener, FeedbacksListener {
     private Utilizador user;
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
@@ -316,13 +316,51 @@ public class Singleton implements ConsultasListener, TreinosListener {
         return lista_feedback;
     }
 
+    public void adicionarFeedbacksBD(ArrayList<Feedback> lista){
+        clinicBDHelper.removeAllFeedbackBD();
+        for(Feedback f: lista)
+            clinicBDHelper.adcionarFeedbackBD(f);
+    }
+
+    public void adicionarFeedbackBD(Feedback feedback){
+        clinicBDHelper.adcionarFeedbackBD(feedback);
+    }
+
+    public boolean editarFeedbackBD(Feedback feedback){
+        Feedback atual = getFeedback(feedback.getId());
+
+        if(atual != null){
+            boolean alterou = clinicBDHelper.editarFeedbackBD(atual);
+            if(alterou == true){
+                atual.setMensagem(feedback.getMensagem());
+            }
+        }
+        return false;
+    }
+
+    public boolean removerFeedbackBD(long id){
+        Feedback feedback = getFeedback(id);
+        if(feedback != null){
+            boolean removeu = clinicBDHelper.removerFeedbackBD(id);
+            if(removeu == true){
+                this.lista_feedback.remove(feedback);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     public void setConsultasListener(ConsultasListener consultasListener) {
         this.consultasListener = consultasListener;
     }
 
-    public void setTreinosListener (TreinosListener treinosListener) {
+    public void setTreinosListener(TreinosListener treinosListener) {
         this.treinosListener = treinosListener;
+    }
+
+    public void setFeedbackListener(FeedbacksListener feedbackListener){
+        this.feedbacksListener = feedbackListener;
     }
 
     public void setLoginListener(LoginListener loginListener) {
@@ -339,6 +377,11 @@ public class Singleton implements ConsultasListener, TreinosListener {
 
     }
 
+    @Override
+    public void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback) {
+
+    }
+
     public Date stringToDate(String str){
         try {
             SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'.000Z'");
@@ -350,5 +393,4 @@ public class Singleton implements ConsultasListener, TreinosListener {
         }
         return null;
     }
-
 }

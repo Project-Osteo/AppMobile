@@ -270,7 +270,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         valores.put(MENSAGEM, feedback.getMensagem());
         valores.put(CONSULTA_ID_FEEDBACK, feedback.getConsulta_id());
-        valores.put(CONSULTA_ID_FEEDBACK, feedback.getTreino_id());
+        valores.put(TREINO_ID_FEEDBACK, feedback.getTreino_id());
         valores.put(DATAHORA, formatter.format(feedback.getDatahora()));
 
         int registosalterados = this.database.update(TABELA_FEEDBACK, valores,
