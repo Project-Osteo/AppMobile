@@ -21,7 +21,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String DATA_CONSULTA = "data_consulta";
     private static final String DESCRICAO_CONSULTA = "descricao_consulta";
     private static final String PACIENTE_CONSULTA = "paciente_id";
-    private static final String PESO = "peso";
     private static final String TRATAMENTO = "tratamento";
     private static final String OBS_CONSULTA = "obs_consulta";
     private static final String RECOMENDACAO_CONSULTA = "recomendacao";
@@ -58,7 +57,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_CONSULTA + " INTEGER PRIMARY KEY, " +
                 DATA_CONSULTA + " DATE NOT NULL, " +
                 DESCRICAO_CONSULTA + " TEXT NOT NULL, " +
-                PESO + " TEXT NOT NULL, " +
                 TRATAMENTO + " TEXT NOT NULL, " +
                 OBS_CONSULTA + " TEXT NOT NULL, " +
                 RECOMENDACAO_CONSULTA + " TEXT NOT NULL" +
@@ -103,13 +101,13 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         Cursor cursor = this.database.query(
                 TABELA_CONSULTAS,
                 new String[] {ID_CONSULTA, DATA_CONSULTA, DESCRICAO_CONSULTA,
-                    PESO, TRATAMENTO, OBS_CONSULTA, RECOMENDACAO_CONSULTA},
+                    TRATAMENTO, OBS_CONSULTA, RECOMENDACAO_CONSULTA},
                 null, null,null, null, DATA_CONSULTA);
         if(cursor.moveToFirst()){
             do {
                 Consulta consulta = new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
-                        cursor.getString(2),  cursor.getDouble(3),
-                        cursor.getString(4), cursor.getString(5), cursor.getString(6));
+                        cursor.getString(2),
+                        cursor.getString(3), cursor.getString(4), cursor.getString(5));
             }while(cursor.moveToNext());
         }
         return lista;
@@ -122,19 +120,19 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     public Consulta adicionarConsultaBD(Consulta c)  {
         ContentValues valores = new ContentValues();
         SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(ID_CONSULTA, c.getId());
         valores.put(DATA_CONSULTA, formatter.format(c.getDataConsulta()));
         valores.put(DESCRICAO_CONSULTA, c.getDescricao_consulta());
-        valores.put(PESO, c.getPeso());
         valores.put(TRATAMENTO, c.getTratamento());
         valores.put(OBS_CONSULTA, c.getObs_consulta());
         valores.put(RECOMENDACAO_CONSULTA, c.getRecomendacao());
 
         //instrução insert devolve o id do objeto adicionado
         long id = this.database.insert(TABELA_CONSULTAS, null, valores);
-        if(id > -1){
-            c.setId(id);
-            return c;
-        }
+        //if(id > -1){
+        //    c.setId(id);
+        //    return c;
+        //}
         return null;
     }
 
@@ -143,7 +141,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         valores.put(DATA_CONSULTA, formatter.format(consulta.getDataConsulta()));
         valores.put(DESCRICAO_CONSULTA, consulta.getDescricao_consulta());
-        valores.put(PESO, consulta.getPeso());
         valores.put(TRATAMENTO, consulta.getTratamento());
         valores.put(OBS_CONSULTA, consulta.getObs_consulta());
         valores.put(RECOMENDACAO_CONSULTA, consulta.getRecomendacao());

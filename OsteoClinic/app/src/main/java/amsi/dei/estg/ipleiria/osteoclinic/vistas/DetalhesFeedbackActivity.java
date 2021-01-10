@@ -32,6 +32,8 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
 
     private Feedback feedback;
 
+    private String token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +87,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
             if(dadosPreenchidos()){
                 feedback = new Feedback(0, 0, 0, etMensagem.getText().toString(),
                         formatter.parse(etData.getText().toString().substring(0,10)));
-                Singleton.getInstance(getApplicationContext()).adicionarFeedbackBD(feedback);
+                Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(feedback, token, getApplicationContext());
         }
         }catch (ParseException e){
             e.printStackTrace();
@@ -93,9 +95,17 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
     }
 
     private void alterarFeedback() {
+        if(dadosPreenchidos()){
+            feedback.setMensagem(etMensagem.getText().toString());
+            Singleton.getInstance(getApplicationContext()).editarFeedbackAPI(feedback, token, getApplicationContext());
+        }
     }
 
     private boolean dadosPreenchidos(){
+        if(etMensagem.getText() == null || etMensagem.getText().toString().trim().equals("")){
+            etMensagem.setError("Mensagem inválida");
+            return false;
+        }
         return true;
     }
 

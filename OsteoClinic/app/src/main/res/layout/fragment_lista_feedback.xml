@@ -21,6 +21,6 @@
         android:layout_margin="10dp"
         android:backgroundTint="#E91E63"
         android:clickable="true"
-        android:srcCompat="@drawable/ic_action_add" />
+        app:srcCompat="@drawable/ic_action_add" />
 
 </FrameLayout>

@@ -396,7 +396,6 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
             boolean alterou = clinicBDHelper.editarConsultaBD(atual);
             if(alterou == true){
                 atual.setDescricao_consulta(consulta.getDescricao_consulta());
-                atual.setPeso(consulta.getPeso());
                 atual.setTratamento(consulta.getTratamento());
                 atual.setObs_consulta(consulta.getObs_consulta());
                 atual.setRecomendacao(consulta.getRecomendacao());

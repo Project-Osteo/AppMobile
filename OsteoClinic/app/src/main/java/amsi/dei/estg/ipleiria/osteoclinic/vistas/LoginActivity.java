@@ -29,7 +29,8 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         etEmail.setText("user@mail.com");
         etPassword.setText("12345");
 
-        Singleton.getInstance(getApplicationContext()).setLoginListener(this);
+        //Singleton.getInstance(getApplicationContext()).setLoginListener(this);
+
     }
 
     public void onLoginClick(View view) {
@@ -42,8 +43,10 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 //                Intent intentMain = new Intent(this, MenuMainActivity.class);
 //                intentMain.putExtra(MenuMainActivity.EMAIL, etEmail.getText().toString());
 //                startActivity(intentMain);
-                Singleton.getInstance(getApplicationContext()).loginAPI(getApplicationContext(),
-                        etEmail.getText().toString(), etPassword.getText().toString());
+                Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+                startActivity(intent);
+               // Singleton.getInstance(getApplicationContext()).loginAPI(getApplicationContext(),
+                //        etEmail.getText().toString(), etPassword.getText().toString());
             }
             else {
                 etPassword.setError("Palavra passe incorreta! \nTem de ter pelo menos 4 caracteres!");

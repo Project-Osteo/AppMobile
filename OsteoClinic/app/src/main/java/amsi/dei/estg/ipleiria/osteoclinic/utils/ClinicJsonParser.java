@@ -28,7 +28,6 @@ public class ClinicJsonParser {
                 long id = consultajson.getLong("id_consulta");
                 String data = consultajson.getString("data_consulta");
                 String descricao = consultajson.getString("descricao_consulta");
-                double peso = consultajson.getDouble("peso");
                 String tratamento = consultajson.getString("tratamento");
                 String obs = consultajson.getString("obs_consulta");
                 String rec = consultajson.getString("recomendacao");
@@ -37,7 +36,7 @@ public class ClinicJsonParser {
                 SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
                 Date data1 = formatter.parse(data.substring(0,10));
 
-                Consulta consulta = new Consulta(id, data1, descricao, peso, tratamento, obs, rec);
+                Consulta consulta = new Consulta(id, data1, descricao, tratamento, obs, rec);
 
                 listaconsultas.add(consulta);
             }
@@ -56,7 +55,6 @@ public class ClinicJsonParser {
             long id = consultajson.getLong("id_consulta");
             String data = consultajson.getString("data_consulta");
             String descricao = consultajson.getString("descricao_consulta");
-            double peso = consultajson.getDouble("peso");
             String tratamento = consultajson.getString("tratamento");
             String obs = consultajson.getString("obs_consulta");
             String rec = consultajson.getString("recomendacao");
@@ -64,7 +62,7 @@ public class ClinicJsonParser {
             SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
             Date data1 = formatter.parse(data.substring(0,10));
 
-            consulta = new Consulta(id, data1, descricao, peso, tratamento, obs, rec);
+            consulta = new Consulta(id, data1, descricao, tratamento, obs, rec);
         } catch (Exception e) {
             e.printStackTrace();
         }

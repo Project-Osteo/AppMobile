@@ -19,6 +19,7 @@ public class Feedback {
         this.datahora = datahora;
     }
 
+
     public long getId() {
         return id;
     }

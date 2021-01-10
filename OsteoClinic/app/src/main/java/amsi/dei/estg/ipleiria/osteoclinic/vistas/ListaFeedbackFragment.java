@@ -69,4 +69,9 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
             listviewfeedback.setAdapter(new ListaFeedbackAdapter(getContext(), listafeedback));
         }
     }
+
+    @Override
+    public void onRefreshDetalhes() {
+
+    }
 }
