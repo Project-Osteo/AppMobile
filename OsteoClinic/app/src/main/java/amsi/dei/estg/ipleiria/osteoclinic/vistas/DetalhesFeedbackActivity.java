@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -50,7 +52,18 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
 
         if(feedback == null){
             setTitle("Novo Feedback");
-            fab_action.setImageResource(R.drawable.ic_action_add_foreground);
+            fab_action.setImageResource(R.drawable.ic_action_add);
         }
+        else{
+            setTitle("Feedback");
+            preencheDetalhe(feedback);
+
+        }
+    }
+
+    private void preencheDetalhe(Feedback feedback) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        etData.setText(formatter.format(feedback.getDatahora()));
+        etMensagem.setText(feedback.getMensagem());
     }
 }

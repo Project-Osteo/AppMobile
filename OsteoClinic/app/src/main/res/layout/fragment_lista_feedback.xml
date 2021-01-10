@@ -19,7 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="10dp"
+        android:backgroundTint="#E91E63"
         android:clickable="true"
-        android:src="@drawable/ic_action_add_foreground" />
+        android:srcCompat="@drawable/ic_action_add" />
 
 </FrameLayout>
