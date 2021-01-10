@@ -3,12 +3,16 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.ParseException;
+import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
@@ -57,8 +61,42 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
         else{
             setTitle("Feedback");
             preencheDetalhe(feedback);
-
+            fab_action.setImageResource(R.drawable.ic_action_save);
         }
+
+        fab_action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(feedback == null){
+                    adicionarFeedback();
+                }
+                else{
+                    alterarFeedback();
+                }
+            }
+        });
+    }
+
+
+
+    private void adicionarFeedback() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try{
+            if(dadosPreenchidos()){
+                feedback = new Feedback(0, 0, 0, etMensagem.getText().toString(),
+                        formatter.parse(etData.getText().toString().substring(0,10)));
+                Singleton.getInstance(getApplicationContext()).adicionarFeedbackBD(feedback);
+        }
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+    }
+
+    private void alterarFeedback() {
+    }
+
+    private boolean dadosPreenchidos(){
+        return true;
     }
 
     private void preencheDetalhe(Feedback feedback) {
@@ -66,4 +104,5 @@ public class DetalhesFeedbackActivity extends AppCompatActivity {
         etData.setText(formatter.format(feedback.getDatahora()));
         etMensagem.setText(feedback.getMensagem());
     }
+
 }

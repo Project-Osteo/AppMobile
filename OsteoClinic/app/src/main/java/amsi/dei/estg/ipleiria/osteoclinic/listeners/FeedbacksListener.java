@@ -6,4 +6,6 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 
 public interface FeedbacksListener {
     void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback);
+
+    void onRefreshDetalhes();
 }

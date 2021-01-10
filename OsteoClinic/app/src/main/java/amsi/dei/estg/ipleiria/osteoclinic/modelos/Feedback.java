@@ -13,8 +13,8 @@ public class Feedback {
 
     public Feedback(long id, long consulta_id, long treino_id, String mensagem, Date datahora) {
         this.id = id;
-        this.id = consulta_id;
-        this.id = treino_id;
+        this.consulta_id = consulta_id;
+        this.treino_id = treino_id;
         this.mensagem = mensagem;
         this.datahora = datahora;
     }
