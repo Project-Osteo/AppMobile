@@ -53,7 +53,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     private static final String port = ":3001";
     public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas";
     public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos";
-    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedback";
+    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks";
     public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores";
     public static final String mUrlAPILogin = "http://10.0.2.2:3001/login";
 
@@ -288,7 +288,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                 parametros.put("token", token);
                 parametros.put("id", feedback.getId()+"");
                 parametros.put("consulta_id", feedback.getConsulta_id()+"");
-                parametros.put("treino_id", feedback.getTreino_id()+"");
+                //parametros.put("treino_id", feedback.getTreino_id()+"");
                 parametros.put("mensagem", feedback.getMensagem());
                 parametros.put("datahora", feedback.getDatahora().toString());
                 return parametros;
@@ -323,7 +323,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                 parametros.put("token", token);
                 parametros.put("id", feedback.getId()+"");
                 parametros.put("consulta_id", feedback.getConsulta_id()+"");
-                parametros.put("treino_id", feedback.getTreino_id()+"");
+                //parametros.put("treino_id", feedback.getTreino_id()+"");
                 parametros.put("mensagem", feedback.getMensagem());
                 parametros.put("datahora", feedback.getDatahora().toString());
                 return parametros;

@@ -7,14 +7,13 @@ public class Feedback {
     private long id;
     private long user_id;
     private long consulta_id;
-    private long treino_id;
+    //private long treino_id;
     private String mensagem;
     private Date datahora;
 
-    public Feedback(long id, long consulta_id, long treino_id, String mensagem, Date datahora) {
+    public Feedback(long id, long consulta_id, String mensagem, Date datahora) {
         this.id = id;
         this.consulta_id = consulta_id;
-        this.treino_id = treino_id;
         this.mensagem = mensagem;
         this.datahora = datahora;
     }
@@ -32,9 +31,9 @@ public class Feedback {
         return consulta_id;
     }
 
-    public long getTreino_id() {
+    /*public long getTreino_id() {
         return treino_id;
-    }
+    }*/
 
     public String getMensagem() {
         return mensagem;

@@ -76,7 +76,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_FEEDBACK + " INTEGER PRIMARY KEY, " +
                 USER_ID + " INTEGER, " +
                 CONSULTA_ID_FEEDBACK + " INTEGER, " +
-                TREINO_ID_FEEDBACK + " INTEGER, " +
+                //TREINO_ID_FEEDBACK + " INTEGER, " +
                 MENSAGEM + " TEXT NOT NULL, " +
                 DATAHORA + " DATETIME " +
                 ")";
@@ -221,8 +221,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     // ------------ métodos CRUD feedback ------------------------
 
-    // acertar a data para data e hora ??
-
     public ArrayList<Feedback> getAllFeedbackBD() throws ParseException {
         ArrayList<Feedback> lista = new ArrayList<>();
 
@@ -230,13 +228,13 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
         Cursor cursor = this.database.query(
                 TABELA_FEEDBACK,
-                new String [] {ID_FEEDBACK, CONSULTA_ID_FEEDBACK, TREINO_ID_FEEDBACK, MENSAGEM, DATAHORA},
+                new String [] {ID_FEEDBACK, CONSULTA_ID_FEEDBACK, MENSAGEM, DATAHORA},
                 null, null, null, null, DATAHORA);
         if(cursor.moveToFirst()){
             do{
                 Feedback feedback = new Feedback(cursor.getLong(0), cursor.getLong(1),
-                        cursor.getLong(2), cursor.getString(3),
-                        formatter.parse(cursor.getString(4)));
+                        cursor.getString(2),
+                        formatter.parse(cursor.getString(3)));
             }while(cursor.moveToNext());
         }
         return lista;
@@ -251,7 +249,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         valores.put(MENSAGEM, f.getMensagem());
         valores.put(CONSULTA_ID_FEEDBACK, f.getConsulta_id());
-        valores.put(CONSULTA_ID_FEEDBACK, f.getTreino_id());
+        //valores.put(TREINO_ID_FEEDBACK, f.getTreino_id());
         valores.put(DATAHORA, formatter.format(f.getDatahora()));
 
         long id = this.database.insert(TABELA_FEEDBACK, null, valores);
@@ -267,7 +265,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         valores.put(MENSAGEM, feedback.getMensagem());
         valores.put(CONSULTA_ID_FEEDBACK, feedback.getConsulta_id());
-        valores.put(TREINO_ID_FEEDBACK, feedback.getTreino_id());
+        //valores.put(TREINO_ID_FEEDBACK, feedback.getTreino_id());
         valores.put(DATAHORA, formatter.format(feedback.getDatahora()));
 
         int registosalterados = this.database.update(TABELA_FEEDBACK, valores,

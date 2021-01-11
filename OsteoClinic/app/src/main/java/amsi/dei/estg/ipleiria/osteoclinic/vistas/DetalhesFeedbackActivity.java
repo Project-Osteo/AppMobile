@@ -12,6 +12,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -33,7 +34,9 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     public static final int DETALHE_EDITAR = 2;
     public static final String RESPOSTA = "resposta";
 
-    private EditText etData, etMensagem;
+    private TextView tvDataHora;
+
+    private EditText etMensagem;
 
     private FloatingActionButton fab_action;
 
@@ -51,7 +54,8 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         setContentView(R.layout.activity_detalhes_feedback);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        etData = findViewById(R.id.etDataFeedbackDetalhe);
+
+        tvDataHora = findViewById(R.id.tvDataHora);
         etMensagem = findViewById(R.id.etMensagemFeedbackDetalhe);
         fab_action = findViewById(R.id.fab_action);
 
@@ -96,8 +100,8 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         try{
             if(dadosPreenchidos()){
-                feedback = new Feedback(0, 0, 0, etMensagem.getText().toString(),
-                        formatter.parse(etData.getText().toString().substring(0,10)));
+                feedback = new Feedback(0, 0, etMensagem.getText().toString(),
+                        formatter.parse(tvDataHora.getText().toString().substring(0,10)));
                 Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(feedback, token, getApplicationContext());
                 tarefa = "Adicionou";
         }
@@ -124,7 +128,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
 
     private void preencheDetalhe(Feedback feedback) {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        etData.setText(formatter.format(feedback.getDatahora()));
+        tvDataHora.setText(formatter.format(feedback.getDatahora()));
         etMensagem.setText(feedback.getMensagem());
     }
 
