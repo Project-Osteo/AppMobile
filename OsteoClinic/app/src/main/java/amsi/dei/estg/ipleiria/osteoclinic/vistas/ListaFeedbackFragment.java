@@ -1,8 +1,10 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,6 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -24,6 +29,8 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
 
     private ListView listviewfeedback;
     private ListaFeedbackAdapter adapter;
+
+    private FloatingActionButton fab;
 
     public ListaFeedbackFragment() {
         // Required empty public constructor
@@ -56,11 +63,58 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesFeedbackActivity.class);
                 intent.putExtra(DetalhesFeedbackActivity.ID_FEEDBACK, id);
-                startActivity(intent);
+                startActivityForResult(intent, DetalhesFeedbackActivity.DETALHE_EDITAR);
             }
         });
 
+        fab = view.findViewById(R.id.fab_add_list);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesFeedbackActivity.class);
+                startActivityForResult(intent, DetalhesFeedbackActivity.DETALHE_ADICIONAR);
+            }
+        });
+
+        Singleton.getInstance(getContext()).setFeedbackListener(this);
+        Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext());
+
         return view;
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == Activity.RESULT_OK){
+            switch (requestCode){
+
+                case DetalhesFeedbackActivity.DETALHE_ADICIONAR:
+                    Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext());
+                    Snackbar.make(getView(), "Novo feedback adicionado",
+                            Snackbar.LENGTH_SHORT).show();
+                    break;
+
+                case DetalhesFeedbackActivity.DETALHE_EDITAR:
+                    Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext());
+
+                    String resposta = data.getStringExtra(DetalhesFeedbackActivity.RESPOSTA);
+
+                    if(resposta.equals("Editou")){
+                        Snackbar.make(getView(), "Mensagem do feedback alterada.",
+                                Snackbar.LENGTH_SHORT).show();
+                    }
+                    else {
+                        Snackbar.make(getView(), "Feedback apagado",
+                                Snackbar.LENGTH_SHORT).show();
+                    }
+                    break;
+            }
+        }
+        else {
+            Snackbar.make(getView(), "Problemas a manipular informação",
+                    Snackbar.LENGTH_SHORT).show();
+        }
     }
 
     @Override
