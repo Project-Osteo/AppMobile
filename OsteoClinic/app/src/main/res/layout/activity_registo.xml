@@ -17,6 +17,8 @@
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:ems="10"
+        android:paddingTop="25dp"
+        android:paddingBottom="25dp"
         android:text="@string/titulo_registar"
         android:textAlignment="center"
         android:textColor="@color/colorTextHint"
@@ -84,62 +86,6 @@
             android:textColorHint="@color/colorTextHint"
             android:textSize="16dp" />
 
-        <EditText
-            android:id="@+id/etTelemovel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Telemóvel"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
-            android:textSize="16dp" />
-
-        <EditText
-            android:id="@+id/etGenero"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Genero"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
-            android:textSize="16dp" />
-
-        <EditText
-            android:id="@+id/etNacionalidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Nacionalidade"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
-            android:textSize="16dp" />
-
-        <EditText
-            android:id="@+id/etLocalidade"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Localidade"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
-            android:textSize="16dp" />
-
     </LinearLayout>
 
     <Button
@@ -150,6 +96,7 @@
         android:layout_marginRight="20dp"
         android:background="@color/colorTextHint"
         android:text="@string/bt_registo"
-        android:textColor="@color/colorText" />
+        android:textColor="@color/colorText"
+        android:layout_marginTop="20dp"/>
 
 </LinearLayout>

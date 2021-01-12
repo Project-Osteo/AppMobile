@@ -5,7 +5,7 @@
     <string name="app_name">OsteoClinic</string>
 
     <string name="bt_login">Entrar</string>
-    <string name="bt_registo">Registar</string>
+    <string name="bt_registo">Registar conta</string>
     <string name="password">Password</string>
     <string name="email">E-mail</string>
     <string name="registar">Registar</string>
