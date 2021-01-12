@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.Toast;
 
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,6 +29,10 @@ import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
 public class Singleton implements ConsultasListener, TreinosListener, FeedbacksListener {
+    private static final int ADICIONAR_FEEDBACK_BD = 1;
+    private static final int EDITAR_FEEDBACK_BD = 2;
+    private static final int REMOVER_FEEDBACK_BD = 3;
+
     private Utilizador user;
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
@@ -48,7 +53,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     private static final String port = ":3001";
     public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas";
     public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos";
-    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedback";
+    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks";
     public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores";
     public static final String mUrlAPILogin = "http://10.0.2.2:3001/login";
 
@@ -257,6 +262,116 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
         }
     }
 
+    //adicionar feedback api
+    public void adicionarFeedbackAPI(final Feedback feedback, final String token, final Context contexto){
+        StringRequest request = new StringRequest(Request.Method.POST,
+                mUrlAPIListaFeedback,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        onUpdateListaFeedbackBD(ClinicJsonParser.parserJsonFeedback(response), ADICIONAR_FEEDBACK_BD);
+
+                        if (feedbacksListener != null) {
+                            feedbacksListener.onRefreshDetalhes();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("token", token);
+                parametros.put("id", feedback.getId()+"");
+                parametros.put("consulta_id", feedback.getConsulta_id()+"");
+                //parametros.put("treino_id", feedback.getTreino_id()+"");
+                parametros.put("mensagem", feedback.getMensagem());
+                parametros.put("datahora", feedback.getDatahora().toString());
+                return parametros;
+            }
+        };
+        volleyQueue.add(request);
+    }
+
+    //update feedback api
+    public void editarFeedbackAPI(final Feedback feedback, final String token, final Context contexto){
+        StringRequest request = new StringRequest(Request.Method.PUT,
+                mUrlAPIListaFeedback + "/" + feedback.getId(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        onUpdateListaFeedbackBD(ClinicJsonParser.parserJsonFeedback(response), EDITAR_FEEDBACK_BD);
+
+                        if (feedbacksListener != null) {
+                            feedbacksListener.onRefreshDetalhes();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("token", token);
+                parametros.put("id", feedback.getId()+"");
+                parametros.put("consulta_id", feedback.getConsulta_id()+"");
+                //parametros.put("treino_id", feedback.getTreino_id()+"");
+                parametros.put("mensagem", feedback.getMensagem());
+                parametros.put("datahora", feedback.getDatahora().toString());
+                return parametros;
+            }
+        };
+        volleyQueue.add(request);
+    }
+
+    //remover feedback api
+    public void removerFeedbackAPI(final Feedback feedback, final Context contexto){
+        StringRequest request = new StringRequest(Request.Method.DELETE,
+                mUrlAPIListaFeedback + "/" + feedback.getId(),
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        onUpdateListaFeedbackBD(feedback, REMOVER_FEEDBACK_BD);
+
+                        if (feedbacksListener != null) {
+                            feedbacksListener.onRefreshDetalhes();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+        volleyQueue.add(request);
+    }
+
+
+    private void onUpdateListaFeedbackBD(Feedback feedback, int operacao) {
+        switch (operacao){
+            case ADICIONAR_FEEDBACK_BD:
+                adicionarFeedbackBD(feedback);
+                break;
+
+            case EDITAR_FEEDBACK_BD:
+                editarFeedbackBD(feedback);
+                break;
+
+            case REMOVER_FEEDBACK_BD:
+                removerFeedbackBD(feedback.getId());
+                break;
+        }
+    }
+
 
     /* ******************** MÉTODOS BD Consultas******************** */
     public ArrayList<Consulta> getListaConsultasBD() throws ParseException {
@@ -281,7 +396,6 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
             boolean alterou = clinicBDHelper.editarConsultaBD(atual);
             if(alterou == true){
                 atual.setDescricao_consulta(consulta.getDescricao_consulta());
-                atual.setPeso(consulta.getPeso());
                 atual.setTratamento(consulta.getTratamento());
                 atual.setObs_consulta(consulta.getObs_consulta());
                 atual.setRecomendacao(consulta.getRecomendacao());
@@ -415,6 +529,11 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
 
     @Override
     public void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback) {
+
+    }
+
+    @Override
+    public void onRefreshDetalhes() {
 
     }
 

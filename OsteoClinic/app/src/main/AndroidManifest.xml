@@ -15,7 +15,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="DuplicateActivity">
-        <activity android:name=".vistas.DetalhesFeedbackActivity"></activity>
         <activity
             android:name=".vistas.CalcularIMCActivity"
             android:parentActivityName=".vistas.MenuMainActivity" />
@@ -41,6 +40,9 @@
         <activity
             android:name=".vistas.DetalhesConsultaActivity"
             android:parentActivityName=".vistas.MenuMainActivity" />
+        <activity
+            android:name=".vistas.DetalhesFeedbackActivity"
+            android:parentActivityName=".vistas.DetalhesConsultaActivity" />
     </application>
 
 </manifest>

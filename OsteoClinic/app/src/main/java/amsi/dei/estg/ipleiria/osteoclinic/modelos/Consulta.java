@@ -8,17 +8,15 @@ public class Consulta {
     private Date data_consulta;
     private String descricao_consulta;
     //private long paciente_id;
-    private double peso;
     private String tratamento;
     private String obs_consulta;
     private String recomendacao;
 
     public Consulta(long id, Date data_consulta, String descricao,
-                    double peso, String tratamento, String obs, String recomendacao) {
+                    String tratamento, String obs, String recomendacao) {
         this.id = id;
         this.data_consulta = data_consulta;
         this.descricao_consulta = descricao;
-        this.peso = peso;
         this.tratamento = tratamento;
         this.obs_consulta = obs;
         this.recomendacao = recomendacao;
@@ -38,14 +36,6 @@ public class Consulta {
 
     public void setDescricao_consulta(String descricao_consulta) {
         this.descricao_consulta = descricao_consulta;
-    }
-
-    public double getPeso() {
-        return peso;
-    }
-
-    public void setPeso(double peso) {
-        this.peso = peso;
     }
 
     public String getTratamento() {
