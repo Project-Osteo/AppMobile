@@ -3,8 +3,8 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -80,13 +80,13 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         Singleton.getInstance(this).setFeedbackListener(this);
         Singleton.getInstance(this).getAllFeedbacksAPI(this);*/
+
     }
 
     public void onClickListaFeedback(View view) {
-        Fragment fragment = null;
-        fragment = new ListaFeedbackFragment();
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.listview_feedback, fragment).commit();
+        ListaFeedbackFragment listaFeedbackFragment = new ListaFeedbackFragment();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
     }
 
     /*@Override
