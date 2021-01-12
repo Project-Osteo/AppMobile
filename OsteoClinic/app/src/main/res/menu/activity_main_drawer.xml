@@ -21,10 +21,10 @@
                     android:icon="@drawable/ic_workout_1"
                     android:title="@string/treinos" />
 
-                <item
-                    android:id="@+id/nav_calc_imc"
-                    android:icon="@drawable/ic_calculadora"
-                    android:title="Calcular IMC" />
+<!--                <item-->
+<!--                    android:id="@+id/nav_calc_imc"-->
+<!--                    android:icon="@drawable/ic_calculadora"-->
+<!--                    android:title="Calcular IMC" />-->
 
             </menu>
         </item>

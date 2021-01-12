@@ -70,11 +70,9 @@ public class MenuMainActivity extends AppCompatActivity
             case R.id.nav_treinos:
                 fragmento = new ListaTreinosFragment();
                 break;
-            case R.id.nav_calc_imc:
-                Intent intent = new Intent(getApplicationContext(), CalcularIMCActivity.class);
-                startActivity(intent);
-                break;
             case R.id.nav_user_profile:
+                Intent intent = new Intent(getApplicationContext(), DetalhesPacienteActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;
