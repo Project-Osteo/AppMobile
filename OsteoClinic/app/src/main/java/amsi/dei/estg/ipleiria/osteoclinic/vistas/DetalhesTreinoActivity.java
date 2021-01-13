@@ -23,6 +23,7 @@ public class DetalhesTreinoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_treino);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         tvTipoTreino = findViewById(R.id.tvTipoTreinoDetalhe);
         tvDataTreino = findViewById(R.id.tvDataTreinoDetalhe);

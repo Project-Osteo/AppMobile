@@ -20,7 +20,9 @@ import amsi.dei.estg.ipleiria.osteoclinic.R;
 public class MenuMainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String PREF_USER = "amsi.dei.estg.ipleiria.osteoclinic.vistas.PREF_USER";
     public static final String EMAIL = "amsi.dei.estg.ipleiria.osteoclinic.vistas.email";
+    public static final String TOKEN = "amsi.dei.estg.ipleiria.osteoclinic.vistas.token";
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -70,11 +72,9 @@ public class MenuMainActivity extends AppCompatActivity
             case R.id.nav_treinos:
                 fragmento = new ListaTreinosFragment();
                 break;
-            case R.id.nav_calc_imc:
-                Intent intent = new Intent(getApplicationContext(), CalcularIMCActivity.class);
-                startActivity(intent);
-                break;
             case R.id.nav_user_profile:
+                Intent intent = new Intent(getApplicationContext(), DetalhesPacienteActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

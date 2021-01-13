@@ -50,4 +50,5 @@
     <string name="mensagem_feedback_detalhe">Mensagem:</string>
     <string name="menuDetalheFeedbackRemove">menuDetalheFeedbackRemove</string>
     <string name="bt_ListaFeedbackDetalhesConsulta">Atribuir Feedback</string>
+    <string name="bt_confirmardados">Confirmar</string>
 </resources>

@@ -183,11 +183,11 @@ public class ClinicJsonParser {
 
     public static String parserJsonLogin(String resposta){
         String token = null;
-
         try {
-            JSONObject login = new JSONObject(resposta);
-            if(login.getBoolean("success")){
-                token = login.getString("token");
+            JSONObject json = new JSONObject(resposta);
+            Boolean bool = json.getBoolean("success");
+            if(bool){
+                token = json.getString("token");
             }
         } catch (JSONException e) {
             e.printStackTrace();
