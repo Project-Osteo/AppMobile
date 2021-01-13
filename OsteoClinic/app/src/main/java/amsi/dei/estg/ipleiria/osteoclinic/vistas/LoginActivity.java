@@ -2,7 +2,9 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -27,9 +29,9 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         this.etPassword = findViewById(R.id.etPassword);
 
         etEmail.setText("user@mail.com");
-        etPassword.setText("12345");
+        etPassword.setText("1234");
 
-        //Singleton.getInstance(getApplicationContext()).setLoginListener(this);
+        Singleton.getInstance(getApplicationContext()).setLoginListener(this);
 
     }
 
@@ -43,10 +45,10 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 //                Intent intentMain = new Intent(this, MenuMainActivity.class);
 //                intentMain.putExtra(MenuMainActivity.EMAIL, etEmail.getText().toString());
 //                startActivity(intentMain);
-                Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
-                startActivity(intent);
-               // Singleton.getInstance(getApplicationContext()).loginAPI(getApplicationContext(),
-                //        etEmail.getText().toString(), etPassword.getText().toString());
+//                Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+//                startActivity(intent);
+                Singleton.getInstance(getApplicationContext()).loginAPI(getApplicationContext(),
+                        etEmail.getText().toString(), etPassword.getText().toString());
             }
             else {
                 etPassword.setError("Palavra passe incorreta! \nTem de ter pelo menos 4 caracteres!");
@@ -75,7 +77,24 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 
     @Override
     public void onValidateLogin(String token, String email) {
+        if(token != null) {
+            saveSharedPreferencesInfo(token, email);
+            Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Login inválido", Toast.LENGTH_SHORT).show();
+            etPassword.setText("");
+        }
+    }
 
+    private void saveSharedPreferencesInfo(String token, String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(MenuMainActivity.EMAIL, email);
+        editor.putString(MenuMainActivity.TOKEN, token);
+        editor.apply();
     }
 }
 

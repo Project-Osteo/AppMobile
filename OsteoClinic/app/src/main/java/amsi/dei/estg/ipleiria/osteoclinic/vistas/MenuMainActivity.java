@@ -20,7 +20,9 @@ import amsi.dei.estg.ipleiria.osteoclinic.R;
 public class MenuMainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
 
+    public static final String PREF_USER = "amsi.dei.estg.ipleiria.osteoclinic.vistas.PREF_USER";
     public static final String EMAIL = "amsi.dei.estg.ipleiria.osteoclinic.vistas.email";
+    public static final String TOKEN = "amsi.dei.estg.ipleiria.osteoclinic.vistas.token";
 
     private NavigationView navigationView;
     private DrawerLayout drawer;

@@ -14,6 +14,8 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,7 +30,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
-public class Singleton implements ConsultasListener, TreinosListener, FeedbacksListener {
+public class Singleton implements ConsultasListener, TreinosListener, FeedbacksListener, LoginListener {
     private static final int ADICIONAR_FEEDBACK_BD = 1;
     private static final int EDITAR_FEEDBACK_BD = 2;
     private static final int REMOVER_FEEDBACK_BD = 3;
@@ -54,8 +56,8 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas";
     public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos";
     public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks";
-    public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores";
-    public static final String mUrlAPILogin = "http://10.0.2.2:3001/login";
+    public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores/registar";
+    public static final String mUrlAPILogin = "http://10.0.2.2:3001/utilizadores/login";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -120,7 +122,6 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                 params.put("id_user", ""+user.getId());
                 params.put("mail", user.getMail());
                 params.put("pwd", user.getPassword());
-                params.put("token", user.getToken());
                 return params;
             }
         };
@@ -133,7 +134,8 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        loginListener.onValidateLogin(ClinicJsonParser.parserJsonLogin(response), email);
+                        String tokne = ClinicJsonParser.parserJsonLogin(response);
+                        loginListener.onValidateLogin(tokne, email);
                     }
                 },
                 new Response.ErrorListener() {
@@ -144,8 +146,8 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                 }){
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
-                params.put("password", password);
+                params.put("mail", email);
+                params.put("pwd", password);
                 return params;
             }
         };
@@ -158,12 +160,13 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     public void getAllConsultasAPI(final Context contexto) {
         if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
-            if(consultasListener != null)
+            if(consultasListener != null) {
                 try {
                     consultasListener.onRefreshListaConsultas(getListaConsultasBD());
-                }catch(ParseException e){
+                } catch (ParseException e) {
                     e.printStackTrace();
                 }
+            }
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
@@ -537,6 +540,11 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
 
     }
 
+    @Override
+    public void onValidateLogin(String token, String email) {
+
+    }
+
     public Date stringToDate(String str){
         try {
             SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'.000Z'");
@@ -548,4 +556,6 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
         }
         return null;
     }
+
+
 }
