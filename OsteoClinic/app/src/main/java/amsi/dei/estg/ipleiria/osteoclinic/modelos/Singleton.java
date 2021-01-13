@@ -134,8 +134,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        String tokne = ClinicJsonParser.parserJsonLogin(response);
-                        loginListener.onValidateLogin(tokne, email);
+                        loginListener.onValidateLogin(ClinicJsonParser.parserJsonLogin(response), email);
                     }
                 },
                 new Response.ErrorListener() {
