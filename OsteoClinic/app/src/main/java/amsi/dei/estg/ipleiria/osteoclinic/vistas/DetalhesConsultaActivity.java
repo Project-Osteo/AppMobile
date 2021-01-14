@@ -26,7 +26,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class DetalhesConsultaActivity extends AppCompatActivity /*implements FeedbacksListener*/ {
 
-    public static final String ID_CONSULTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID";
+    public static final String ID_CONSULTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID_CONSULTA";
 
     private TextView tvDataConsulta, tvDescricao, tvRecomendacoes;
 

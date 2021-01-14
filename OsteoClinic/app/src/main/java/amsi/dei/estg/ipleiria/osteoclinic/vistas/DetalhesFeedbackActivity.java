@@ -59,7 +59,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         etMensagem = findViewById(R.id.etMensagemFeedbackDetalhe);
         fab_action = findViewById(R.id.fab_action);
 
-        int id = (int)getIntent().getLongExtra(ID_FEEDBACK, -1);
+        long id = getIntent().getLongExtra(ID_FEEDBACK, -1);
 
         if(id == -1){
             feedback = null;

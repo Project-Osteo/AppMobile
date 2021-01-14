@@ -9,10 +9,16 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Paciente;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class DetalhesPacienteActivity extends AppCompatActivity {
 
-    public static final String ID_PACIENTE = "amsi.dei.estg.ipleiria.osteoclinic.vistas";
+    public static final String USER_ID = "amsi.dei.estg.ipleiria.osteoclinic.vistas.USER_ID";
+    public static final String ID_PACIENTE = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID_PACIENTE";
+    public static final int DETALHE_ADICIONAR = 1;
+    public static final int DETALHE_EDITAR = 2;
+    public static final String RESPOSTA = "resposta";
 
     private EditText etNome, etSexo, etNacionalidade, etLocalidade, etTelemovel, etPeso, etAltura;
 
@@ -22,7 +28,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_paciente);
-
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etNome = findViewById(R.id.etNome);
@@ -34,6 +39,12 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         etAltura = findViewById(R.id.etAltura);
 
         btConfirmarDados = findViewById(R.id.btConfirmarDados);
+
+        long user_id = getIntent().getLongExtra(USER_ID, -1);
+
+        if(user_id > 0){
+            
+        }
 
 //        Spinner dropdown = findViewById(R.id.spinner1);
 //        String[] items = new String[]{"Masculino", "Feminino"};
