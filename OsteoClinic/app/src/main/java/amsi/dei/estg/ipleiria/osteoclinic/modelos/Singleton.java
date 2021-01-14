@@ -102,13 +102,18 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
 
 
     /* ******************** MÉTODOS API ******************** */
-    public void registarUtilizador(final Utilizador user, final String token, final  Context context){
+    public void registarUtilizador(final  Context context, final String email, final String password){
         StringRequest request = new StringRequest(Request.Method.POST,
                 mUrlAPIRegistarUtilizador,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        try {
+                            JSONObject json = new JSONObject(response);
+                            long id = json.getLong("user_id");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -119,12 +124,12 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("id_user", ""+user.getId());
-                params.put("mail", user.getMail());
-                params.put("pwd", user.getPassword());
+                params.put("mail", email);
+                params.put("pwd", password);
                 return params;
             }
         };
+        volleyQueue.add(request);
     }
 
 

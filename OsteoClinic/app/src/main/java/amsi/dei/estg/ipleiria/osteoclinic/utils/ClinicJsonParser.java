@@ -183,6 +183,7 @@ public class ClinicJsonParser {
 
     public static String parserJsonLogin(String resposta){
         String token = null;
+
         try {
             JSONObject json = new JSONObject(resposta);
             Boolean bool = json.getBoolean("success");
@@ -194,5 +195,6 @@ public class ClinicJsonParser {
         }
         return token;
     }
+
 
 }

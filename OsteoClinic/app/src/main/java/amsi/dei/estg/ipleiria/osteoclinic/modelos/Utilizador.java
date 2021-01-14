@@ -4,12 +4,10 @@ public class Utilizador {
     private long id;
     private String mail;
     private String password;
-    private String token;
 
-    public Utilizador(String mail, String password, String token) {
+    public Utilizador(String mail, String password) {
         this.mail = mail;
         this.password = password;
-        this.token = token;
     }
 
     public long getId() {
@@ -32,12 +30,5 @@ public class Utilizador {
         this.password = password;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
 
 }
