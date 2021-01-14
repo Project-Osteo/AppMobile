@@ -58,6 +58,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks";
     public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores/registar";
     public static final String mUrlAPILogin = "http://10.0.2.2:3001/utilizadores/login";
+    public static final String mUrlPacientes = "http://10.0.2.2:3001/pacientes";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -156,7 +157,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
 
 
     // get lista consultas
-    public void getAllConsultasAPI(final Context contexto) {
+    public void getAllConsultasAPI(final Context contexto, Consulta consulta) {
         if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
             if(consultasListener != null) {
@@ -169,7 +170,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
-                    mUrlAPIListaConsultas, null,
+                    mUrlPacientes + "/" + consulta.getPaciente_id() + "/consultas", null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {

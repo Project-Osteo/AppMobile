@@ -57,6 +57,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_CONSULTA + " INTEGER PRIMARY KEY, " +
                 DATA_CONSULTA + " DATE NOT NULL, " +
                 DESCRICAO_CONSULTA + " TEXT NOT NULL, " +
+                PACIENTE_CONSULTA + " INTEGER," +
                 TRATAMENTO + " TEXT NOT NULL, " +
                 OBS_CONSULTA + " TEXT NOT NULL, " +
                 RECOMENDACAO_CONSULTA + " TEXT NOT NULL" +
@@ -106,8 +107,8 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do {
                 Consulta consulta = new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
-                        cursor.getString(2),
-                        cursor.getString(3), cursor.getString(4), cursor.getString(5));
+                        cursor.getString(2), cursor.getLong(3),
+                        cursor.getString(4), cursor.getString(5), cursor.getString(6));
             }while(cursor.moveToNext());
         }
         return lista;
