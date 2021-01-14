@@ -215,10 +215,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 new String [] {""+ id}) == 1;
     }
 
-    // --------------  métodos CRUD users ------------------------
-    public void addUtilizador(Utilizador user) {
-
-    }
 
     // ------------ métodos CRUD feedback ------------------------
 
