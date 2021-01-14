@@ -101,7 +101,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
         Cursor cursor = this.database.query(
                 TABELA_CONSULTAS,
-                new String[] {ID_CONSULTA, DATA_CONSULTA, DESCRICAO_CONSULTA,
+                new String[] {ID_CONSULTA, DATA_CONSULTA, DESCRICAO_CONSULTA, PACIENTE_CONSULTA,
                     TRATAMENTO, OBS_CONSULTA, RECOMENDACAO_CONSULTA},
                 null, null,null, null, DATA_CONSULTA);
         if(cursor.moveToFirst()){
