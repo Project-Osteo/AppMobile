@@ -14,6 +14,7 @@ public class Paciente {
     public Paciente (long id, long user_id, String nome, String sexo, String nacionalidade,
                      String localidade, Number telemovel, int peso, float altura) {
 
+        this.id = id;
         this.user_id = user_id;
         this.nome = nome;
         this.sexo = sexo;
@@ -22,6 +23,14 @@ public class Paciente {
         this.telemovel = telemovel;
         this.peso = peso;
         this.altura = altura;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public long getUser_id() {
