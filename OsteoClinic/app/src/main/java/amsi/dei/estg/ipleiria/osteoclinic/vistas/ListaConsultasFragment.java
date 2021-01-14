@@ -26,6 +26,8 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
     private ListView listviewConsultas;
     private ListaConsultasAdapter adapter;
 
+    private Consulta consulta;
+
     public ListaConsultasFragment() {
         // Required empty public constructor
     }
@@ -65,7 +67,7 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
         });
 
         Singleton.getInstance(getContext()).setConsultasListener(this);
-        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext());
+        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext(), consulta);
 
         return view;
     }
