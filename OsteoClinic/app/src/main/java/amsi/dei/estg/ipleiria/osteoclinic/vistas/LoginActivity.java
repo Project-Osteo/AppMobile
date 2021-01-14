@@ -42,11 +42,6 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 
         if(isEmailValido(etEmail.getText().toString())) {
             if(isPasswordValida(etPassword.getText().toString())) {
-//                Intent intentMain = new Intent(this, MenuMainActivity.class);
-//                intentMain.putExtra(MenuMainActivity.EMAIL, etEmail.getText().toString());
-//                startActivity(intentMain);
-//                Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
-//                startActivity(intent);
                 Singleton.getInstance(getApplicationContext()).loginAPI(getApplicationContext(),
                         etEmail.getText().toString(), etPassword.getText().toString());
             }

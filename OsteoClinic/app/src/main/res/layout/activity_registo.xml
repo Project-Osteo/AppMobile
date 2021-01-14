@@ -29,20 +29,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etNome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="20dp"
-            android:layout_marginBottom="10dp"
-            android:ems="10"
-            android:hint="Nome"
-            android:inputType="textPersonName"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
-            android:textSize="16dp" />
 
         <EditText
             android:id="@+id/etEmail"
@@ -53,6 +39,20 @@
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="E-mail"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
+
+        <EditText
+            android:id="@+id/etConfirmarEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Confirmar E-mail"
             android:inputType="textEmailAddress"
             android:textColor="@color/colorTextEditText"
             android:textColorHint="@color/colorTextHint"
@@ -73,7 +73,7 @@
             android:textSize="16dp" />
 
         <EditText
-            android:id="@+id/etConfirmar"
+            android:id="@+id/etConfirmarPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -93,10 +93,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/colorTextHint"
+        android:onClick="onRegistoClick"
         android:text="@string/bt_registo"
-        android:textColor="@color/colorText"
-        android:layout_marginTop="20dp"/>
+        android:textColor="@color/colorText" />
 
 </LinearLayout>
