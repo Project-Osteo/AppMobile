@@ -84,6 +84,11 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         }
     }
 
+    @Override
+    public void onValidateRegisto(long id, String email) {
+
+    }
+
     private void saveSharedPreferencesInfo(String token, String email) {
         SharedPreferences sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();

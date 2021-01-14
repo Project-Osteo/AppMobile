@@ -109,12 +109,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        try {
-                            JSONObject json = new JSONObject(response);
-                            long id = json.getLong("user_id");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        loginListener.onValidateRegisto(ClinicJsonParser.parserJsonRegisto(response), email);
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -547,6 +542,11 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
 
     @Override
     public void onValidateLogin(String token, String email) {
+
+    }
+
+    @Override
+    public void onValidateRegisto(long id, String email) {
 
     }
 

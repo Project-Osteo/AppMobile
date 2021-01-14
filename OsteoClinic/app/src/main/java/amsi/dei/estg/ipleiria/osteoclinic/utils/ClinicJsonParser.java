@@ -199,4 +199,18 @@ public class ClinicJsonParser {
     }
 
 
+    public static long parserJsonRegisto(String resposta) {
+        long id = -1;
+
+        try {
+            JSONObject json = new JSONObject(resposta);
+            Boolean bool = json.getBoolean("success");
+            if(bool){
+                id = json.getLong("user_id");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
 }
