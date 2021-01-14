@@ -81,6 +81,8 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
         Singleton.getInstance(this).setFeedbackListener(this);
         Singleton.getInstance(this).getAllFeedbacksAPI(this);*/
 
+        btFeedback.getContext();
+
     }
 
     public void onClickListaFeedback(View view) {

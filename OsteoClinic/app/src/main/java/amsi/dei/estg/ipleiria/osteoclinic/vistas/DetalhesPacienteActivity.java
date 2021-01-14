@@ -4,17 +4,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 
 public class DetalhesPacienteActivity extends AppCompatActivity {
 
+    public static final String ID_PACIENTE = "amsi.dei.estg.ipleiria.osteoclinic.vistas";
+
+    private EditText etNome, etSexo, etNacionalidade, etLocalidade, etTelemovel, etPeso, etAltura;
+
+    private Button btConfirmarDados;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_paciente);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        etNome = findViewById(R.id.etNome);
+        etSexo = findViewById(R.id.etSexo);
+        etNacionalidade = findViewById(R.id.etNacionalidade);
+        etLocalidade = findViewById(R.id.etLocalidade);
+        etTelemovel = findViewById(R.id.etTelemovel);
+        etPeso = findViewById(R.id.etPeso);
+        etAltura = findViewById(R.id.etAltura);
+
+        btConfirmarDados = findViewById(R.id.btConfirmarDados);
 
 //        Spinner dropdown = findViewById(R.id.spinner1);
 //        String[] items = new String[]{"Masculino", "Feminino"};
