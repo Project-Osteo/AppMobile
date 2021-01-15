@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:title="@string/bt_altearar_email" />
-    <item android:title="@string/bt_alterar_password" />
+    <item
+        android:id="@+id/btAlterarEmail"
+        android:title="@string/bt_altearar_email" />
+    <item
+        android:id="@+id/btAlterarPass"
+        android:title="@string/bt_alterar_password" />
 </menu>

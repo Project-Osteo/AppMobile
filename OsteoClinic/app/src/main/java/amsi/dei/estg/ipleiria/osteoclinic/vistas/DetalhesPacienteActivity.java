@@ -1,10 +1,15 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +30,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
     private EditText etNome, etSexo, etNacionalidade, etLocalidade, etTelemovel, etPeso, etAltura;
 
     private Button btConfirmarDados;
+
+    private String alterar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +70,50 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         inflate.inflate(R.menu.menu_detalhes_paciente, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch(item.getItemId()){
+            case R.id.btAlterarEmail:
+                dialogAlterarEmail();
+            break;
+
+            case R.id.btAlterarPass:
+                dialogAlterarPass();
+            break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void dialogAlterarPass() {
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Alterar Password !");
+
+        final EditText etAlterar = new EditText(this);
+        etAlterar.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        builder.setView(etAlterar);
+
+        builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alterar = etAlterar.getText().toString();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    private void dialogAlterarEmail() {
+
     }
 }
