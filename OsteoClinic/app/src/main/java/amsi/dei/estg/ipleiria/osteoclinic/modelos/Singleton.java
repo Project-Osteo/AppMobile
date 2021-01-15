@@ -58,7 +58,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks";
     public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores/registar";
     public static final String mUrlAPILogin = "http://10.0.2.2:3001/utilizadores/login";
-    public static final String mUrlPacientes = "http://10.0.2.2:3001/pacientes/:id";
+    public static final String mUrlPacientes = "http://10.0.2.2:3001/pacientes";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -364,7 +364,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                                           final String sexo, final String nacionalidade, final String localidade,
                                           final Number telemovel, final int peso, final float altura){
         StringRequest request = new StringRequest(Request.Method.POST,
-                mUrlPacientes,
+                mUrlPacientes + "/" + user_id,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
