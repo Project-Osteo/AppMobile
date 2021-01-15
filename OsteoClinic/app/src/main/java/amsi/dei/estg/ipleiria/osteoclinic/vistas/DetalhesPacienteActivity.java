@@ -50,10 +50,11 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
 
         btConfirmarDados = findViewById(R.id.btConfirmarDados);
 
-        long user_id = getIntent().getLongExtra(USER_ID, -1);
+        Bundle extras = getIntent().getExtras();
+        long user_id = extras.getLong("user_id");
 
         if(user_id > 0){
-            
+
         }
 
 //        Spinner dropdown = findViewById(R.id.spinner1);
