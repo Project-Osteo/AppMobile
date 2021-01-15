@@ -94,14 +94,27 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         builder = new AlertDialog.Builder(this);
         builder.setTitle("Alterar Password !");
 
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
         final EditText etAlterar = new EditText(this);
+        etAlterar.setHint("Nova Password");
         etAlterar.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-        builder.setView(etAlterar);
+
+        final EditText etConfirmar = new EditText(this);
+        etConfirmar.setHint("Confirmar nova Password");
+        etConfirmar.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        layout.addView(etAlterar);
+        layout.addView(etConfirmar);
+        builder.setView(layout);
+
 
         builder.setPositiveButton("Guardar alterações", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alterar = etAlterar.getText().toString();
+                confirmar = etConfirmar.getText().toString();
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
