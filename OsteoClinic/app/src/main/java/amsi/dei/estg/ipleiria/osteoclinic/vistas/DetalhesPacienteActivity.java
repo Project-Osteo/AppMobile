@@ -117,7 +117,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
                 confirmar = etConfirmar.getText().toString();
 
                 if(alterar.equals(confirmar)){
-                    
+
                 }
             }
         });
