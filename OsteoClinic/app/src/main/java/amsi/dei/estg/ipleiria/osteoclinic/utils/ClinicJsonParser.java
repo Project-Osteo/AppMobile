@@ -216,6 +216,7 @@ public class ClinicJsonParser {
             if(bool){
                 dados += json.getString("token");
                 dados += ";" + json.getString("id_user");
+                dados += ";" + json.getString("id_paciente");
             }
         } catch (JSONException e) {
             e.printStackTrace();

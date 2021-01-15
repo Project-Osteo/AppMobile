@@ -48,12 +48,12 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
         setHasOptionsMenu(true);
 
         sharedPreferences = getActivity().getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
-        long id_paciente = sharedPreferences.getLong("id_paciente", -1);
+        String id_paciente = sharedPreferences.getString(MenuMainActivity.ID_PACIENTE, "-1");
 
         listviewConsultas = view.findViewById(R.id.listview_consultas);
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
-        Singleton.getInstance(getContext()).setConsultasListener(this);
-        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext(), id_paciente);
+        gestor.setConsultasListener(this);
+        gestor.getAllConsultasAPI(getContext(), Long.parseLong(id_paciente));
 
         //chamar atividade DetalhesConsulta do item da lista selecionado
         listviewConsultas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
