@@ -60,8 +60,9 @@ public class ListaTreinosFragment extends Fragment implements TreinosListener {
             }
         });
 
+        long id = 1;
         Singleton.getInstance(getContext()).setTreinosListener(this);
-        Singleton.getInstance(getContext()).getAllTreinosAPI(getContext());
+        Singleton.getInstance(getContext()).getAllTreinosAPI(getContext(), id);
 
         return view;
     }

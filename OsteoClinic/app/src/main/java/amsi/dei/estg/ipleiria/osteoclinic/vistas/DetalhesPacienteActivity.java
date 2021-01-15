@@ -10,6 +10,7 @@ import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -29,10 +30,10 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
     public static final String RESPOSTA = "resposta";
 
     private EditText etNome, etSexo, etNacionalidade, etLocalidade, etTelemovel, etPeso, etAltura;
-
     private Button btConfirmarDados;
-
     private String alterar, confirmar;
+
+    private Paciente paciente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,17 +52,91 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         btConfirmarDados = findViewById(R.id.btConfirmarDados);
 
         Bundle extras = getIntent().getExtras();
-        long user_id = extras.getLong("user_id", -1);
+        System.out.println(extras);
+        String email = extras.getString("mail");
+        long user_id = extras.getLong("user_id");
 
-        if(user_id > 0){
-
+        if(user_id < 1){
+            paciente = null;
+        }else{
+            Singleton gestor = Singleton.getInstance(getApplicationContext());
+            paciente = gestor.getPacienteAPI(getApplicationContext(), user_id);
         }
+
+        if (paciente == null) {
+            setTitle("Dados Pessoais");
+        }else{
+            preencheDetalhe(paciente);
+        }
+
+        btConfirmarDados.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(paciente == null){
+                    adicionarPaciente();
+                }else{
+                    alterarPaciente();
+                }
+            }
+        });
+
+//
+//        if(feedback == null){
+//            setTitle("Novo Feedback");
+//            fab_action.setImageResource(R.drawable.ic_action_add);
+//        }
+//        else{
+//            setTitle("Feedback");
+//            preencheDetalhe(feedback);
+//            fab_action.setImageResource(R.drawable.ic_action_save);
+//        }
 
 //        Spinner dropdown = findViewById(R.id.spinner1);
 //        String[] items = new String[]{"Masculino", "Feminino"};
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 //        dropdown.setAdapter(adapter);
 
+    }
+
+    private void adicionarPaciente() {
+        if(dadosPreenchidos()){
+
+        }
+    }
+
+
+
+    private void alterarPaciente() {
+    }
+
+    private boolean dadosPreenchidos() {
+        if(etNome.getText() == null || etNome.getText().toString().trim().equals("")){
+            etNome.setError("Preencha todos os campos corretamente antes de avançar.");
+            return false;
+        }else if(etSexo.getText() == null || etSexo.getText().toString().trim().equals("")){
+            etSexo.setError("Preencha todos os campos corretamente antes de avançar.");
+            return false;
+        }else if(etNacionalidade.getText() == null || etNacionalidade.getText().toString().trim().equals("")){
+            etNacionalidade.setError("Preencha todos os campos corretamente antes de avançar.");
+            return false;
+        }else if(etLocalidade.getText() == null || etLocalidade.getText().toString().trim().equals("")){
+            etLocalidade.setError("Preencha todos os campos corretamente antes de avançar.");
+            return false;
+        }else if(etTelemovel.getText() == null || etTelemovel.getText().toString().trim().equals("")){
+            etTelemovel.setError("Preencha todos os campos corretamente antes de avançar.");
+            return false;
+        }
+        return true;
+    }
+
+    private void preencheDetalhe(Paciente paciente) {
+        etNome.setText(paciente.getNome());
+        etSexo.setText(paciente.getSexo());
+        etNacionalidade.setText(paciente.getNacionalidade());
+        etLocalidade.setText(paciente.getLocalidade());
+        etTelemovel.setText(paciente.getTelemovel()+"");
+        etPeso.setText(paciente.getPeso()+"");
+        etAltura.setText(paciente.getAltura()+"");
     }
 
     @Override

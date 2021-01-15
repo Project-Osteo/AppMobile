@@ -1,6 +1,7 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -66,8 +67,9 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
             }
         });
 
+        long id = 1;
         Singleton.getInstance(getContext()).setConsultasListener(this);
-        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext(), consulta);
+        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext(), id);
 
         return view;
     }

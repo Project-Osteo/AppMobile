@@ -4,17 +4,16 @@ import android.content.Context;
 import android.widget.Toast;
 
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.ParseException;
@@ -53,12 +52,12 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     //Endereços API
     private static final String host = "10.0.2.2";
     private static final String port = ":3001";
-    public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas";
-    public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos";
-    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks";
-    public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores/registar";
-    public static final String mUrlAPILogin = "http://10.0.2.2:3001/utilizadores/login";
-    public static final String mUrlPacientes = "http://10.0.2.2:3001/pacientes";
+    public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas/";
+    public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos/";
+    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks/";
+    public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores/registar/";
+    public static final String mUrlAPILogin = "http://10.0.2.2:3001/utilizadores/login/";
+    public static final String mUrlAPIPacientes = "http://10.0.2.2:3001/pacientes/";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -97,7 +96,6 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
             if(feedback.getId() == id)
                 return feedback;
         }
-
         return null;
     }
 
@@ -158,7 +156,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
 
 
     // get lista consultas
-    public void getAllConsultasAPI(final Context contexto, Consulta consulta) {
+    public void getAllConsultasAPI(final Context contexto, final long id) {
         if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
             if(consultasListener != null) {
@@ -171,7 +169,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
-                    mUrlPacientes + "/" + consulta.getPaciente_id() + "/consultas", null,
+                    mUrlAPIPacientes + "/consultas", null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
@@ -195,7 +193,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     }
 
     // get lista treinos
-    public void getAllTreinosAPI(final Context contexto) {
+    public void getAllTreinosAPI(final Context contexto, final long id) {
         if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
             if(treinosListener != null)
@@ -207,7 +205,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
-                    mUrlAPIListaTreinos, null,
+                    mUrlAPIPacientes + id + "/treinos", null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
@@ -261,9 +259,36 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                             error.printStackTrace();
                             Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                    });
+                    }
+            );
             volleyQueue.add(request);
         }
+    }
+
+
+    public Paciente getPacienteAPI(final Context contexto, long user_id) {
+        if(!ClinicJsonParser.isConnected(contexto)){
+            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
+        }else{
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
+                    mUrlAPIPacientes + user_id, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+            volleyQueue.add(request);
+        }
+        return null;
     }
 
     //adicionar feedback api
@@ -365,7 +390,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                                           final String sexo, final String nacionalidade, final String localidade,
                                           final Number telemovel, final int peso, final float altura){
         StringRequest request = new StringRequest(Request.Method.POST,
-                mUrlPacientes + "/" + user_id,
+                mUrlAPIPacientes + user_id,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

@@ -35,15 +35,10 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     public static final String RESPOSTA = "resposta";
 
     private TextView tvDataHora;
-
     private EditText etMensagem;
-
     private FloatingActionButton fab_action;
-
     private Feedback feedback;
-
     private String token;
-
     private String tarefa;
 
 
@@ -104,7 +99,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
                         formatter.parse(tvDataHora.getText().toString().substring(0,10)));
                 Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(feedback, token, getApplicationContext());
                 tarefa = "Adicionou";
-        }
+            }
         }catch (ParseException e){
             e.printStackTrace();
         }

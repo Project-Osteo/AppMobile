@@ -8,11 +8,11 @@ public class Paciente {
     private String nacionalidade;
     private String localidade;
     private Number telemovel;
-    private int peso;
-    private float altura;
+    private double peso;
+    private double altura;
 
     public Paciente (long id, long user_id, String nome, String sexo, String nacionalidade,
-                     String localidade, Number telemovel, int peso, float altura) {
+                     String localidade, Number telemovel, double peso, double altura) {
 
         this.id = id;
         this.user_id = user_id;
@@ -77,19 +77,19 @@ public class Paciente {
         this.telemovel = telemovel;
     }
 
-    public int getPeso() {
+    public double getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(double peso) {
         this.peso = peso;
     }
 
-    public float getAltura() {
+    public double getAltura() {
         return altura;
     }
 
-    public void setAltura(float altura) {
+    public void setAltura(double altura) {
         this.altura = altura;
     }
 }

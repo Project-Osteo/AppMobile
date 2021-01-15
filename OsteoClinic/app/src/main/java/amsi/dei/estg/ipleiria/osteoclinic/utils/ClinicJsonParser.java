@@ -14,6 +14,7 @@ import java.util.Date;
 
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
+import amsi.dei.estg.ipleiria.osteoclinic.modelos.Paciente;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Treino;
 
 public class ClinicJsonParser {
@@ -175,6 +176,30 @@ public class ClinicJsonParser {
         return feedback;
     }
 
+    public static Paciente parserJsonPaciente(String resposta) {
+        Paciente paciente = null;
+
+        try {
+            JSONObject pacientejson = new JSONObject(resposta);
+            long id_paciente = pacientejson.getLong("id_paciente");
+            long user_id = pacientejson.getLong("user_id");
+            String nome = pacientejson.getString("nome");
+            String sexo = pacientejson.getString("sexo");
+            String nacionalidade = pacientejson.getString("nacionalidade");
+            String localidade = pacientejson.getString("localidade");
+            int telemovel = pacientejson.getInt("telemovel");
+            double peso = pacientejson.getDouble("peso");
+            double altura = pacientejson.getDouble("altura");
+
+            paciente = new Paciente(id_paciente, user_id, nome, sexo, nacionalidade, localidade, telemovel, peso, altura);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return paciente;
+    }
+
     public static boolean isConnected(Context contexto){
         ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
@@ -211,4 +236,6 @@ public class ClinicJsonParser {
         }
         return id;
     }
+
+
 }
