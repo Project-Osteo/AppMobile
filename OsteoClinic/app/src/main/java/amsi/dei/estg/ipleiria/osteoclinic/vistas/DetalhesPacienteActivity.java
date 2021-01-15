@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
@@ -18,22 +19,24 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.PacientesListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Paciente;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
-public class DetalhesPacienteActivity extends AppCompatActivity {
+public class DetalhesPacienteActivity extends AppCompatActivity implements PacientesListener {
 
     public static final String USER_ID = "amsi.dei.estg.ipleiria.osteoclinic.vistas.USER_ID";
     public static final String ID_PACIENTE = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID_PACIENTE";
     public static final int DETALHE_ADICIONAR = 1;
     public static final int DETALHE_EDITAR = 2;
-    public static final String RESPOSTA = "resposta";
+    public static final String RESPOSTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.RESPOSTA";
 
     private EditText etNome, etSexo, etNacionalidade, etLocalidade, etTelemovel, etPeso, etAltura;
     private Button btConfirmarDados;
     private String alterar, confirmar;
 
     private Paciente paciente;
+    private String tarefa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,21 +56,13 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         System.out.println(extras);
-        String email = extras.getString("mail");
         long user_id = extras.getLong("user_id");
+        int tarefa = extras.getInt("tarefa");
 
-        if(user_id < 1){
-            paciente = null;
-        }else{
-            Singleton gestor = Singleton.getInstance(getApplicationContext());
-            paciente = gestor.getPacienteAPI(getApplicationContext(), user_id);
-        }
+        Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
 
-        if (paciente == null) {
-            setTitle("Dados Pessoais");
-        }else{
-            preencheDetalhe(paciente);
-        }
+        Singleton gestor = Singleton.getInstance(getApplicationContext());
+        gestor.getPacienteAPI(getApplicationContext(), user_id);
 
         btConfirmarDados.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,22 +75,22 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
             }
         });
 
-//
-//        if(feedback == null){
-//            setTitle("Novo Feedback");
-//            fab_action.setImageResource(R.drawable.ic_action_add);
-//        }
-//        else{
-//            setTitle("Feedback");
-//            preencheDetalhe(feedback);
-//            fab_action.setImageResource(R.drawable.ic_action_save);
-//        }
-
 //        Spinner dropdown = findViewById(R.id.spinner1);
 //        String[] items = new String[]{"Masculino", "Feminino"};
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 //        dropdown.setAdapter(adapter);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (paciente == null) {
+            setTitle("Inserir dados pessoais");
+        }else{
+            setTitle("Dados pessoais");
+            preencheDetalhe(paciente);
+        }
     }
 
     private void adicionarPaciente() {
@@ -107,6 +102,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
 
 
     private void alterarPaciente() {
+
     }
 
     private boolean dadosPreenchidos() {
@@ -135,8 +131,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         etNacionalidade.setText(paciente.getNacionalidade());
         etLocalidade.setText(paciente.getLocalidade());
         etTelemovel.setText(paciente.getTelemovel()+"");
-        etPeso.setText(paciente.getPeso()+"");
-        etAltura.setText(paciente.getAltura()+"");
+        etPeso.setText(String.format("%4.1f", paciente.getPeso()));
+        etAltura.setText(String.format("%3.2f", paciente.getAltura()));
     }
 
     @Override
@@ -247,5 +243,10 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         });
 
         builder.show();
+    }
+
+    @Override
+    public void onConfirmPaciente(Paciente paciente) {
+        this.paciente = paciente;
     }
 }

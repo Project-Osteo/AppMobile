@@ -97,6 +97,7 @@ public class RegistoActivity extends AppCompatActivity implements LoginListener 
             Intent intent = new Intent(getApplicationContext(), DetalhesPacienteActivity.class);
             intent.putExtra("user_id", id);
             intent.putExtra("mail", email);
+            intent.putExtra("tarefa", 1);
             startActivity(intent);
             finish();
         }

@@ -9,32 +9,28 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.FeedbacksListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
+import amsi.dei.estg.ipleiria.osteoclinic.listeners.PacientesListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
-public class Singleton implements ConsultasListener, TreinosListener, FeedbacksListener, LoginListener {
+public class Singleton {
     private static final int ADICIONAR_FEEDBACK_BD = 1;
     private static final int EDITAR_FEEDBACK_BD = 2;
     private static final int REMOVER_FEEDBACK_BD = 3;
 
-    private Utilizador user;
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
     private ArrayList<Feedback> lista_feedback;
@@ -48,6 +44,7 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     private TreinosListener treinosListener;
     private LoginListener loginListener;
     private FeedbacksListener feedbacksListener;
+    private PacientesListener pacientesListener;
 
     //Endereços API
     private static final String host = "10.0.2.2";
@@ -266,16 +263,19 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     }
 
 
-    public Paciente getPacienteAPI(final Context contexto, long user_id) {
+    public void getPacienteAPI(final Context contexto, long user_id) {
         if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
         }else{
-            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,
-                    mUrlAPIPacientes + user_id, null,
-                    new Response.Listener<JSONObject>() {
+            StringRequest request = new StringRequest(Request.Method.GET,
+                    mUrlAPIPacientes + user_id,
+                    new Response.Listener<String>() {
                         @Override
-                        public void onResponse(JSONObject response) {
-
+                        public void onResponse(String response) {
+                            Paciente paciente = ClinicJsonParser.parserJsonPaciente(response);
+                            if(pacientesListener != null){
+                                pacientesListener.onConfirmPaciente(paciente);
+                            }
                         }
                     },
                     new Response.ErrorListener() {
@@ -288,7 +288,6 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
             );
             volleyQueue.add(request);
         }
-        return null;
     }
 
     //adicionar feedback api
@@ -583,47 +582,21 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
         this.loginListener = loginListener;
     }
 
-    @Override
-    public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
-
+    public void setPacientesListener(PacientesListener pacientesListener) {
+        this.pacientesListener = pacientesListener;
     }
 
-    @Override
-    public void onRefreshListaTreinos(ArrayList<Treino> listatreinos) {
 
-    }
-
-    @Override
-    public void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback) {
-
-    }
-
-    @Override
-    public void onRefreshDetalhes() {
-
-    }
-
-    @Override
-    public void onValidateLogin(String token, String email) {
-
-    }
-
-    @Override
-    public void onValidateRegisto(long id, String email) {
-
-    }
-
-    public Date stringToDate(String str){
-        try {
-            SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'.000Z'");
-            Date date = sdfSource.parse(str);
-            SimpleDateFormat sdfDestination = new SimpleDateFormat("dd-MM-yyyy");
-            str = sdfDestination.format(date);
-        }catch(ParseException e){
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+//    public Date stringToDate(String str){
+//        try {
+//            SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'.000Z'");
+//            Date date = sdfSource.parse(str);
+//            SimpleDateFormat sdfDestination = new SimpleDateFormat("dd-MM-yyyy");
+//            str = sdfDestination.format(date);
+//        }catch(ParseException e){
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
 
 }

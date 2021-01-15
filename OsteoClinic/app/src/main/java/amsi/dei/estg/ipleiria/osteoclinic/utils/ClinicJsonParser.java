@@ -181,6 +181,7 @@ public class ClinicJsonParser {
 
         try {
             JSONObject pacientejson = new JSONObject(resposta);
+
             long id_paciente = pacientejson.getLong("id_paciente");
             long user_id = pacientejson.getLong("user_id");
             String nome = pacientejson.getString("nome");

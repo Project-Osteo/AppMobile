@@ -73,6 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
     @Override
     public void onValidateLogin(String token, String email) {
         if(token != null) {
+            //GET FICHA PACIENTE + GUARDAR BD
             saveSharedPreferencesInfo(token, email);
             Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
             startActivity(intent);
