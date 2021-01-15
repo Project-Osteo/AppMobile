@@ -51,7 +51,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         btConfirmarDados = findViewById(R.id.btConfirmarDados);
 
         Bundle extras = getIntent().getExtras();
-        long user_id = extras.getLong("user_id");
+        long user_id = extras.getLong("user_id", -1);
 
         if(user_id > 0){
 

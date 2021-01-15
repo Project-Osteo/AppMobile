@@ -111,20 +111,21 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
                     public void onResponse(String response) {
                         loginListener.onValidateRegisto(ClinicJsonParser.parserJsonRegisto(response), email);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("mail", email);
-                params.put("pwd", password);
-                return params;
-            }
-        };
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("mail", email);
+                        params.put("pwd", password);
+                        return params;
+                    }
+                };
         volleyQueue.add(request);
     }
 
