@@ -3,6 +3,8 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -51,5 +53,15 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
 //        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
 //        dropdown.setAdapter(adapter);
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflate = getMenuInflater();
+
+        inflate.inflate(R.menu.menu_detalhes_paciente, menu);
+
+        return super.onCreateOptionsMenu(menu);
     }
 }

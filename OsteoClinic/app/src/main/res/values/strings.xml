@@ -51,4 +51,6 @@
     <string name="menuDetalheFeedbackRemove">menuDetalheFeedbackRemove</string>
     <string name="bt_ListaFeedbackDetalhesConsulta">Atribuir Feedback</string>
     <string name="bt_confirmardados">Guardar</string>
+    <string name="bt_alterar_password">Alterar Password</string>
+    <string name="bt_altearar_email">Alterar Email</string>
 </resources>
