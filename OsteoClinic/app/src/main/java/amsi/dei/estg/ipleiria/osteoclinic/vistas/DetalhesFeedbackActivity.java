@@ -98,7 +98,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         try{
             if(dadosPreenchidos()){
-                feedback = new Feedback(0, 0, etMensagem.getText().toString(),
+                feedback = new Feedback(0, id_consulta, etMensagem.getText().toString(),
                         formatter.parse(tvDataHora.getText().toString().substring(0,10)));
                 Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(feedback, token, getApplicationContext());
                 tarefa = "Adicionou";

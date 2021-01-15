@@ -225,6 +225,34 @@ public class Singleton {
         }
     }
 
+    //get paciente by user_id
+    public void getPacienteAPI(final Context contexto, long user_id) {
+        if(!ClinicJsonParser.isConnected(contexto)){
+            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
+        }else{
+            StringRequest request = new StringRequest(Request.Method.GET,
+                    mUrlAPIPacientes + user_id,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Paciente paciente = ClinicJsonParser.parserJsonPaciente(response);
+                            if(pacientesListener != null){
+                                pacientesListener.onConfirmPaciente(paciente);
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+            volleyQueue.add(request);
+        }
+    }
+
     //get lista feedback
     public void getAllFeedbacksAPI(final Context contexto){
         if(!ClinicJsonParser.isConnected(contexto)){
@@ -247,34 +275,6 @@ public class Singleton {
 
                             if (feedbacksListener != null) {
                                 feedbacksListener.onRefreshListaFeedbacks(lista_feedback);
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-            );
-            volleyQueue.add(request);
-        }
-    }
-
-
-    public void getPacienteAPI(final Context contexto, long user_id) {
-        if(!ClinicJsonParser.isConnected(contexto)){
-            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
-        }else{
-            StringRequest request = new StringRequest(Request.Method.GET,
-                    mUrlAPIPacientes + user_id,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Paciente paciente = ClinicJsonParser.parserJsonPaciente(response);
-                            if(pacientesListener != null){
-                                pacientesListener.onConfirmPaciente(paciente);
                             }
                         }
                     },
@@ -328,7 +328,7 @@ public class Singleton {
     //update feedback api
     public void editarFeedbackAPI(final Feedback feedback, final String token, final Context contexto){
         StringRequest request = new StringRequest(Request.Method.PUT,
-                mUrlAPIListaFeedback + "/" + feedback.getId(),
+                mUrlAPIListaFeedback + feedback.getId(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -385,9 +385,9 @@ public class Singleton {
 
 
     //adicionar dados de paciente
-    public void adicionarDadosPacienteAPI(final Context context, final String nome, final long user_id,
+    public void adicionarPacienteAPI(final Context context, final String nome, final long user_id,
                                           final String sexo, final String nacionalidade, final String localidade,
-                                          final Number telemovel, final int peso, final float altura){
+                                          final Number telemovel, final int peso, final double altura){
         StringRequest request = new StringRequest(Request.Method.POST,
                 mUrlAPIPacientes + user_id,
                 new Response.Listener<String>() {
