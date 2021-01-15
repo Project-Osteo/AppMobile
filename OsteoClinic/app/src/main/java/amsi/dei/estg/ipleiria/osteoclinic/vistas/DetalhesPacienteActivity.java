@@ -35,6 +35,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     private Button btConfirmarDados;
     private String alterar, confirmar;
 
+    private long user_id;
+
     private Paciente paciente;
     private String tarefa;
 
@@ -56,8 +58,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
 
         Bundle extras = getIntent().getExtras();
         System.out.println(extras);
-        long user_id = extras.getLong("user_id");
-        int tarefa = extras.getInt("tarefa");
+        user_id = extras.getLong("user_id");
+        tarefa = extras.getString("tarefa");
 
         Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
 
@@ -95,7 +97,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
 
     private void adicionarPaciente() {
         if(dadosPreenchidos()){
-
+            //paciente = new Paciente();
         }
     }
 
