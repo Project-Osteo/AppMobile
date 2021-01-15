@@ -175,8 +175,6 @@ public class ClinicJsonParser {
         return feedback;
     }
 
-
-
     public static boolean isConnected(Context contexto){
         ConnectivityManager cm = (ConnectivityManager) contexto.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
