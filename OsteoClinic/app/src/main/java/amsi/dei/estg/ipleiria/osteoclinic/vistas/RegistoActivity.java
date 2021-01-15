@@ -29,6 +29,7 @@ public class RegistoActivity extends AppCompatActivity implements LoginListener 
         this.etPassword = findViewById(R.id.etPassword);
         this.etConfirmarPassword = findViewById(R.id.etConfirmarPassword);
 
+        Singleton.getInstance(getApplicationContext()).setLoginListener(this);
     }
 
     public void onRegistoClick(View view){
@@ -61,6 +62,8 @@ public class RegistoActivity extends AppCompatActivity implements LoginListener 
             etEmail.setText("");
             etConfirmarEmail.setText("");
         }
+
+
     }
 
     private boolean passwordsMatch(String password, String confirm) {
