@@ -314,11 +314,8 @@ public class Singleton {
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("token", token);
-                parametros.put("id", feedback.getId()+"");
                 parametros.put("consulta_id", feedback.getConsulta_id()+"");
-                //parametros.put("treino_id", feedback.getTreino_id()+"");
                 parametros.put("mensagem", feedback.getMensagem());
-                parametros.put("datahora", feedback.getDatahora().toString());
                 return parametros;
             }
         };

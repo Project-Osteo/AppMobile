@@ -160,7 +160,6 @@ public class ClinicJsonParser {
             JSONObject feedbacksjon = new JSONObject(resposta);
             long id = feedbacksjon.getLong("id_feedback");
             long consulta_id = feedbacksjon.getLong("consulta_id");
-            //long treino_id = feedbacksjon.getLong("treino_id");
             String mensagem = feedbacksjon.getString("mensagem");
             String datahora = feedbacksjon.getString("dataehora");
 
