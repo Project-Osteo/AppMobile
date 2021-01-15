@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -31,7 +32,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
 
     private Button btConfirmarDados;
 
-    private String alterar;
+    private String alterar, confirmar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
         etAlterar.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
         builder.setView(etAlterar);
 
-        builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Guardar alterações", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 alterar = etAlterar.getText().toString();
@@ -114,6 +115,40 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
     }
 
     private void dialogAlterarEmail() {
+        AlertDialog.Builder builder;
+        builder = new AlertDialog.Builder(this);
+        builder.setTitle("Alterar Email !");
 
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+
+        final EditText etAlterar = new EditText(this);
+        etAlterar.setHint("Novo Email");
+        etAlterar.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        final EditText etConfirmar = new EditText(this);
+        etConfirmar.setHint("Confirmar novo Email");
+        etConfirmar.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS);
+
+        layout.addView(etAlterar);
+        layout.addView(etConfirmar);
+        builder.setView(layout);
+
+
+        builder.setPositiveButton("Guardar alterações", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alterar = etAlterar.getText().toString().trim();
+                confirmar = etConfirmar.getText().toString().trim();
+            }
+        });
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
     }
 }
