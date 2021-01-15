@@ -34,11 +34,13 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     public static final int DETALHE_EDITAR = 2;
     public static final String RESPOSTA = "resposta";
 
+
     private TextView tvDataHora;
     private EditText etMensagem;
     private FloatingActionButton fab_action;
     private Feedback feedback;
     private String token;
+    private long id_consulta;
     private String tarefa;
 
 
@@ -55,6 +57,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         fab_action = findViewById(R.id.fab_action);
 
         long id = getIntent().getLongExtra(ID_FEEDBACK, -1);
+        id_consulta = getIntent().getLongExtra("id_consulta", -1);
 
         if(id == -1){
             feedback = null;
@@ -182,6 +185,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     public void onRefreshDetalhes() {
         Intent intentresposta = new Intent();
         intentresposta.putExtra(RESPOSTA, tarefa);
+        intentresposta.putExtra("id_consulta", id_consulta);
         setResult(RESULT_OK, intentresposta);
         finish();
     }

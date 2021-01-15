@@ -1,5 +1,6 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
 
     private ListView listviewConsultas;
     private ListaConsultasAdapter adapter;
+    private SharedPreferences sharedPreferences;
 
     private Consulta consulta;
 
@@ -45,16 +47,13 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
 
         setHasOptionsMenu(true);
 
+        sharedPreferences = getActivity().getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+        long id_paciente = sharedPreferences.getLong("id_paciente", -1);
+
         listviewConsultas = view.findViewById(R.id.listview_consultas);
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
-
-        try {
-            adapter = new ListaConsultasAdapter(getActivity(), gestor.getListaConsultasBD());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        listviewConsultas.setAdapter(adapter);
-
+        Singleton.getInstance(getContext()).setConsultasListener(this);
+        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext(), id_paciente);
 
         //chamar atividade DetalhesConsulta do item da lista selecionado
         listviewConsultas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -67,13 +66,8 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
             }
         });
 
-        long id = 1;
-        Singleton.getInstance(getContext()).setConsultasListener(this);
-        Singleton.getInstance(getContext()).getAllConsultasAPI(getContext(), id);
-
         return view;
     }
-
 
     @Override
     public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
@@ -81,3 +75,4 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
             listviewConsultas.setAdapter(new ListaConsultasAdapter(getContext(), listaconsultas));
     }
 }
+

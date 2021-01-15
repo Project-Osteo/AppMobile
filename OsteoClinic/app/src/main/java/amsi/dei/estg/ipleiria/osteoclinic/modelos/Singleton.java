@@ -166,7 +166,7 @@ public class Singleton {
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
-                    mUrlAPIPacientes + "/consultas", null,
+                    mUrlAPIPacientes + id + "/consultas", null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {

@@ -1,11 +1,14 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -32,6 +35,10 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
     private Button btFeedback;
 
+    private long id;
+
+    private SharedPreferences sharedPreferences;
+
     //private ListView listviewfeedback;
     //private ListaFeedbackAdapter adapter;
 
@@ -40,7 +47,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_consulta);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        
 
         tvDataConsulta = findViewById(R.id.tvDataConsultaDetalhe);
         tvDescricao = findViewById(R.id.tvDescricaoConsultaDetalhe);
@@ -48,16 +54,11 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         btFeedback = findViewById(R.id.btListaFeedbackDetalheConsulta);
 
-        long id = getIntent().getLongExtra(ID_CONSULTA, -1);
-        Consulta consulta = Singleton.getInstance(getApplicationContext()).getConsulta(id);
+        id = getIntent().getLongExtra(ID_CONSULTA, -1);
 
-        if(consulta != null){
-            setTitle("Consultas");
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            tvDataConsulta.setText(formatter.format(consulta.getDataConsulta()));
-            tvDescricao.setText(consulta.getDescricao_consulta());
-            tvRecomendacoes.setText(consulta.getRecomendacao());
-        }
+        carregarConsulta(id);
+
+        preencherListaFeedbacks();
 
         /*listviewfeedback = findViewById(R.id.listview_feedbackDetalheConsulta);
         Singleton gestor = Singleton.getInstance(getApplicationContext());
@@ -85,10 +86,26 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
     }
 
-    public void onClickListaFeedback(View view) {
+    private void carregarConsulta(long id) {
+        Consulta consulta = Singleton.getInstance(getApplicationContext()).getConsulta(id);
+
+        if(consulta != null){
+            setTitle("Consultas");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            tvDataConsulta.setText(formatter.format(consulta.getDataConsulta()));
+            tvDescricao.setText(consulta.getDescricao_consulta());
+            tvRecomendacoes.setText(consulta.getRecomendacao());
+        }
+    }
+
+    public void preencherListaFeedbacks() {
         ListaFeedbackFragment listaFeedbackFragment = new ListaFeedbackFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
+    }
+
+    public long getIdConsulta(){
+        return id;
     }
 
     /*@Override
@@ -102,4 +119,11 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
     public void onRefreshDetalhes() {
 
     }*/
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        long id = data.getLongExtra("id_consulta", -1);
+        carregarConsulta(id);
+    }
 }

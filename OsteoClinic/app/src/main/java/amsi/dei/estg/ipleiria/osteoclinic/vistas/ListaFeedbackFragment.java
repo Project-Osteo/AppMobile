@@ -63,6 +63,7 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesFeedbackActivity.class);
                 intent.putExtra(DetalhesFeedbackActivity.ID_FEEDBACK, id);
+                intent.putExtra("id_consulta", ((DetalhesConsultaActivity)getActivity()).getIdConsulta());
                 startActivityForResult(intent, DetalhesFeedbackActivity.DETALHE_EDITAR);
             }
         });
@@ -73,6 +74,7 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesFeedbackActivity.class);
+                intent.putExtra("id_consulta", ((DetalhesConsultaActivity)getActivity()).getIdConsulta());
                 startActivityForResult(intent, DetalhesFeedbackActivity.DETALHE_ADICIONAR);
             }
         });

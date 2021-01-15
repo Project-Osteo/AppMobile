@@ -23,6 +23,8 @@ public class MenuMainActivity extends AppCompatActivity
     public static final String PREF_USER = "amsi.dei.estg.ipleiria.osteoclinic.vistas.PREF_USER";
     public static final String EMAIL = "amsi.dei.estg.ipleiria.osteoclinic.vistas.email";
     public static final String TOKEN = "amsi.dei.estg.ipleiria.osteoclinic.vistas.token";
+    public static final String ID_USER = "amsi.dei.estg.ipleiria.osteoclinic.vistas.id_user";
+    public static final String ID_PACIENTE = "amsi.dei.estg.ipleiria.osteoclinic.vistas.id_paciente";
 
     private NavigationView navigationView;
     private DrawerLayout drawer;

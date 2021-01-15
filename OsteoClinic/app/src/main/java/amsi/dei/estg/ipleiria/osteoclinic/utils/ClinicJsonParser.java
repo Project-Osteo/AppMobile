@@ -208,18 +208,19 @@ public class ClinicJsonParser {
     }
 
     public static String parserJsonLogin(String resposta){
-        String token = null;
+        String dados ="";
 
         try {
             JSONObject json = new JSONObject(resposta);
             Boolean bool = json.getBoolean("success");
             if(bool){
-                token = json.getString("token");
+                dados += json.getString("token");
+                dados += ";" + json.getString("id_user");
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return token;
+        return dados;
     }
 
 

@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.StringTokenizer;
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -71,10 +73,10 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 
 
     @Override
-    public void onValidateLogin(String token, String email) {
-        if(token != null) {
+    public void onValidateLogin(String dados, String email) {
+        if(dados != null && !dados.equals("")) {
             //GET FICHA PACIENTE + GUARDAR BD
-            saveSharedPreferencesInfo(token, email);
+            saveSharedPreferencesInfo(dados, email);
             Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
             startActivity(intent);
             finish();
@@ -90,11 +92,17 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
 
     }
 
-    private void saveSharedPreferencesInfo(String token, String email) {
+    private void saveSharedPreferencesInfo(String dados, String email) {
+        StringTokenizer st = new StringTokenizer(dados, ";");
+        String token = st.nextToken();
+        String id_user = st.nextToken();
+        String id_paciente = st.nextToken();
         SharedPreferences sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(MenuMainActivity.EMAIL, email);
         editor.putString(MenuMainActivity.TOKEN, token);
+        editor.putString(MenuMainActivity.ID_USER, id_user);
+        editor.putString(MenuMainActivity.ID_PACIENTE, id_paciente);
         editor.apply();
     }
 }
