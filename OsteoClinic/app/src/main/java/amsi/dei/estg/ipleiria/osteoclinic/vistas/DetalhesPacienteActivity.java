@@ -115,6 +115,10 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 alterar = etAlterar.getText().toString();
                 confirmar = etConfirmar.getText().toString();
+
+                if(alterar.equals(confirmar)){
+                    
+                }
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -153,6 +157,10 @@ public class DetalhesPacienteActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 alterar = etAlterar.getText().toString().trim();
                 confirmar = etConfirmar.getText().toString().trim();
+
+                if(alterar.equals(confirmar)){
+
+                }
             }
         });
         builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
