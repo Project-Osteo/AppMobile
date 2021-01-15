@@ -359,6 +359,43 @@ public class Singleton implements ConsultasListener, TreinosListener, FeedbacksL
     }
 
 
+    //adicionar dados de paciente
+    public void adicionarDadosPacienteAPI(final Context context, final String nome, final long user_id,
+                                          final String sexo, final String nacionalidade, final String localidade,
+                                          final Number telemovel, final int peso, final float altura){
+        StringRequest request = new StringRequest(Request.Method.POST,
+                mUrlPacientes,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams()  {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("nome", nome);
+                parametros.put("sexo", sexo);
+                parametros.put("nacionalidade", nacionalidade);
+                parametros.put("localidade", localidade);
+                parametros.put("telemovel", ""+ telemovel);
+                parametros.put("peso", ""+ peso);
+                parametros.put("altura", ""+ altura);
+                return parametros;
+            }
+        };
+
+        volleyQueue.add(request);
+    }
+
+
     private void onUpdateListaFeedbackBD(Feedback feedback, int operacao) {
         switch (operacao){
             case ADICIONAR_FEEDBACK_BD:
