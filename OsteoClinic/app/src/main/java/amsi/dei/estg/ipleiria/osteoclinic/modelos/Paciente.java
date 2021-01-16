@@ -7,12 +7,12 @@ public class Paciente {
     private String sexo;
     private String nacionalidade;
     private String localidade;
-    private Number telemovel;
+    private int telemovel;
     private double peso;
     private double altura;
 
     public Paciente (long id, long user_id, String nome, String sexo, String nacionalidade,
-                     String localidade, Number telemovel, double peso, double altura) {
+                     String localidade, int telemovel, double peso, double altura) {
 
         this.id = id;
         this.user_id = user_id;
@@ -69,11 +69,11 @@ public class Paciente {
         this.localidade = localidade;
     }
 
-    public Number getTelemovel() {
+    public int getTelemovel() {
         return telemovel;
     }
 
-    public void setTelemovel(Number telemovel) {
+    public void setTelemovel(int telemovel) {
         this.telemovel = telemovel;
     }
 

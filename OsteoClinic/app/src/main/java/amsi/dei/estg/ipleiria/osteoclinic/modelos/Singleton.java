@@ -1,6 +1,7 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
 import android.content.Context;
+import android.media.session.MediaSession;
 import android.widget.Toast;
 
 
@@ -360,7 +361,7 @@ public class Singleton {
     //remover feedback api
     public void removerFeedbackAPI(final Feedback feedback, final Context contexto){
         StringRequest request = new StringRequest(Request.Method.DELETE,
-                mUrlAPIListaFeedback + "/" + feedback.getId(),
+                mUrlAPIListaFeedback + feedback.getId(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -382,9 +383,7 @@ public class Singleton {
 
 
     //adicionar dados de paciente
-    public void adicionarPacienteAPI(final Context context, final String nome, final long user_id,
-                                          final String sexo, final String nacionalidade, final String localidade,
-                                          final Number telemovel, final int peso, final double altura){
+    public void adicionarPacienteAPI(final Paciente paciente, final String token, final Context context, final long user_id){
         StringRequest request = new StringRequest(Request.Method.POST,
                 mUrlAPIPacientes + user_id,
                 new Response.Listener<String>() {
@@ -403,13 +402,13 @@ public class Singleton {
             @Override
             protected Map<String, String> getParams()  {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("nome", nome);
-                parametros.put("sexo", sexo);
-                parametros.put("nacionalidade", nacionalidade);
-                parametros.put("localidade", localidade);
-                parametros.put("telemovel", ""+ telemovel);
-                parametros.put("peso", ""+ peso);
-                parametros.put("altura", ""+ altura);
+                parametros.put("nome", paciente.getNome());
+                parametros.put("sexo", paciente.getSexo());
+                parametros.put("nacionalidade", paciente.getNacionalidade());
+                parametros.put("localidade", paciente.getLocalidade());
+                parametros.put("telemovel", ""+ paciente.getTelemovel());
+                parametros.put("peso", String.format("%4.1f", paciente.getPeso()));
+                parametros.put("altura", String.format("%3.2f", paciente.getAltura()));
                 return parametros;
             }
         };
