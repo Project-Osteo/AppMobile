@@ -75,7 +75,8 @@
         android:layout_marginLeft="144dp"
         android:layout_marginTop="16dp"
         android:layout_toEndOf="@+id/btCalcIMC"
-        android:layout_toRightOf="@id/btCalcIMC" />
+        android:layout_toRightOf="@id/btCalcIMC"
+        android:textSize="20dp" />
 
     <ImageView
         android:layout_width="wrap_content"
