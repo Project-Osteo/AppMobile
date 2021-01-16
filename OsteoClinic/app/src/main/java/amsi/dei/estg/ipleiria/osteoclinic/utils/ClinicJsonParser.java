@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
@@ -49,30 +50,6 @@ public class ClinicJsonParser {
     }
 
 
-    public static Consulta parserJsonConsulta(String resposta){
-        Consulta consulta = null;
-
-        try {
-            JSONObject consultajson = new JSONObject(resposta);
-            long id = consultajson.getLong("id_consulta");
-            String data = consultajson.getString("data_consulta");
-            String descricao = consultajson.getString("descricao_consulta");
-            long paciente_id = consultajson.getLong("paciente_id");
-            String tratamento = consultajson.getString("tratamento");
-            String obs = consultajson.getString("obs_consulta");
-            String rec = consultajson.getString("recomendacao");
-
-            SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
-            Date data1 = formatter.parse(data.substring(0,10));
-
-            consulta = new Consulta(id, data1, descricao, paciente_id, tratamento, obs, rec);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return consulta;
-    }
-
-
     /* TREINOS JSON PARSER */
     public static ArrayList<Treino> parserJsonTreinos(JSONArray resposta){
         ArrayList<Treino> listatreinos = new ArrayList<>();
@@ -99,29 +76,6 @@ public class ClinicJsonParser {
         }
 
         return listatreinos;
-    }
-
-    public static Treino parserJsonTreino(String resposta){
-        Treino treino = null;
-
-        try {
-            JSONObject treinoJson = new JSONObject(resposta);
-            long id = treinoJson.getLong("id_treino");
-            String data = treinoJson.getString("data_treino");
-            String descricao = treinoJson.getString("descricao_treino");
-            String tipo = treinoJson.getString("tipo_treino");
-            String obs = treinoJson.getString("obs_treino");
-
-            SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
-            Date data1 = formatter.parse(data);
-
-            treino = new Treino(id, data1, descricao, tipo, obs);
-
-        }catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return treino;
     }
 
 
@@ -160,12 +114,9 @@ public class ClinicJsonParser {
             long id = feedbacksjon.getLong("id_feedback");
             long consulta_id = feedbacksjon.getLong("consulta_id");
             String mensagem = feedbacksjon.getString("mensagem");
-            String datahora = feedbacksjon.getString("dataehora");
+            Date dataehora = Calendar.getInstance().getTime();
 
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            Date data1 = formatter.parse(datahora);
-
-            feedback = new Feedback(id, consulta_id, mensagem, data1);
+            feedback = new Feedback(id, consulta_id, mensagem, dataehora);
 
         }catch (Exception e) {
             e.printStackTrace();

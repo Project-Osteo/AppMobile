@@ -40,8 +40,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     private Paciente paciente;
     private String tarefa;
 
-    private String token;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,7 +101,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
                     etSexo.getText().toString(), etNacionalidade.getText().toString(),
                     etLocalidade.getText().toString(), Integer.parseInt(etTelemovel.getText().toString()),
                     Double.parseDouble(etPeso.getText().toString()), Double.parseDouble(etAltura.getText().toString()));
-            Singleton.getInstance(getApplicationContext()).adicionarPacienteAPI(paciente, token, getApplicationContext(), user_id);
+            Singleton.getInstance(getApplicationContext()).adicionarPacienteAPI(paciente, getApplicationContext(), user_id);
         }
     }
 

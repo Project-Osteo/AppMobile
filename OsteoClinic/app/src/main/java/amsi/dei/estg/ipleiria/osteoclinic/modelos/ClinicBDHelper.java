@@ -38,7 +38,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String TABELA_FEEDBACK = "Feedbacks";
     private static final String ID_FEEDBACK = "id_feedback";
     private static final String USER_ID = "user_id";
-    private static final String CONSULTA_ID_FEEDBACK = "consulta_id";
+    private static final String CONSULTA_ID = "consulta_id";
     private static final String TREINO_ID_FEEDBACK = "treino_id";
     private static final String MENSAGEM = "mensagem";
     private static final String DATAHORA = "datahora";
@@ -68,6 +68,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_TREINO + " INTEGER PRIMARY KEY, " +
                 DATA_TREINO + " DATE NOT NULL, " +
                 DESCRICAO_TREINO + " TEXT NOT NULL, " +
+                PACIENTE_TREINO + " INTEGER, " +
                 TIPO_TREINO + " TEXT NOT NULL, " +
                 OBS_TREINO + " TEXT NOT NULL" +
                 ")";
@@ -76,8 +77,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         String sqlTabelaFeedback = "CREATE TABLE " + TABELA_FEEDBACK + "( " +
                 ID_FEEDBACK + " INTEGER PRIMARY KEY, " +
                 USER_ID + " INTEGER, " +
-                CONSULTA_ID_FEEDBACK + " INTEGER, " +
-                //TREINO_ID_FEEDBACK + " INTEGER, " +
+                CONSULTA_ID + " INTEGER, " +
                 MENSAGEM + " TEXT NOT NULL, " +
                 DATAHORA + " DATETIME " +
                 ")";
@@ -109,13 +109,10 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 Consulta consulta = new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
                         cursor.getString(2), cursor.getLong(3),
                         cursor.getString(4), cursor.getString(5), cursor.getString(6));
+                lista.add(consulta);
             }while(cursor.moveToNext());
         }
         return lista;
-    }
-
-    public void removeAllConsultasBD(){
-        this.database.delete(TABELA_CONSULTAS, null, null);
     }
 
     public Consulta adicionarConsultaBD(Consulta c)  {
@@ -128,33 +125,12 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         valores.put(OBS_CONSULTA, c.getObs_consulta());
         valores.put(RECOMENDACAO_CONSULTA, c.getRecomendacao());
 
-        //instrução insert devolve o id do objeto adicionado
-        long id = this.database.insert(TABELA_CONSULTAS, null, valores);
-        //if(id > -1){
-        //    c.setId(id);
-        //    return c;
-        //}
+        this.database.insert(TABELA_CONSULTAS, null, valores);
         return null;
     }
 
-    public boolean editarConsultaBD(Consulta consulta){
-        ContentValues valores = new ContentValues();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        valores.put(DATA_CONSULTA, formatter.format(consulta.getDataConsulta()));
-        valores.put(DESCRICAO_CONSULTA, consulta.getDescricao_consulta());
-        valores.put(TRATAMENTO, consulta.getTratamento());
-        valores.put(OBS_CONSULTA, consulta.getObs_consulta());
-        valores.put(RECOMENDACAO_CONSULTA, consulta.getRecomendacao());
-
-        int registosalterados = this.database.update(TABELA_CONSULTAS, valores,
-                "id = ?", new String [] {""+ consulta.getId()});
-
-        return registosalterados > 0;
-    }
-
-    public boolean removerConsultaBD(long id){
-        return this.database.delete(TABELA_CONSULTAS, ID_CONSULTA + " = ?",
-                new String [] {""+ id}) == 1;
+    public void removeAllConsultasBD(){
+        this.database.delete(TABELA_CONSULTAS, null, null);
     }
 
     // --------------  métodos CRUD treinos ------------------------
@@ -171,18 +147,16 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
             do {
                 Treino treino = new Treino(cursor.getLong(0), formatter.parse(cursor.getString(1)),
                         cursor.getString(2), cursor.getString(3), cursor.getString(4));
+                lista.add(treino);
             }while(cursor.moveToNext());
         }
         return lista;
     }
 
-    public void removeAllTreinosBD(){
-        this.database.delete(TABELA_TREINOS, null, null);
-    }
-
     public Treino adicionarTreinoBD(Treino t) {
         ContentValues valores = new ContentValues();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        valores.put(ID_TREINO, t.getId());
         valores.put(DATA_TREINO, formatter.format(t.getDataTreino()));
         valores.put(DESCRICAO_TREINO, t.getDescricao_treino());
         valores.put(TIPO_TREINO, t.getTipoTreino());
@@ -196,23 +170,8 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         return null;
     }
 
-    public boolean editarTreinoBD(Treino treino){
-        ContentValues valores = new ContentValues();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        valores.put(DATA_TREINO, formatter.format(treino.getDataTreino()));
-        valores.put(DESCRICAO_TREINO, treino.getDescricao_treino());
-        valores.put(TIPO_TREINO, treino.getTipoTreino());
-        valores.put(OBS_TREINO, treino.getObs_treino());
-
-        int registosalterados = this.database.update(TABELA_TREINOS, valores,
-                "id = ?", new String [] {""+ treino.getId()});
-
-        return registosalterados > 0;
-    }
-
-    public boolean removerTreinoBD(long id){
-        return this.database.delete(TABELA_TREINOS, ID_TREINO + " = ?",
-                new String [] {""+ id}) == 1;
+    public void removeAllTreinosBD(){
+        this.database.delete(TABELA_TREINOS, null, null);
     }
 
 
@@ -221,17 +180,18 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     public ArrayList<Feedback> getAllFeedbackBD() throws ParseException {
         ArrayList<Feedback> lista = new ArrayList<>();
 
-        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
 
         Cursor cursor = this.database.query(
                 TABELA_FEEDBACK,
-                new String [] {ID_FEEDBACK, CONSULTA_ID_FEEDBACK, MENSAGEM, DATAHORA},
+                new String [] {ID_FEEDBACK, CONSULTA_ID, MENSAGEM, DATAHORA},
                 null, null, null, null, DATAHORA);
         if(cursor.moveToFirst()){
             do{
                 Feedback feedback = new Feedback(cursor.getLong(0), cursor.getLong(1),
                         cursor.getString(2),
                         formatter.parse(cursor.getString(3)));
+                lista.add(feedback);
             }while(cursor.moveToNext());
         }
         return lista;
@@ -243,17 +203,14 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     public Feedback adcionarFeedbackBD(Feedback f){
         ContentValues valores = new ContentValues();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
+        valores.put(ID_FEEDBACK, f.getId());
         valores.put(MENSAGEM, f.getMensagem());
-        valores.put(CONSULTA_ID_FEEDBACK, f.getConsulta_id());
-        //valores.put(TREINO_ID_FEEDBACK, f.getTreino_id());
+        valores.put(CONSULTA_ID, f.getConsulta_id());
         valores.put(DATAHORA, formatter.format(f.getDatahora()));
 
-        long id = this.database.insert(TABELA_FEEDBACK, null, valores);
-        if(id > -1){
-            f.setId(id);
-            return f;
-        }
+        this.database.insert(TABELA_FEEDBACK, null, valores);
+
         return null;
     }
 
@@ -261,8 +218,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         ContentValues valores = new ContentValues();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         valores.put(MENSAGEM, feedback.getMensagem());
-        valores.put(CONSULTA_ID_FEEDBACK, feedback.getConsulta_id());
-        //valores.put(TREINO_ID_FEEDBACK, feedback.getTreino_id());
+        valores.put(CONSULTA_ID, feedback.getConsulta_id());
         valores.put(DATAHORA, formatter.format(feedback.getDatahora()));
 
         int registosalterados = this.database.update(TABELA_FEEDBACK, valores,

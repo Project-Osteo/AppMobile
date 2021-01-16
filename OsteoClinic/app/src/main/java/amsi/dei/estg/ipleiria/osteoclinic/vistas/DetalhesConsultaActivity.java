@@ -55,8 +55,11 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         btFeedback = findViewById(R.id.btListaFeedbackDetalheConsulta);
 
-        Bundle extras = getIntent().getExtras();
-        id = extras.getLong(ID_CONSULTA, -1);
+        if(savedInstanceState != null){
+            id = savedInstanceState.getLong("id_consulta");
+        }else{
+            id = getIntent().getLongExtra(ID_CONSULTA, -1);
+        }
 
         carregarConsulta(id);
 
@@ -100,6 +103,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
         super.onRestoreInstanceState(savedInstanceState);
 
         id = savedInstanceState.getLong("id_consulta");
+        carregarConsulta(id);
     }
 
     private void carregarConsulta(long id) {

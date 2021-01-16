@@ -292,7 +292,7 @@ public class Singleton {
     }
 
     //adicionar feedback api
-    public void adicionarFeedbackAPI(final Feedback feedback, final String token, final Context contexto){
+    public void adicionarFeedbackAPI(final Context contexto, final Feedback feedback){
         StringRequest request = new StringRequest(Request.Method.POST,
                 mUrlAPIListaFeedback + "consulta/",
                 new Response.Listener<String>() {
@@ -314,7 +314,6 @@ public class Singleton {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("token", token);
                 parametros.put("consulta_id", feedback.getConsulta_id()+"");
                 parametros.put("mensagem", feedback.getMensagem());
                 return parametros;
@@ -324,9 +323,9 @@ public class Singleton {
     }
 
     //update feedback api
-    public void editarFeedbackAPI(final Feedback feedback, final String token, final Context contexto){
-        StringRequest request = new StringRequest(Request.Method.PUT,
-                mUrlAPIListaFeedback + feedback.getId(),
+    public void editarFeedbackAPI(final Context contexto, final long id_feedback, final String mensagem){
+        StringRequest request = new StringRequest(Request.Method.PATCH,
+                mUrlAPIListaFeedback + id_feedback,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -346,12 +345,7 @@ public class Singleton {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("token", token);
-                parametros.put("id", feedback.getId()+"");
-                parametros.put("consulta_id", feedback.getConsulta_id()+"");
-                //parametros.put("treino_id", feedback.getTreino_id()+"");
-                parametros.put("mensagem", feedback.getMensagem());
-                parametros.put("datahora", feedback.getDatahora().toString());
+                parametros.put("mensagem", mensagem);
                 return parametros;
             }
         };
@@ -383,7 +377,7 @@ public class Singleton {
 
 
     //adicionar dados de paciente
-    public void adicionarPacienteAPI(final Paciente paciente, final String token, final Context context, final long user_id){
+    public void adicionarPacienteAPI(final Paciente paciente, final Context context, final long user_id){
         StringRequest request = new StringRequest(Request.Method.POST,
                 mUrlAPIPacientes + user_id,
                 new Response.Listener<String>() {
@@ -446,38 +440,6 @@ public class Singleton {
             clinicBDHelper.adicionarConsultaBD(c);
     }
 
-    public void adicionarConsultaBD(Consulta consulta){
-        clinicBDHelper.adicionarConsultaBD(consulta);
-    }
-
-    public boolean editarConsultaBD(Consulta consulta){
-        Consulta atual = getConsulta(consulta.getId());
-
-        if(atual != null){
-            boolean alterou = clinicBDHelper.editarConsultaBD(atual);
-            if(alterou == true){
-                atual.setDescricao_consulta(consulta.getDescricao_consulta());
-                atual.setTratamento(consulta.getTratamento());
-                atual.setObs_consulta(consulta.getObs_consulta());
-                atual.setRecomendacao(consulta.getRecomendacao());
-            }
-        }
-        return false;
-    }
-
-    public boolean removerConsultaBD(long id){
-        Consulta consulta = getConsulta(id);
-        if(consulta != null){
-            boolean removeu = clinicBDHelper.removerConsultaBD(id);
-            if(removeu == true){
-                this.lista_consultas.remove(consulta);
-                return true;
-            }
-        }
-        return false;
-    }
-
-
     /* ******************** MÉTODOS BD treinos******************** */
     public ArrayList<Treino> getListaTreinosBD() throws ParseException {
         lista_treinos = clinicBDHelper.getAllTreinosBD();
@@ -489,37 +451,6 @@ public class Singleton {
         for(Treino t: lista)
             clinicBDHelper.adicionarTreinoBD(t);
     }
-
-    public void adicionarTreinoBD(Treino treino){
-        clinicBDHelper.adicionarTreinoBD(treino);
-    }
-
-    public boolean editarTreinoBD(Treino treino){
-        Treino atual = getTreino(treino.getId());
-
-        if(atual != null){
-            boolean alterou = clinicBDHelper.editarTreinoBD(atual);
-            if(alterou == true){
-                atual.setDescricao_treino(treino.getDescricao_treino());
-                atual.setTipo_treino(treino.getTipoTreino());
-                atual.setObs_treino(treino.getObs_treino());
-            }
-        }
-        return false;
-    }
-
-    public boolean removerTreinoBD(long id){
-        Treino treino = getTreino(id);
-        if(treino != null){
-            boolean removeu = clinicBDHelper.removerTreinoBD(id);
-            if(removeu == true){
-                this.lista_treinos.remove(treino);
-                return true;
-            }
-        }
-        return false;
-    }
-
 
     /* ******************** Métodos BD feedback ************************ */
     public ArrayList<Feedback> getListaFeedbackBD() throws ParseException {

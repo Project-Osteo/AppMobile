@@ -16,7 +16,6 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
 
@@ -40,8 +39,9 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     private FloatingActionButton fab_action;
     private Feedback feedback;
     private String token;
-    private long id_consulta;
+    private long consulta_id;
     private String tarefa;
+    private long id_feedback;
 
 
     @Override
@@ -56,15 +56,15 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         etMensagem = findViewById(R.id.etMensagemFeedbackDetalhe);
         fab_action = findViewById(R.id.fab_action);
 
-        long id = getIntent().getLongExtra(ID_FEEDBACK, -1);
-        id_consulta = getIntent().getLongExtra("id_consulta", -1);
+        id_feedback = getIntent().getLongExtra(ID_FEEDBACK, -1);
+        consulta_id = getIntent().getLongExtra("id_consulta", -1);
 
-        if(id == -1){
+        if(id_feedback == -1){
             feedback = null;
         }
         else{
             Singleton gestor = Singleton.getInstance(getApplicationContext());
-            feedback = gestor.getFeedback(id);
+            feedback = gestor.getFeedback(id_feedback);
         }
 
         if(feedback == null){
@@ -95,10 +95,9 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
 
 
     private void adicionarFeedback() {
-
         if(dadosPreenchidos()){
-            feedback = new Feedback(0, id_consulta, etMensagem.getText().toString());
-            Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(feedback, token, getApplicationContext());
+            feedback = new Feedback(0, consulta_id, etMensagem.getText().toString());
+            Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(getApplicationContext(), feedback);
             tarefa = "Adicionou";
         }
 
@@ -106,8 +105,8 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
 
     private void alterarFeedback() {
         if(dadosPreenchidos()){
-            feedback.setMensagem(etMensagem.getText().toString());
-            Singleton.getInstance(getApplicationContext()).editarFeedbackAPI(feedback, token, getApplicationContext());
+            Singleton.getInstance(getApplicationContext()).editarFeedbackAPI(getApplicationContext(),
+                    id_feedback, etMensagem.getText().toString());
             tarefa = "Alterou";
         }
     }
@@ -181,7 +180,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     public void onRefreshDetalhes() {
         Intent intentresposta = new Intent();
         intentresposta.putExtra(RESPOSTA, tarefa);
-        intentresposta.putExtra(DetalhesConsultaActivity.ID_CONSULTA, id_consulta);
+        intentresposta.putExtra(DetalhesConsultaActivity.ID_CONSULTA, consulta_id);
         setResult(RESULT_OK, intentresposta);
         finish();
     }
