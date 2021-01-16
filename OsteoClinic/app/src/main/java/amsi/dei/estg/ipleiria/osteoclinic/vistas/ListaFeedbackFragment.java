@@ -1,7 +1,9 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -32,6 +34,8 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
 
     private FloatingActionButton fab;
 
+    private long consulta_id;
+
     public ListaFeedbackFragment() {
         // Required empty public constructor
     }
@@ -48,8 +52,12 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
 
         setHasOptionsMenu(true);
 
+        DetalhesConsultaActivity detalhesConsultaActivity = (DetalhesConsultaActivity) getActivity();
+        consulta_id = detalhesConsultaActivity.getIdConsulta();
+
         listviewfeedback = view.findViewById(R.id.listview_feedback);
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
+
 
         try{
             adapter = new ListaFeedbackAdapter(getActivity(), gestor.getListaFeedbackBD());
@@ -80,7 +88,7 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
         });
 
         Singleton.getInstance(getContext()).setFeedbackListener(this);
-        Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext());
+        Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext(), consulta_id);
 
         return view;
     }
@@ -92,13 +100,13 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
             switch (requestCode){
 
                 case DetalhesFeedbackActivity.DETALHE_ADICIONAR:
-                    Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext());
+                    Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext(), consulta_id);
                     Snackbar.make(getView(), "Novo feedback adicionado",
                             Snackbar.LENGTH_SHORT).show();
                     break;
 
                 case DetalhesFeedbackActivity.DETALHE_EDITAR:
-                    Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext());
+                    Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext(), consulta_id);
 
                     String resposta = data.getStringExtra(DetalhesFeedbackActivity.RESPOSTA);
 

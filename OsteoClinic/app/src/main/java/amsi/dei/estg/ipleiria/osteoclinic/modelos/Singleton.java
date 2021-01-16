@@ -255,7 +255,7 @@ public class Singleton {
     }
 
     //get lista feedback
-    public void getAllFeedbacksAPI(final Context contexto){
+    public void getAllFeedbacksAPI(final Context contexto, long consulta_id){
         if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
             if(feedbacksListener != null)
@@ -267,7 +267,7 @@ public class Singleton {
         }
         else{
             JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET,
-                    mUrlAPIListaFeedback, null,
+                    mUrlAPIListaFeedback + "consulta/" + consulta_id, null,
                     new Response.Listener<JSONArray>() {
                         @Override
                         public void onResponse(JSONArray response) {
