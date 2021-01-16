@@ -42,7 +42,7 @@
     <string name="peso">Peso:</string>
     <string name="altura">Altura:</string>
     <string name="kilos">kg</string>
-    <string name="centimetros">cm</string>
+    <string name="centimetros">m</string>
     <string name="calcular">Calcular</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
