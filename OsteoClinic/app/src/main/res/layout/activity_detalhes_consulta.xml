@@ -80,7 +80,6 @@
             android:id="@+id/btListaFeedbackDetalheConsulta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="onClickListaFeedback"
             android:text="@string/bt_ListaFeedbackDetalhesConsulta"
             android:background="@color/colorTextHint"
             android:textColor="@color/colorText"/>

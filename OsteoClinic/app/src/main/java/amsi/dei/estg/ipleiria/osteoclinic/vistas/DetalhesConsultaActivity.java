@@ -1,5 +1,6 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -54,7 +55,8 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         btFeedback = findViewById(R.id.btListaFeedbackDetalheConsulta);
 
-        id = getIntent().getLongExtra(ID_CONSULTA, -1);
+        Bundle extras = getIntent().getExtras();
+        id = extras.getLong(ID_CONSULTA, -1);
 
         carregarConsulta(id);
 
@@ -84,6 +86,20 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         btFeedback.getContext();
 
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putLong("id_consulta", id);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        id = savedInstanceState.getLong("id_consulta");
     }
 
     private void carregarConsulta(long id) {
