@@ -41,9 +41,14 @@ public class CalcularIMCActivity extends AppCompatActivity {
 
                 resultado = peso / (altura * altura);
 
-                String imc = Double.toString(resultado);
+                String imc = String.format("%.1f", resultado);
+
+                //String imc = Double.toString(resultado);
 
                 tvResultado.setText(imc);
+
+                etPeso.setText("");
+                etAltura.setText("");
             }
         });
     }
