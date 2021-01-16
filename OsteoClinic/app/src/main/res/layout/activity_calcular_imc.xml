@@ -7,18 +7,10 @@
     android:orientation="vertical"
     tools:context=".vistas.CalcularIMCActivity">
 
-    <TextView
-        android:id="@+id/tvTitulo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/calc_imc"
-        android:textSize="25sp" />
-
     <EditText
         android:id="@+id/etPeso"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitulo"
         android:ems="10"
         android:hint="Peso"
         android:inputType="numberDecimal" />
@@ -27,7 +19,6 @@
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvTitulo"
         android:layout_marginTop="10dp"
         android:layout_toRightOf="@id/etPeso"
         android:paddingLeft="10dp"
@@ -42,7 +33,7 @@
         android:layout_below="@id/etPeso"
         android:ems="10"
         android:hint="Altura"
-        android:inputType="numberDecimal"/>
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/textView2"
@@ -61,6 +52,30 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etAltura"
         android:text="@string/calcular" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="126dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/textView2"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/btCalcIMC"
+        android:layout_toRightOf="@id/btCalcIMC"
+        android:text="Resultado:"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="126dp"
+        android:layout_height="43dp"
+        android:layout_below="@+id/textView2"
+        android:layout_marginStart="144dp"
+        android:layout_marginLeft="144dp"
+        android:layout_marginTop="16dp"
+        android:layout_toEndOf="@+id/btCalcIMC"
+        android:layout_toRightOf="@id/btCalcIMC" />
 
     <ImageView
         android:layout_width="wrap_content"

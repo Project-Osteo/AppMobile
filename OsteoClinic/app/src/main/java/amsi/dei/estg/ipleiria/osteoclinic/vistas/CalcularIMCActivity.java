@@ -3,23 +3,37 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 
 public class CalcularIMCActivity extends AppCompatActivity {
 
     private EditText etPeso, etAltura;
+    private TextView tvResultado;
+    private double peso, altura;
+    private double resultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calcular_imc);
 
+        setTitle("Cálculo de IMC");
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etPeso = findViewById(R.id.etPeso);
         etAltura = findViewById(R.id.etAltura);
+
+        tvResultado = findViewById(R.id.textView4);
+
+        peso = Double.parseDouble(etPeso.getText().toString());
+        altura = Double.parseDouble(etAltura.getText().toString());
+
+        resultado = peso + altura;
 
     }
 }
