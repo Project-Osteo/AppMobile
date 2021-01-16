@@ -14,22 +14,30 @@
         android:padding="16dp">
 
         <TextView
+            android:id="@+id/tvNumFeedbackCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorTextDark"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginStart="20dp" />
+
+        <TextView
             android:id="@+id/tvDataFeedbackCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:text="2021-01-07"
             android:textColor="@color/colorTextDark"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:layout_toRightOf="@+id/tvNumFeedbackCard"/>
 
         <TextView
             android:id="@+id/tvFeedbackCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvDataFeedbackCard"
+            android:layout_below="@id/tvNumFeedbackCard"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
-            android:text="@string/texto_feedback"
             android:textColor="@color/colorTextDark"
             android:textSize="18sp" />
 

@@ -323,9 +323,9 @@ public class Singleton {
     }
 
     //update feedback api
-    public void editarFeedbackAPI(final Context contexto, final long id_feedback, final String mensagem){
+    public void editarFeedbackAPI(final Context contexto, final Feedback feedback){
         StringRequest request = new StringRequest(Request.Method.PATCH,
-                mUrlAPIListaFeedback + id_feedback,
+                mUrlAPIListaFeedback + feedback.getId(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -345,7 +345,8 @@ public class Singleton {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("mensagem", mensagem);
+                parametros.put("consulta_id", feedback.getConsulta_id()+"");
+                parametros.put("mensagem", feedback.getMensagem());
                 return parametros;
             }
         };

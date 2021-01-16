@@ -39,7 +39,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String ID_FEEDBACK = "id_feedback";
     private static final String USER_ID = "user_id";
     private static final String CONSULTA_ID = "consulta_id";
-    private static final String TREINO_ID_FEEDBACK = "treino_id";
     private static final String MENSAGEM = "mensagem";
     private static final String DATAHORA = "datahora";
 
@@ -222,7 +221,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         valores.put(DATAHORA, formatter.format(feedback.getDatahora()));
 
         int registosalterados = this.database.update(TABELA_FEEDBACK, valores,
-                "id = ?", new String [] {""+ feedback.getId()});
+                "id_feedback = ?", new String [] {""+ feedback.getId()});
 
         return registosalterados > 0;
     }

@@ -27,7 +27,8 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class DetalhesFeedbackActivity extends AppCompatActivity implements FeedbacksListener {
 
-    public static final String ID_FEEDBACK = "amsi.dei.estg.ipleiria.osteoclinic.vistas";
+    public static final String ID_FEEDBACK = "amsi.dei.estg.ipleiria.osteoclinic.vistas.id_feedback";
+    public static final String CONSULTA_ID = "amsi.dei.estg.ipleiria.osteoclinic.vistas.consulta_id";
 
     public static final int DETALHE_ADICIONAR = 1;
     public static final int DETALHE_EDITAR = 2;
@@ -38,7 +39,6 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     private EditText etMensagem;
     private FloatingActionButton fab_action;
     private Feedback feedback;
-    private String token;
     private long consulta_id;
     private String tarefa;
     private long id_feedback;
@@ -57,7 +57,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         fab_action = findViewById(R.id.fab_action);
 
         id_feedback = getIntent().getLongExtra(ID_FEEDBACK, -1);
-        consulta_id = getIntent().getLongExtra("id_consulta", -1);
+        consulta_id = getIntent().getLongExtra(CONSULTA_ID, -1);
 
         if(id_feedback == -1){
             feedback = null;
@@ -105,9 +105,10 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
 
     private void alterarFeedback() {
         if(dadosPreenchidos()){
+            feedback.setMensagem(etMensagem.getText().toString());
             Singleton.getInstance(getApplicationContext()).editarFeedbackAPI(getApplicationContext(),
-                    id_feedback, etMensagem.getText().toString());
-            tarefa = "Alterou";
+                    feedback);
+            tarefa = "Editou";
         }
     }
 
