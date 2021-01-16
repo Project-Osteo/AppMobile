@@ -95,17 +95,13 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
 
 
     private void adicionarFeedback() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try{
-            if(dadosPreenchidos()){
-                feedback = new Feedback(0, id_consulta, etMensagem.getText().toString(),
-                        formatter.parse(tvDataHora.getText().toString().substring(0,10)));
-                Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(feedback, token, getApplicationContext());
-                tarefa = "Adicionou";
-            }
-        }catch (ParseException e){
-            e.printStackTrace();
+
+        if(dadosPreenchidos()){
+            feedback = new Feedback(0, id_consulta, etMensagem.getText().toString());
+            Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(feedback, token, getApplicationContext());
+            tarefa = "Adicionou";
         }
+
     }
 
     private void alterarFeedback() {
@@ -185,7 +181,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     public void onRefreshDetalhes() {
         Intent intentresposta = new Intent();
         intentresposta.putExtra(RESPOSTA, tarefa);
-        intentresposta.putExtra("id_consulta", id_consulta);
+        intentresposta.putExtra(DetalhesConsultaActivity.ID_CONSULTA, id_consulta);
         setResult(RESULT_OK, intentresposta);
         finish();
     }

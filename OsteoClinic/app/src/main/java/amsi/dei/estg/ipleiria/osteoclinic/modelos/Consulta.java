@@ -39,10 +39,6 @@ public class Consulta {
         this.descricao_consulta = descricao_consulta;
     }
 
-    public long getPaciente_id() {
-        return paciente_id;
-    }
-
     public String getTratamento() {
         return tratamento;
     }

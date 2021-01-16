@@ -123,7 +123,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        long id = data.getLongExtra("id_consulta", -1);
+        long id = data.getLongExtra(ID_CONSULTA, -1);
         carregarConsulta(id);
     }
 }

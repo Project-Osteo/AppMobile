@@ -5,7 +5,6 @@ import java.util.Date;
 public class Feedback {
 
     private long id;
-    private long user_id;
     private long consulta_id;
     //private long treino_id;
     private String mensagem;
@@ -16,6 +15,12 @@ public class Feedback {
         this.consulta_id = consulta_id;
         this.mensagem = mensagem;
         this.datahora = datahora;
+    }
+
+    public Feedback(long id, long consulta_id, String mensagem){
+        this.id = id;
+        this.consulta_id = consulta_id;
+        this.mensagem = mensagem;
     }
 
 
@@ -34,6 +39,14 @@ public class Feedback {
     /*public long getTreino_id() {
         return treino_id;
     }*/
+
+    public void setConsulta_id(long consulta_id) {
+        this.consulta_id = consulta_id;
+    }
+
+    public void setDatahora(Date datahora) {
+        this.datahora = datahora;
+    }
 
     public String getMensagem() {
         return mensagem;

@@ -294,7 +294,7 @@ public class Singleton {
     //adicionar feedback api
     public void adicionarFeedbackAPI(final Feedback feedback, final String token, final Context contexto){
         StringRequest request = new StringRequest(Request.Method.POST,
-                mUrlAPIListaFeedback,
+                mUrlAPIListaFeedback + "consulta/",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
