@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class CalcularIMCActivity extends AppCompatActivity {
     private TextView tvResultado;
     private double peso, altura;
     private double resultado;
+    Button btCalculo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,13 +29,22 @@ public class CalcularIMCActivity extends AppCompatActivity {
 
         etPeso = findViewById(R.id.etPeso);
         etAltura = findViewById(R.id.etAltura);
-
         tvResultado = findViewById(R.id.textView4);
 
-        peso = Double.parseDouble(etPeso.getText().toString());
-        altura = Double.parseDouble(etAltura.getText().toString());
+        btCalculo = findViewById(R.id.btCalcIMC);
 
-        resultado = peso + altura;
+        btCalculo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                peso = Double.parseDouble(etPeso.getText().toString());
+                altura = Double.parseDouble(etAltura.getText().toString());
 
+                resultado = peso / (altura * altura);
+
+                String imc = Double.toString(resultado);
+
+                tvResultado.setText(imc);
+            }
+        });
     }
 }
