@@ -50,9 +50,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         setContentView(R.layout.activity_detalhes_paciente);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
-        long id_paciente = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_PACIENTE,"-1"));
-
         Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
 
         etNome = findViewById(R.id.etNome);
@@ -68,9 +65,20 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         Bundle extras = getIntent().getExtras();
         String request = extras.getString("tarefa");
 
-        if(id_paciente > 0){
+        if(request.equals("editar")){
+            setTitle("Perfil do utilizador");
+            sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+            long id_paciente = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_PACIENTE,"-1"));
             Singleton.getInstance(getApplicationContext()).getPacienteAPI(getApplicationContext(), id_paciente);
+
+            btConfirmarDados.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alterarPaciente();
+                }
+            });
         }
+
 
         if(request.equals("adicionar")){
             setTitle("Inserir dados pessoais");
@@ -82,21 +90,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
                     adicionarPaciente(user_id);
                 }
             });
-        }
-        if(request.equals("editar")){
-            setTitle("Perfil do utilizador");
-            btConfirmarDados.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    alterarPaciente();
-                }
-            });
-        }
-        else{
-
-
-
-
         }
 
         //Singleton.getInstance(getApplicationContext()).setPacientesListener(this);

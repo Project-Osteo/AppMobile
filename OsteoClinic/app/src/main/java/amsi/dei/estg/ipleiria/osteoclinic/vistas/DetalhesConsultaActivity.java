@@ -47,7 +47,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_consulta);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         tvDataConsulta = findViewById(R.id.tvDataConsultaDetalhe);
         tvDescricao = findViewById(R.id.tvDescricaoConsultaDetalhe);
@@ -64,7 +63,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
         carregarConsulta(id);
 
         //preencherListaFeedbacks();
-
         btFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
