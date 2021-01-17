@@ -102,13 +102,25 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
                     etLocalidade.getText().toString(), Integer.parseInt(etTelemovel.getText().toString()),
                     Double.parseDouble(etPeso.getText().toString()), Double.parseDouble(etAltura.getText().toString()));
             Singleton.getInstance(getApplicationContext()).adicionarPacienteAPI(paciente, getApplicationContext(), user_id);
+            tarefa = "Adicionou";
         }
     }
 
 
 
     private void alterarPaciente() {
+        if(dadosPreenchidos()){
+            paciente.setNome(etNome.getText().toString());
+            paciente.setSexo(etSexo.getText().toString());
+            paciente.setNacionalidade(etNacionalidade.getText().toString());
+            paciente.setLocalidade(etLocalidade.getText().toString());
+            paciente.setTelemovel(Integer.parseInt(etTelemovel.getText().toString()));
+            paciente.setPeso(Double.parseDouble(etPeso.getText().toString()));
+            paciente.setAltura(Double.parseDouble(etAltura.getText().toString()));
 
+            Singleton.getInstance(getApplicationContext()).editarPacienteAPI(paciente, getApplicationContext(), user_id);
+            tarefa = "Editou";
+        }
     }
 
     private boolean dadosPreenchidos() {

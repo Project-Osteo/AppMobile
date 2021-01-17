@@ -21,6 +21,7 @@ import java.text.SimpleDateFormat;
 
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaFeedbackAdapter;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.FeedbacksListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -42,6 +43,8 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     private long consulta_id;
     private String tarefa;
     private long id_feedback;
+
+    private ListaFeedbackAdapter adapter;
 
 
     @Override

@@ -63,7 +63,16 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         carregarConsulta(id);
 
-        preencherListaFeedbacks();
+        //preencherListaFeedbacks();
+
+        btFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListaFeedbackFragment listaFeedbackFragment = new ListaFeedbackFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
+            }
+        });
 
         /*listviewfeedback = findViewById(R.id.listview_feedbackDetalheConsulta);
         Singleton gestor = Singleton.getInstance(getApplicationContext());
@@ -86,8 +95,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         Singleton.getInstance(this).setFeedbackListener(this);
         Singleton.getInstance(this).getAllFeedbacksAPI(this);*/
-
-        btFeedback.getContext();
 
     }
 
@@ -118,11 +125,11 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
         }
     }
 
-    public void preencherListaFeedbacks() {
+    /*public void preencherListaFeedbacks() {
         ListaFeedbackFragment listaFeedbackFragment = new ListaFeedbackFragment();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
-    }
+    }*/
 
     public long getIdConsulta(){
         return id;

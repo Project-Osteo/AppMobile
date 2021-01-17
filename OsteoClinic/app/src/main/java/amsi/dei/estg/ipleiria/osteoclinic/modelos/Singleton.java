@@ -5,6 +5,7 @@ import android.media.session.MediaSession;
 import android.widget.Toast;
 
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -396,6 +397,40 @@ public class Singleton {
                 }){
             @Override
             protected Map<String, String> getParams()  {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("nome", paciente.getNome());
+                parametros.put("sexo", paciente.getSexo());
+                parametros.put("nacionalidade", paciente.getNacionalidade());
+                parametros.put("localidade", paciente.getLocalidade());
+                parametros.put("telemovel", ""+ paciente.getTelemovel());
+                parametros.put("peso", String.format("%4.1f", paciente.getPeso()));
+                parametros.put("altura", String.format("%3.2f", paciente.getAltura()));
+                return parametros;
+            }
+        };
+
+        volleyQueue.add(request);
+    }
+
+    //editar os dados do paciente
+    public void editarPacienteAPI(final Paciente paciente, final Context context, final long id_paciente){
+        StringRequest request = new StringRequest(Request.Method.PATCH,
+                mUrlAPIPacientes + id_paciente,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
                 Map<String, String> parametros = new HashMap<String, String>();
                 parametros.put("nome", paciente.getNome());
                 parametros.put("sexo", paciente.getSexo());
