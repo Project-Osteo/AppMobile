@@ -1,88 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".vistas.CalcularIMCActivity">
+    android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/etPeso"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Peso"
-        android:inputType="numberDecimal" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".vistas.CalcularIMCActivity">
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/etPeso"
-        android:paddingLeft="10dp"
-        android:text="@string/kilos"
-        android:textSize="20sp" />
+        <EditText
+            android:id="@+id/etPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Peso"
+            android:inputType="numberDecimal" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/etPeso"
+            android:paddingLeft="10dp"
+            android:text="@string/kilos"
+            android:textSize="20sp" />
 
 
-    <EditText
-        android:id="@+id/etAltura"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etPeso"
-        android:ems="10"
-        android:hint="Altura"
-        android:inputType="numberDecimal" />
+        <EditText
+            android:id="@+id/etAltura"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPeso"
+            android:ems="10"
+            android:hint="Altura"
+            android:inputType="numberDecimal" />
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etPeso"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@id/etAltura"
-        android:paddingLeft="10dp"
-        android:text="@string/centimetros"
-        android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etPeso"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/etAltura"
+            android:paddingLeft="10dp"
+            android:text="@string/centimetros"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/btCalcIMC"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/etAltura"
-        android:text="@string/calcular" />
+        <Button
+            android:id="@+id/btCalcIMC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etAltura"
+            android:text="@string/calcular" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="126dp"
-        android:layout_height="43dp"
-        android:layout_below="@+id/textView2"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="16dp"
-        android:layout_toEndOf="@+id/btCalcIMC"
-        android:layout_toRightOf="@id/btCalcIMC"
-        android:text="Resultado:"
-        android:textSize="20dp" />
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="126dp"
+            android:layout_height="43dp"
+            android:layout_below="@+id/textView2"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@+id/btCalcIMC"
+            android:layout_toRightOf="@id/btCalcIMC"
+            android:text="Resultado:"
+            android:textSize="20dp" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="126dp"
-        android:layout_height="43dp"
-        android:layout_below="@+id/textView2"
-        android:layout_marginStart="144dp"
-        android:layout_marginLeft="144dp"
-        android:layout_marginTop="16dp"
-        android:layout_toEndOf="@+id/btCalcIMC"
-        android:layout_toRightOf="@id/btCalcIMC"
-        android:textSize="20dp" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="126dp"
+            android:layout_height="43dp"
+            android:layout_below="@+id/textView2"
+            android:layout_marginStart="144dp"
+            android:layout_marginLeft="144dp"
+            android:layout_marginTop="16dp"
+            android:layout_toEndOf="@+id/btCalcIMC"
+            android:layout_toRightOf="@id/btCalcIMC"
+            android:textSize="20dp" />
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btCalcIMC"
-        android:src="@drawable/tabela_calc_imc" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btCalcIMC"
+            android:src="@drawable/tabela_calc_imc" />
 
-</RelativeLayout>
-
+    </RelativeLayout>
+</ScrollView>
