@@ -51,8 +51,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
-        String id_paciente = sharedPreferences.getString(MenuMainActivity.ID_PACIENTE,"-1");
-        String id_user = sharedPreferences.getString(MenuMainActivity.ID_USER,"-1");
+        long id_paciente = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_PACIENTE,"-1"));
 
         etNome = findViewById(R.id.etNome);
         etSexo = findViewById(R.id.etSexo);
@@ -69,11 +68,11 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         //user_id = extras.getLong("user_id");
         //tarefa = extras.getString("tarefa");
 
-        if(id_paciente != null){
+        if(id_paciente > 0){
             Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
 
             Singleton gestor = Singleton.getInstance(getApplicationContext());
-            gestor.getPacienteAPI(getApplicationContext(), user_id);
+            gestor.getPacienteAPI(getApplicationContext(), id_paciente);
 
             btConfirmarDados.setOnClickListener(new View.OnClickListener() {
                 @Override

@@ -228,12 +228,12 @@ public class Singleton {
     }
 
     //get paciente by user_id
-    public void getPacienteAPI(final Context contexto, long user_id) {
+    public void getPacienteAPI(final Context contexto, long id_paciente) {
         if(!ClinicJsonParser.isConnected(contexto)){
             Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
         }else{
             StringRequest request = new StringRequest(Request.Method.GET,
-                    mUrlAPIPacientes + user_id,
+                    mUrlAPIPacientes + id_paciente,
                     new Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
