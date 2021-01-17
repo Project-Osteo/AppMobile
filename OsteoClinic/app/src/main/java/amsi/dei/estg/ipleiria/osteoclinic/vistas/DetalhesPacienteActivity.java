@@ -53,6 +53,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
         long id_paciente = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_PACIENTE,"-1"));
 
+        Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
+
         etNome = findViewById(R.id.etNome);
         etSexo = findViewById(R.id.etSexo);
         etNacionalidade = findViewById(R.id.etNacionalidade);
@@ -63,17 +65,25 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
 
         btConfirmarDados = findViewById(R.id.btConfirmarDados);
 
-        //Bundle extras = getIntent().getExtras();
-        //System.out.println(extras);
-        //user_id = extras.getLong("user_id");
-        //tarefa = extras.getString("tarefa");
+        Bundle extras = getIntent().getExtras();
+        String request = extras.getString("tarefa");
 
         if(id_paciente > 0){
-            Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
+            Singleton.getInstance(getApplicationContext()).getPacienteAPI(getApplicationContext(), id_paciente);
+        }
 
-            Singleton gestor = Singleton.getInstance(getApplicationContext());
-            gestor.getPacienteAPI(getApplicationContext(), id_paciente);
+        if(request.equals("adicionar")){
+            setTitle("Inserir dados pessoais");
+            user_id = extras.getLong("user_id");
 
+            btConfirmarDados.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adicionarPaciente(user_id);
+                }
+            });
+        }
+        if(request.equals("editar")){
             btConfirmarDados.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -82,21 +92,10 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
             });
         }
         else{
-            Bundle extras = getIntent().getExtras();
-            System.out.println(extras);
-            user_id = extras.getLong("user_id");
 
-            Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
 
-            Singleton gestor = Singleton.getInstance(getApplicationContext());
-            gestor.getPacienteAPI(getApplicationContext(), user_id);
 
-            btConfirmarDados.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    adicionarPaciente();
-                }
-            });
+
         }
 
         //Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
@@ -126,21 +125,19 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     protected void onResume() {
         super.onResume();
         if (paciente == null) {
-            setTitle("Inserir dados pessoais");
+
         }else{
             setTitle("Dados pessoais");
-            preencheDetalhe(paciente);
         }
     }
 
-    private void adicionarPaciente() {
+    private void adicionarPaciente(long user_id) {
         if(dadosPreenchidos()){
             paciente = new Paciente(0, user_id, etNome.getText().toString(),
                     etSexo.getText().toString(), etNacionalidade.getText().toString(),
                     etLocalidade.getText().toString(), Integer.parseInt(etTelemovel.getText().toString()),
                     Double.parseDouble(etPeso.getText().toString()), Double.parseDouble(etAltura.getText().toString()));
-            Singleton.getInstance(getApplicationContext()).adicionarPacienteAPI(paciente, getApplicationContext(), user_id);
-            tarefa = "Adicionou";
+            Singleton.getInstance(getApplicationContext()).adicionarPacienteAPI(paciente, getApplicationContext());
         }
     }
 
@@ -156,8 +153,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
             paciente.setPeso(Double.parseDouble(etPeso.getText().toString()));
             paciente.setAltura(Double.parseDouble(etAltura.getText().toString()));
 
-            Singleton.getInstance(getApplicationContext()).editarPacienteAPI(paciente, getApplicationContext(), user_id);
-            tarefa = "Editou";
+            Singleton.getInstance(getApplicationContext()).editarPacienteAPI(paciente, getApplicationContext());
         }
     }
 
@@ -181,7 +177,22 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         return true;
     }
 
-    private void preencheDetalhe(Paciente paciente) {
+    @Override
+    public void onAddPaciente() {
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onPatchPaciente() {
+        Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onConfirmPaciente(Paciente paciente){
         etNome.setText(paciente.getNome());
         etSexo.setText(paciente.getSexo());
         etNacionalidade.setText(paciente.getNacionalidade());
@@ -190,6 +201,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         etPeso.setText(String.format("%4.1f", paciente.getPeso()));
         etAltura.setText(String.format("%3.2f", paciente.getAltura()));
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -301,8 +313,5 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         builder.show();
     }
 
-    @Override
-    public void onConfirmPaciente(Paciente paciente) {
-        this.paciente = paciente;
-    }
+
 }

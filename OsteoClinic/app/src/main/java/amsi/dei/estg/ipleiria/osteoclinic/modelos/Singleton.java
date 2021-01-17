@@ -1,6 +1,7 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.session.MediaSession;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.PacientesListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
+import amsi.dei.estg.ipleiria.osteoclinic.vistas.DetalhesPacienteActivity;
 
 public class Singleton {
     private static final int ADICIONAR_FEEDBACK_BD = 1;
@@ -227,34 +229,6 @@ public class Singleton {
         }
     }
 
-    //get paciente by user_id
-    public void getPacienteAPI(final Context contexto, long id_paciente) {
-        if(!ClinicJsonParser.isConnected(contexto)){
-            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
-        }else{
-            StringRequest request = new StringRequest(Request.Method.GET,
-                    mUrlAPIPacientes + id_paciente,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            Paciente paciente = ClinicJsonParser.parserJsonPaciente(response);
-                            if(pacientesListener != null){
-                                pacientesListener.onConfirmPaciente(paciente);
-                            }
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            error.printStackTrace();
-                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-            );
-            volleyQueue.add(request);
-        }
-    }
-
     //get lista feedback
     public void getAllFeedbacksAPI(final Context contexto, long consulta_id){
         if(!ClinicJsonParser.isConnected(contexto)){
@@ -378,14 +352,42 @@ public class Singleton {
     }
 
 
+    //get paciente by id_paciente
+    public void getPacienteAPI(final Context contexto, long id_paciente) {
+        if(!ClinicJsonParser.isConnected(contexto)){
+            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
+        }else{
+            StringRequest request = new StringRequest(Request.Method.GET,
+                    mUrlAPIPacientes + id_paciente,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            Paciente paciente = ClinicJsonParser.parserJsonPaciente(response);
+                            if(pacientesListener != null){
+                                pacientesListener.onConfirmPaciente(paciente);
+                            }
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Toast.makeText(contexto, error.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+            );
+            volleyQueue.add(request);
+        }
+    }
+
     //adicionar dados de paciente
-    public void adicionarPacienteAPI(final Paciente paciente, final Context context, final long user_id){
+    public void adicionarPacienteAPI(final Paciente paciente, final Context context){
         StringRequest request = new StringRequest(Request.Method.POST,
-                mUrlAPIPacientes + user_id,
+                mUrlAPIPacientes + paciente.getUser_id(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        pacientesListener.onAddPaciente();
                     }
                 },
                 new Response.ErrorListener() {
@@ -413,13 +415,13 @@ public class Singleton {
     }
 
     //editar os dados do paciente
-    public void editarPacienteAPI(final Paciente paciente, final Context context, final long id_paciente){
+    public void editarPacienteAPI(final Paciente paciente, final Context context){
         StringRequest request = new StringRequest(Request.Method.PATCH,
-                mUrlAPIPacientes + id_paciente,
+                mUrlAPIPacientes + paciente.getId(),
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        pacientesListener.onPatchPaciente();
                     }
                 },
                 new Response.ErrorListener() {

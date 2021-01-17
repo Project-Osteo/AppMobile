@@ -75,8 +75,12 @@ public class MenuMainActivity extends AppCompatActivity
                 fragmento = new ListaTreinosFragment();
                 break;
             case R.id.nav_user_profile:
+                Bundle b = new Bundle();
+                b.putString("tarefa", "editar");
                 Intent intent = new Intent(getApplicationContext(), DetalhesPacienteActivity.class);
+                intent.putExtras(b);
                 startActivity(intent);
+                finish();
                 break;
             default:
                 break;
