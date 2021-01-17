@@ -35,14 +35,6 @@
             android:textColorHint="@color/colorTextHint"
             android:textSize="16dp" />
 
-    <!--    <Spinner-->
-    <!--        android:id="@+id/spinner1"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:background="@android:drawable/btn_dropdown"-->
-    <!--        android:spinnerMode="dropdown"-->
-    <!--        android:backgroundTint="@color/colorPrimaryDark" />-->
-
         <EditText
             android:id="@+id/etSexo"
             android:layout_width="match_parent"
