@@ -1,139 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="30dp"
-    android:orientation="vertical"
-    tools:context=".vistas.DetalhesPacienteActivity"
-    android:background="@color/colorPrimaryDark">
-
-    <TextView
-        android:id="@+id/tvDetalhesPacienteTitulo"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dados Pessoais"
-        android:textAlignment="center"
-        android:textColor="@color/colorTextHint"
-        android:textSize="45dp"/>
+        android:layout_height="match_parent"
+        android:padding="30dp"
+        android:orientation="vertical"
+        tools:context=".vistas.DetalhesPacienteActivity"
+        android:background="@color/colorPrimaryDark">
 
-    <EditText
-        android:id="@+id/etNome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Nome"
-        android:inputType="text"
-        android:textColor="@color/colorTextEditText"
-        android:textColorHint="@color/colorTextHint"
-        android:textSize="16dp" />
+        <TextView
+            android:id="@+id/tvDetalhesPacienteTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Dados Pessoais"
+            android:textAlignment="center"
+            android:textColor="@color/colorTextHint"
+            android:textSize="45dp"/>
 
-<!--    <Spinner-->
-<!--        android:id="@+id/spinner1"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:background="@android:drawable/btn_dropdown"-->
-<!--        android:spinnerMode="dropdown"-->
-<!--        android:backgroundTint="@color/colorPrimaryDark" />-->
+        <EditText
+            android:id="@+id/etNome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Nome"
+            android:inputType="text"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
 
-    <EditText
-        android:id="@+id/etSexo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Sexo"
-        android:inputType="text"
-        android:textColor="@color/colorTextEditText"
-        android:textColorHint="@color/colorTextHint"
-        android:textSize="16dp" />
+    <!--    <Spinner-->
+    <!--        android:id="@+id/spinner1"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@android:drawable/btn_dropdown"-->
+    <!--        android:spinnerMode="dropdown"-->
+    <!--        android:backgroundTint="@color/colorPrimaryDark" />-->
 
-    <EditText
-        android:id="@+id/etNacionalidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Nacionalidade"
-        android:inputType="text"
-        android:textColor="@color/colorTextEditText"
-        android:textColorHint="@color/colorTextHint"
-        android:textSize="16dp" />
+        <EditText
+            android:id="@+id/etSexo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Sexo"
+            android:inputType="text"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
 
-    <EditText
-        android:id="@+id/etLocalidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Localidade"
-        android:inputType="text"
-        android:textColor="@color/colorTextEditText"
-        android:textColorHint="@color/colorTextHint"
-        android:textSize="16dp" />
+        <EditText
+            android:id="@+id/etNacionalidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Nacionalidade"
+            android:inputType="text"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
 
-    <EditText
-        android:id="@+id/etTelemovel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Telemovel"
-        android:inputType="number"
-        android:textColor="@color/colorTextEditText"
-        android:textColorHint="@color/colorTextHint"
-        android:textSize="16dp" />
+        <EditText
+            android:id="@+id/etLocalidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Localidade"
+            android:inputType="text"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
 
-    <EditText
-        android:id="@+id/etPeso"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Peso (kg)"
-        android:inputType="number"
-        android:textColor="@color/colorTextEditText"
-        android:textColorHint="@color/colorTextHint"
-        android:textSize="16dp" />
+        <EditText
+            android:id="@+id/etTelemovel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Telemovel"
+            android:inputType="number"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
 
-    <EditText
-        android:id="@+id/etAltura"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:ems="10"
-        android:hint="Altura (m)"
-        android:inputType="numberDecimal"
-        android:textColor="@color/colorTextEditText"
-        android:textColorHint="@color/colorTextHint"
-        android:textSize="16dp" />
+        <EditText
+            android:id="@+id/etPeso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Peso (kg)"
+            android:inputType="number"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
 
-    <Button
-        android:id="@+id/btConfirmarDados"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/bt_confirmardados"
-        android:background="@color/colorTextHint"
-        android:textColor="@color/colorText"
-        android:layout_marginTop="20dp" />
+        <EditText
+            android:id="@+id/etAltura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
+            android:ems="10"
+            android:hint="Altura (m)"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorTextEditText"
+            android:textColorHint="@color/colorTextHint"
+            android:textSize="16dp" />
 
-
-</LinearLayout>
+        <Button
+            android:id="@+id/btConfirmarDados"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:text="@string/bt_confirmardados"
+            android:background="@color/colorTextHint"
+            android:textColor="@color/colorText"
+            android:layout_marginTop="20dp" />
+    </LinearLayout>
+</ScrollView>
