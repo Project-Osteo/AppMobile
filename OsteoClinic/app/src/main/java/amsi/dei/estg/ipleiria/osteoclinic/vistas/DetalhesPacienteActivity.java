@@ -200,6 +200,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         etTelemovel.setText(paciente.getTelemovel()+"");
         etPeso.setText(String.format("%4.1f", paciente.getPeso()));
         etAltura.setText(String.format("%3.2f", paciente.getAltura()));
+        this.paciente = paciente;
     }
 
 
