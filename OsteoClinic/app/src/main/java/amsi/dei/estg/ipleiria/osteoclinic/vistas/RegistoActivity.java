@@ -94,9 +94,13 @@ public class RegistoActivity extends AppCompatActivity implements LoginListener 
     @Override
     public void onValidateRegisto(long id, String email) {
         if(id > 0){
+            Bundle b = new Bundle();
+            b.putString("mail", email);
+            b.putLong("user_id", id);
             Intent intent = new Intent(getApplicationContext(), DetalhesPacienteActivity.class);
-            intent.putExtra("mail", email);
-            intent.putExtra("user_id", id);
+            intent.putExtras(b);
+            //intent.putExtra("mail", email);
+            //intent.putExtra("user_id", id);
             startActivity(intent);
             finish();
         }

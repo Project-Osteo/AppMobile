@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.Menu;
@@ -40,11 +42,17 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     private Paciente paciente;
     private String tarefa;
 
+    private SharedPreferences sharedPreferences;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_paciente);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+        String id_paciente = sharedPreferences.getString(MenuMainActivity.ID_PACIENTE,"-1");
+        String id_user = sharedPreferences.getString(MenuMainActivity.ID_USER,"-1");
 
         etNome = findViewById(R.id.etNome);
         etSexo = findViewById(R.id.etSexo);
@@ -56,17 +64,43 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
 
         btConfirmarDados = findViewById(R.id.btConfirmarDados);
 
-        Bundle extras = getIntent().getExtras();
-        System.out.println(extras);
-        user_id = extras.getLong("user_id");
-        tarefa = extras.getString("tarefa");
+        //Bundle extras = getIntent().getExtras();
+        //System.out.println(extras);
+        //user_id = extras.getLong("user_id");
+        //tarefa = extras.getString("tarefa");
 
-        Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
+        if(id_paciente != null){
+            Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
 
-        Singleton gestor = Singleton.getInstance(getApplicationContext());
-        gestor.getPacienteAPI(getApplicationContext(), user_id);
+            Singleton gestor = Singleton.getInstance(getApplicationContext());
+            gestor.getPacienteAPI(getApplicationContext(), user_id);
 
-        btConfirmarDados.setOnClickListener(new View.OnClickListener() {
+            btConfirmarDados.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    alterarPaciente();
+                }
+            });
+        }
+        else{
+            Bundle extras = getIntent().getExtras();
+            System.out.println(extras);
+            user_id = extras.getLong("user_id");
+
+            btConfirmarDados.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    adicionarPaciente();
+                }
+            });
+        }
+
+        //Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
+
+        //Singleton gestor = Singleton.getInstance(getApplicationContext());
+        //gestor.getPacienteAPI(getApplicationContext(), user_id);
+
+        /*btConfirmarDados.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(paciente == null){
@@ -75,7 +109,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
                     alterarPaciente();
                 }
             }
-        });
+        });*/
 
 //        Spinner dropdown = findViewById(R.id.spinner1);
 //        String[] items = new String[]{"Masculino", "Feminino"};
