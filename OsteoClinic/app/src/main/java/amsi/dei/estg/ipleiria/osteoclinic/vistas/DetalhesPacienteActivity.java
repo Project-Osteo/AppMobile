@@ -84,6 +84,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
             });
         }
         if(request.equals("editar")){
+            setTitle("Perfil do utilizador");
             btConfirmarDados.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
