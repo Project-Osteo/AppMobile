@@ -87,6 +87,11 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
             System.out.println(extras);
             user_id = extras.getLong("user_id");
 
+            Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
+
+            Singleton gestor = Singleton.getInstance(getApplicationContext());
+            gestor.getPacienteAPI(getApplicationContext(), user_id);
+
             btConfirmarDados.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
