@@ -62,7 +62,7 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
         carregarConsulta(id);
 
-        //preencherListaFeedbacks();
+
         btFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -189,5 +189,4 @@ public class ClinicJsonParser {
         return id;
     }
 
-
 }
