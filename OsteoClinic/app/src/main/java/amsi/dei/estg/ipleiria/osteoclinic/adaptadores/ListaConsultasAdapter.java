@@ -17,12 +17,10 @@ public class ListaConsultasAdapter extends BaseAdapter {
     private LayoutInflater inflater;
     private ArrayList<Consulta> lista_consultas;
 
-
     public ListaConsultasAdapter(Context context, ArrayList<Consulta> lista_consultas) {
         this.context = context;
         this.lista_consultas = lista_consultas;
     }
-
 
     @Override
     public int getCount() {

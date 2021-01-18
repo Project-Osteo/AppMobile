@@ -30,7 +30,7 @@
     <string name="texto_feedback">Feedback:</string>
     <string name="mensagem_feedback_detalhe">Mensagem:</string>
     <string name="menuDetalheFeedbackRemove">menuDetalheFeedbackRemove</string>
-    <string name="bt_ListaFeedbackDetalhesConsulta">Mostrar Feedbacks</string>
+    <string name="bt_ListaFeedbackDetalhesConsulta">Carregar Feedbacks</string>
     <string name="bt_confirmardados">Guardar</string>
     <string name="bt_alterar_password">Alterar Password</string>
     <string name="bt_altearar_email">Alterar Email</string>

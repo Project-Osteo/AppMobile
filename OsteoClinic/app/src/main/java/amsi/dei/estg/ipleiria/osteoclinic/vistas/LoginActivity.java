@@ -30,8 +30,6 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         this.etEmail = findViewById(R.id.etEmail);
         this.etPassword = findViewById(R.id.etPassword);
 
-        etEmail.setText("jota@mail.pt");
-        etPassword.setText("1234");
 
         Singleton.getInstance(getApplicationContext()).setLoginListener(this);
 
@@ -106,8 +104,3 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         editor.apply();
     }
 }
-
-//NOTA 1:perguntar ao professor como fazer com que o Login seja a atividade principal caso o utilizador não tenha sessão iniciada,
-//caso o login tinha sido feito, a aplicação devia ser iniciada no menu principal
-
-//NOTA 2: verificar o aspeto da hiperligação do registo, ponderar se deve ser aplicado um botão em vez de textview

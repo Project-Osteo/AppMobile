@@ -34,14 +34,13 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String TIPO_TREINO = "tipo_treino";
     private static final String OBS_TREINO = "obs_treino";
 
-    //dados da tabela de feedback
+    //dados da tabela de feedbacks
     private static final String TABELA_FEEDBACK = "Feedbacks";
     private static final String ID_FEEDBACK = "id_feedback";
     private static final String USER_ID = "user_id";
     private static final String CONSULTA_ID = "consulta_id";
     private static final String MENSAGEM = "mensagem";
     private static final String DATAHORA = "datahora";
-
 
     private final SQLiteDatabase database;
 
@@ -56,7 +55,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_CONSULTA + " INTEGER PRIMARY KEY, " +
                 DATA_CONSULTA + " DATE NOT NULL, " +
                 DESCRICAO_CONSULTA + " TEXT NOT NULL, " +
-                PACIENTE_CONSULTA + " INTEGER," +
+//                PACIENTE_CONSULTA + " INTEGER," +
                 TRATAMENTO + " TEXT NOT NULL, " +
                 OBS_CONSULTA + " TEXT NOT NULL, " +
                 RECOMENDACAO_CONSULTA + " TEXT NOT NULL" +
@@ -67,7 +66,7 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_TREINO + " INTEGER PRIMARY KEY, " +
                 DATA_TREINO + " DATE NOT NULL, " +
                 DESCRICAO_TREINO + " TEXT NOT NULL, " +
-                PACIENTE_TREINO + " INTEGER, " +
+//                PACIENTE_TREINO + " INTEGER, " +
                 TIPO_TREINO + " TEXT NOT NULL, " +
                 OBS_TREINO + " TEXT NOT NULL" +
                 ")";
@@ -100,14 +99,14 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
         Cursor cursor = this.database.query(
                 TABELA_CONSULTAS,
-                new String[] {ID_CONSULTA, DATA_CONSULTA, DESCRICAO_CONSULTA, PACIENTE_CONSULTA,
+                new String[] {ID_CONSULTA, DATA_CONSULTA, DESCRICAO_CONSULTA,
                     TRATAMENTO, OBS_CONSULTA, RECOMENDACAO_CONSULTA},
                 null, null,null, null, DATA_CONSULTA);
         if(cursor.moveToFirst()){
             do {
                 Consulta consulta = new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
-                        cursor.getString(2), cursor.getLong(3),
-                        cursor.getString(4), cursor.getString(5), cursor.getString(6));
+                        cursor.getString(2), cursor.getString(4),
+                        cursor.getString(5), cursor.getString(6));
                 lista.add(consulta);
             }while(cursor.moveToNext());
         }

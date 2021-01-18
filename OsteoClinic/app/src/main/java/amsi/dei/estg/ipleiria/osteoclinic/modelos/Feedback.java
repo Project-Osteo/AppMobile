@@ -6,7 +6,6 @@ public class Feedback {
 
     private long id;
     private long consulta_id;
-    //private long treino_id;
     private String mensagem;
     private Date datahora;
 
@@ -34,18 +33,6 @@ public class Feedback {
 
     public long getConsulta_id() {
         return consulta_id;
-    }
-
-    /*public long getTreino_id() {
-        return treino_id;
-    }*/
-
-    public void setConsulta_id(long consulta_id) {
-        this.consulta_id = consulta_id;
-    }
-
-    public void setDatahora(Date datahora) {
-        this.datahora = datahora;
     }
 
     public String getMensagem() {

@@ -38,10 +38,9 @@ public class Singleton {
     private ArrayList<Consulta> lista_consultas;
     private ArrayList<Treino> lista_treinos;
     private ArrayList<Feedback> lista_feedback;
+
     private static Singleton instance = null;
-
-    private ClinicBDHelper clinicBDHelper = null;
-
+    private ClinicBDHelper clinicBDHelper;
     private static RequestQueue volleyQueue = null;
 
     private ConsultasListener consultasListener;
@@ -72,7 +71,6 @@ public class Singleton {
         this.lista_treinos = new ArrayList<>();
         this.lista_feedback = new ArrayList<>();
         this.clinicBDHelper = new ClinicBDHelper(context);
-        //gerarFakeData();
     }
 
     public Consulta getConsulta(long id){
@@ -140,7 +138,11 @@ public class Singleton {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+<<<<<<< HEAD
                         Toast.makeText(context, "Dados do Login inválidos", Toast.LENGTH_SHORT).show();
+=======
+                        Toast.makeText(context, "Dados do login inválidos!", Toast.LENGTH_SHORT).show();
+>>>>>>> 910b1db65f59d4c301758e12923440411835144c
                     }
                 }){
             protected Map<String, String> getParams() {
@@ -158,7 +160,7 @@ public class Singleton {
     // get lista consultas
     public void getAllConsultasAPI(final Context contexto, final long id) {
         if(!ClinicJsonParser.isConnected(contexto)){
-            Toast.makeText(contexto, "Não tem internet!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(contexto, "Erro na ligação!", Toast.LENGTH_SHORT).show();
             if(consultasListener != null) {
                 try {
                     consultasListener.onRefreshListaConsultas(getListaConsultasBD());
@@ -195,7 +197,7 @@ public class Singleton {
     // get lista treinos
     public void getAllTreinosAPI(final Context contexto, final long id) {
         if(!ClinicJsonParser.isConnected(contexto)){
-            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(contexto, "Erro na ligação!", Toast.LENGTH_SHORT).show();
             if(treinosListener != null)
                 try {
                     treinosListener.onRefreshListaTreinos(getListaTreinosBD());
@@ -231,7 +233,7 @@ public class Singleton {
     //get lista feedback
     public void getAllFeedbacksAPI(final Context contexto, long consulta_id){
         if(!ClinicJsonParser.isConnected(contexto)){
-            Toast.makeText(contexto, "Não tem internet", Toast.LENGTH_SHORT).show();
+            Toast.makeText(contexto, "Erro na ligação!", Toast.LENGTH_SHORT).show();
             if(feedbacksListener != null)
                 try{
                     feedbacksListener.onRefreshListaFeedbacks(getListaFeedbackBD());
@@ -603,19 +605,5 @@ public class Singleton {
     public void setPacientesListener(PacientesListener pacientesListener) {
         this.pacientesListener = pacientesListener;
     }
-
-
-
-//    public Date stringToDate(String str){
-//        try {
-//            SimpleDateFormat sdfSource = new SimpleDateFormat("yyyy-MM-dd'T'hh:mm:ss'.000Z'");
-//            Date date = sdfSource.parse(str);
-//            SimpleDateFormat sdfDestination = new SimpleDateFormat("dd-MM-yyyy");
-//            str = sdfDestination.format(date);
-//        }catch(ParseException e){
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
 
 }

@@ -1,36 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<resources>-->
-<!--    <color name="colorPrimary">#6200EE</color>-->
-<!--    <color name="colorPrimaryDark">#3700B3</color>-->
-<!--    <color name="colorAccent">#03DAC5</color>-->
-<!--    <color name="Black">#000000</color>-->
-<!--    <color name="teste_card_1">#C2D6C3</color>-->
-<!--    <color name="whiteTextColor">#fff</color>-->
-<!--    <color name="primaryTextColor">#00a5ff</color>-->
-<!--    <color name="titleActivityColor">#00a5ff</color>-->
-<!--</resources>-->
-
-<!--<resources>-->
-<!--    <color name="colorPrimary">#A80000CD</color>-->
-<!--    <color name="colorPrimaryDark">#00008B</color>-->
-<!--    <color name="colorSecondary">#4169E1</color>-->
-<!--    <color name="colorAccent">#0016A3</color>-->
-<!--    <color name="colorText">#FFFFFF</color>-->
-<!--    <color name="colorTextDark">#1C1C1C</color>-->
-<!--    <color name="colorTextEditText">#B0C4DE</color>-->
-<!--    <color name="colorTextHint">#836FFF</color>-->
-<!--</resources>-->
-
-<!--<resources>
-    <color name="colorPrimary">#008000</color>
-    <color name="colorPrimaryDark">#006400</color>
-    <color name="colorSecondary">#7CB342</color>
-    <color name="colorAccent">#083A0A</color>
-    <color name="colorText">#FFFFFF</color>
-    <color name="colorTextDark">#1C1C1C</color>
-    <color name="colorTextEditText">#40000000</color>
-    <color name="colorTextHint">#32CD32</color>
-</resources>-->
 
 <resources>
     <color name="colorPrimary">#CAD2C5</color>
@@ -38,4 +6,5 @@
     <color name="colorAccent">#52796F</color>
     <color name="colorText">#354F52</color>
     <color name="colorTextSecondary">#2F3E46</color>
+    <color name="colorButton">#bee3db</color>
 </resources>
