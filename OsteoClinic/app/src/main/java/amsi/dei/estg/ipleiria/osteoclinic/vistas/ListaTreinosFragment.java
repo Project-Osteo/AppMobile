@@ -1,6 +1,8 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +26,7 @@ public class ListaTreinosFragment extends Fragment implements TreinosListener {
 
     private ListView listviewTreinos;
     private ListaTreinosAdapter adapter;
+    private SharedPreferences sharedPreferences;
 
     public ListaTreinosFragment() {
         // Required empty public constructor
@@ -41,15 +44,15 @@ public class ListaTreinosFragment extends Fragment implements TreinosListener {
 
         setHasOptionsMenu(true);
 
-        listviewTreinos = view.findViewById(R.id.listview_treinos);
-        Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
+        sharedPreferences = getActivity().getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+        long id_paciente = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_PACIENTE, "-1"));
 
-        try {
-            adapter = new ListaTreinosAdapter(getActivity().getApplicationContext(), gestor.getListaTreinosBD());
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        listviewTreinos.setAdapter(adapter);
+        listviewTreinos = view.findViewById(R.id.listview_treinos);
+
+
+
+        Singleton.getInstance(getActivity().getApplicationContext()).setTreinosListener(this);
+        Singleton.getInstance(getActivity().getApplicationContext()).getAllTreinosAPI(getContext(), id_paciente);
 
         listviewTreinos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -59,10 +62,6 @@ public class ListaTreinosFragment extends Fragment implements TreinosListener {
                 startActivity(intent);
             }
         });
-
-        long id = 1;
-        Singleton.getInstance(getContext()).setTreinosListener(this);
-        Singleton.getInstance(getContext()).getAllTreinosAPI(getContext(), id);
 
         return view;
     }

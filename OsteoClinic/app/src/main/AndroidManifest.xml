@@ -22,7 +22,7 @@
             android:parentActivityName=".vistas.MenuMainActivity"/>
         <activity
             android:name=".vistas.DetalhesTreinoActivity"
-            android:parentActivityName=".vistas.MenuMainActivity" />
+            android:parentActivityName=".vistas.MenuMainActivity"/>
         <activity
             android:name=".vistas.MenuMainActivity"
             android:label="@string/app_name"

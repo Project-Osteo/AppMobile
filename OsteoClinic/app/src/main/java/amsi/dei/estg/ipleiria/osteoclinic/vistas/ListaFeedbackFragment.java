@@ -34,7 +34,6 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
     private ListaFeedbackAdapter adapter;
 
     private FloatingActionButton fab;
-    private Button btVoltar;
 
     private long consulta_id;
 
@@ -51,21 +50,12 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lista_feedback, container, false);
-//        setHasOptionsMenu(true);
 
         DetalhesConsultaActivity detalhesConsultaActivity = (DetalhesConsultaActivity) getActivity();
         consulta_id = detalhesConsultaActivity.getIdConsulta();
 
         listviewfeedback = view.findViewById(R.id.listview_feedback);
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
-
-
-        try{
-            adapter = new ListaFeedbackAdapter(getActivity().getApplicationContext(), gestor.getListaFeedbackBD());
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-        listviewfeedback.setAdapter(adapter);
 
         listviewfeedback.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -38,11 +38,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
 
     private long id;
 
-    private SharedPreferences sharedPreferences;
-
-    //private ListView listviewfeedback;
-    //private ListaFeedbackAdapter adapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,28 +66,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
                 fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
             }
         });
-
-        /*listviewfeedback = findViewById(R.id.listview_feedbackDetalheConsulta);
-        Singleton gestor = Singleton.getInstance(getApplicationContext());
-
-        try{
-            adapter = new ListaFeedbackAdapter(this, gestor.getListaFeedbackBD());
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-        listviewfeedback.setAdapter(adapter);
-
-        listviewfeedback.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), DetalhesFeedbackActivity.class);
-                intent.putExtra(DetalhesFeedbackActivity.ID_FEEDBACK, id);
-                startActivity(intent);
-            }
-        });
-
-        Singleton.getInstance(this).setFeedbackListener(this);
-        Singleton.getInstance(this).getAllFeedbacksAPI(this);*/
 
     }
 

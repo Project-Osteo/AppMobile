@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaConsultasAdapter;
+import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaFeedbackAdapter;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -26,10 +27,10 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 public class ListaConsultasFragment extends Fragment implements ConsultasListener {
 
     private ListView listviewConsultas;
-    private ListaConsultasAdapter adapter;
     private SharedPreferences sharedPreferences;
 
-    private Consulta consulta;
+    private ListaConsultasAdapter adapter;
+
 
     public ListaConsultasFragment() {
         // Required empty public constructor
@@ -47,15 +48,12 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
 
         setHasOptionsMenu(true);
 
-        sharedPreferences = getActivity().getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
-        String id_paciente = sharedPreferences.getString(MenuMainActivity.ID_PACIENTE, "-1");
-
         listviewConsultas = view.findViewById(R.id.listview_consultas);
         Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
-        gestor.setConsultasListener(this);
-        gestor.getAllConsultasAPI(getContext(), Long.parseLong(id_paciente));
 
-        //chamar atividade DetalhesConsulta do item da lista selecionado
+        sharedPreferences = getActivity().getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+        long id_paciente = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_PACIENTE, "-1"));
+
         listviewConsultas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
@@ -65,6 +63,9 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
                 startActivity(intent);
             }
         });
+
+        gestor.setConsultasListener(this);
+        gestor.getAllConsultasAPI(getActivity().getApplicationContext(), id_paciente);
 
         return view;
     }
