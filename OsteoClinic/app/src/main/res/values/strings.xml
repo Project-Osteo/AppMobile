@@ -1,9 +1,5 @@
 <resources>
-
-    <!-- TODO: Remove or change this placeholder text -->
-
     <string name="app_name">OsteoClinic</string>
-
     <string name="bt_login">Entrar</string>
     <string name="bt_registo">Registar conta</string>
     <string name="password">Password</string>
