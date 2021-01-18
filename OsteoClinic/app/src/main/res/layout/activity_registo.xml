@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".vistas.RegistoActivity"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimary">
 
     <TextView
         android:id="@+id/tvTituloRegistar"
@@ -21,7 +21,7 @@
         android:paddingBottom="25dp"
         android:text="@string/titulo_registar"
         android:textAlignment="center"
-        android:textColor="@color/colorTextHint"
+        android:textColor="@color/colorAccent"
         android:textSize="40dp" />
 
     <LinearLayout
@@ -40,8 +40,8 @@
             android:ems="10"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -54,8 +54,8 @@
             android:ems="10"
             android:hint="Confirmar E-mail"
             android:inputType="textEmailAddress"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -68,8 +68,8 @@
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -82,8 +82,8 @@
             android:ems="10"
             android:hint="Confirmar Password"
             android:inputType="textPassword"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
     </LinearLayout>
@@ -95,9 +95,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
-        android:background="@color/colorTextHint"
+        android:background="@color/colorSecondary"
         android:onClick="onRegistoClick"
         android:text="@string/bt_registo"
-        android:textColor="@color/colorText" />
+        android:textColor="@color/colorTextSecondary" />
 
 </LinearLayout>

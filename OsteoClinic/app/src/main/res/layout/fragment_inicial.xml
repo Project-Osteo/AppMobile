@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     tools:context=".vistas.InicialFragment">
 
 
@@ -22,13 +22,13 @@
             android:layout_marginTop="50dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/colorTextHint"
+            android:backgroundTint="@color/colorSecondary"
             android:background="@drawable/round_buttons_menu_inicial"
             android:bottomRightRadius="10dp"
             android:drawableStart="@mipmap/ic_footmassage2_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_ir_consultas"
-            android:textColor="@color/colorTextDark"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="24sp" />
 
 
@@ -41,12 +41,12 @@
             android:layout_marginTop="25dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/colorTextHint"
+            android:backgroundTint="@color/colorSecondary"
             android:background="@drawable/round_buttons_menu_inicial"
             android:drawableStart="@mipmap/ic_workout_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_ir_treinos"
-            android:textColor="@color/colorTextDark"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="24sp" />
 
         <Button
@@ -58,12 +58,12 @@
             android:layout_marginTop="25dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/colorTextHint"
+            android:backgroundTint="@color/colorSecondary"
             android:background="@drawable/round_buttons_menu_inicial"
             android:drawableStart="@mipmap/ic_imc_calculator_foreground"
             android:fontFamily="sans-serif-black"
             android:text="@string/bt_calcular_imc"
-            android:textColor="@color/colorTextDark"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="24sp" />
     </RelativeLayout>
 </FrameLayout>

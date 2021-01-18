@@ -10,14 +10,13 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
         android:orientation="vertical"
-        android:padding="30dp"
+        android:padding="20dp"
         tools:context=".vistas.DetalhesConsultaActivity">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -26,8 +25,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingTop="5dp"
-                android:text="TextView"
-                android:textColor="@color/colorText"
+                android:textColor="@color/colorTextSecondary"
                 android:textSize="50px" />
 
         </LinearLayout>
@@ -42,14 +40,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/descricao"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorText"
                 android:textSize="60px" />
 
             <TextView
                 android:id="@+id/tvDescricaoConsultaDetalhe"
                 android:layout_width="match_parent"
                 android:layout_height="63dp"
-                android:textColor="@color/colorText"
+                android:textColor="@color/colorTextSecondary"
                 android:textSize="50px" />
         </LinearLayout>
 
@@ -63,14 +61,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/recomendacoes"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/colorText"
                 android:textSize="60px" />
 
             <TextView
                 android:id="@+id/tvRecomendacoesDetalhe"
                 android:layout_width="match_parent"
                 android:layout_height="63dp"
-                android:textColor="@color/colorText"
+                android:textColor="@color/colorTextSecondary"
                 android:textSize="50px" />
         </LinearLayout>
 
@@ -84,9 +82,9 @@
                 android:id="@+id/btListaFeedbackDetalheConsulta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorTextHint"
+                android:background="@color/colorSecondary"
                 android:text="@string/bt_ListaFeedbackDetalhesConsulta"
-                android:textColor="@color/colorText" />
+                android:textColor="@color/colorTextSecondary" />
 
             <FrameLayout
                 android:id="@+id/contentFeedback"

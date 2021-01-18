@@ -21,7 +21,7 @@
 <!--    <color name="colorTextHint">#836FFF</color>-->
 <!--</resources>-->
 
-<resources>
+<!--<resources>
     <color name="colorPrimary">#008000</color>
     <color name="colorPrimaryDark">#006400</color>
     <color name="colorSecondary">#7CB342</color>
@@ -30,5 +30,12 @@
     <color name="colorTextDark">#1C1C1C</color>
     <color name="colorTextEditText">#40000000</color>
     <color name="colorTextHint">#32CD32</color>
-</resources>
+</resources>-->
 
+<resources>
+    <color name="colorPrimary">#CAD2C5</color>
+    <color name="colorSecondary">#84A98C</color>
+    <color name="colorAccent">#52796F</color>
+    <color name="colorText">#354F52</color>
+    <color name="colorTextSecondary">#2F3E46</color>
+</resources>

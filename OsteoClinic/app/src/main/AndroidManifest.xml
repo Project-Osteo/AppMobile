@@ -17,10 +17,11 @@
         tools:ignore="DuplicateActivity">
         <activity
             android:name=".vistas.DetalhesPacienteActivity"
-            android:parentActivityName=".vistas.MenuMainActivity" />
+            android:parentActivityName=".vistas.MenuMainActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".vistas.CalcularIMCActivity"
-            android:parentActivityName=".vistas.MenuMainActivity" />
+            android:parentActivityName=".vistas.MenuMainActivity"/>
         <activity
             android:name=".vistas.DetalhesTreinoActivity"
             android:parentActivityName=".vistas.MenuMainActivity" />
@@ -32,8 +33,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".vistas.RegistoActivity"
-            android:parentActivityName=".vistas.LoginActivity" />
-        <activity android:name=".vistas.LoginActivity">
+            android:parentActivityName=".vistas.LoginActivity"/>
+        <activity android:name=".vistas.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -41,10 +43,10 @@
         </activity>
         <activity
             android:name=".vistas.DetalhesConsultaActivity"
-            android:parentActivityName=".vistas.MenuMainActivity" />
+            android:parentActivityName=".vistas.MenuMainActivity"/>
         <activity
             android:name=".vistas.DetalhesFeedbackActivity"
-            android:parentActivityName=".vistas.DetalhesConsultaActivity" />
+            android:parentActivityName=".vistas.DetalhesConsultaActivity"/>
     </application>
 
 </manifest>

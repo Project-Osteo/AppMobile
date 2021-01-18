@@ -11,14 +11,15 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:background="@color/colorSecondary">
 
         <TextView
             android:id="@+id/tvNumFeedbackCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:textColor="@color/colorTextDark"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_toRightOf="@+id/tvNumFeedbackCard"
-            android:textColor="@color/colorTextDark"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="18sp" />
 
         <TextView
@@ -38,7 +39,7 @@
             android:layout_below="@id/tvNumFeedbackCard"
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
-            android:textColor="@color/colorTextDark"
+            android:textColor="@color/colorTextSecondary"
             android:textSize="18sp" />
 
     </RelativeLayout>

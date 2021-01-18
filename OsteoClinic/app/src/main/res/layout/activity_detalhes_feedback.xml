@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:padding="30dp"
     android:orientation="vertical"
-    tools:context=".vistas.DetalhesFeedbackActivity">
+    tools:context=".vistas.DetalhesFeedbackActivity"
+    android:background="@color/colorPrimary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +22,8 @@
             android:id="@+id/tvDataHora"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textColor="@color/colorText"/>
     </LinearLayout>
 
     <LinearLayout
@@ -35,7 +37,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/mensagem_feedback_detalhe"
-            android:textSize="60px" />
+            android:textSize="60px"
+            android:textColor="@color/colorText"/>
 
         <EditText
             android:id="@+id/etMensagemFeedbackDetalhe"
@@ -44,7 +47,8 @@
             android:ems="10"
             android:gravity="start|top"
             android:inputType="textMultiLine"
-            android:textSize="50px" />
+            android:textSize="50px"
+            android:textColor="@color/colorTextSecondary"/>
 
     </LinearLayout>
 
@@ -54,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="10dp"
-        android:backgroundTint="#E91E63"
+        android:backgroundTint="@color/colorAccent"
         android:clickable="true" />
 
 </LinearLayout>

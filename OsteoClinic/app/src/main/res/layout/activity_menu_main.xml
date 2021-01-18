@@ -21,8 +21,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:menu="@menu/activity_main_drawer"
-        android:background="@color/colorSecondary"
-        app:itemTextColor="@color/colorTextDark"/>
+        android:background="@color/colorAccent"
+        app:itemTextColor="@color/colorPrimary"/>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>

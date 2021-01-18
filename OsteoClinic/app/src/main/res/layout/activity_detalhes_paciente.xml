@@ -10,7 +10,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         android:orientation="vertical"
         android:padding="30dp"
         tools:context=".vistas.DetalhesPacienteActivity">
@@ -21,8 +21,9 @@
             android:layout_height="wrap_content"
             android:text="Dados Pessoais"
             android:textAlignment="center"
-            android:textColor="@color/colorTextHint"
-            android:textSize="45dp" />
+            android:textColor="@color/colorText"
+            android:textSize="45dp"
+            android:layout_marginBottom="10dp"/>
 
         <EditText
             android:id="@+id/etNome"
@@ -34,8 +35,8 @@
             android:ems="10"
             android:hint="Nome"
             android:inputType="text"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -48,8 +49,8 @@
             android:ems="10"
             android:hint="Sexo"
             android:inputType="text"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -62,8 +63,8 @@
             android:ems="10"
             android:hint="Nacionalidade"
             android:inputType="text"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -76,8 +77,8 @@
             android:ems="10"
             android:hint="Localidade"
             android:inputType="text"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -90,8 +91,8 @@
             android:ems="10"
             android:hint="Telemovel"
             android:inputType="number"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -104,8 +105,8 @@
             android:ems="10"
             android:hint="Peso (kg)"
             android:inputType="number"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <EditText
@@ -118,8 +119,8 @@
             android:ems="10"
             android:hint="Altura (m)"
             android:inputType="numberDecimal"
-            android:textColor="@color/colorTextEditText"
-            android:textColorHint="@color/colorTextHint"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary"
             android:textSize="16dp" />
 
         <Button
@@ -129,8 +130,8 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
-            android:background="@color/colorTextHint"
+            android:background="@color/colorSecondary"
             android:text="@string/bt_confirmardados"
-            android:textColor="@color/colorText" />
+            android:textColor="@color/colorTextSecondary" />
     </LinearLayout>
 </ScrollView>

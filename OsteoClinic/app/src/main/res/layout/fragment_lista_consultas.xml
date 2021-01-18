@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".vistas.ListaConsultasFragment"
-    android:background="@color/colorPrimaryDark">
+    android:background="@color/colorPrimary">
 
     <ListView
         android:id="@+id/listview_consultas"
