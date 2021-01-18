@@ -51,14 +51,13 @@ public class Singleton {
     private PacientesListener pacientesListener;
 
     //Endereços API
-    private static final String host = "10.0.2.2";
-    private static final String port = ":3001";
-    public static final String mUrlAPIListaConsultas = "http://10.0.2.2:3001/consultas/";
-    public static final String mUrlAPIListaTreinos = "http://10.0.2.2:3001/treinos/";
-    public static final String mUrlAPIListaFeedback = "http://10.0.2.2:3001/feedbacks/";
-    public static final String mUrlAPIRegistarUtilizador = "http://10.0.2.2:3001/utilizadores/registar/";
-    public static final String mUrlAPILogin = "http://10.0.2.2:3001/utilizadores/login/";
-    public static final String mUrlAPIPacientes = "http://10.0.2.2:3001/pacientes/";
+    private static final String host = "http://10.0.2.2";
+    private static final String port = ":3001/";
+    public static final String mUrlAPIListaFeedback = host + port + "feedbacks/";
+    public static final String mUrlAPIPacientes = host + port + "pacientes/";
+    public static final String mUrlAPIUtilizadores = host + port + "utilizadores/";
+    public static final String mUrlAPIRegistarUtilizador = mUrlAPIUtilizadores + "registar/";
+    public static final String mUrlAPILogin = mUrlAPIUtilizadores + "login/";
 
     public static synchronized Singleton getInstance(Context context) {
         if(instance == null) {
@@ -449,6 +448,33 @@ public class Singleton {
     }
 
 
+    public void alterarEmail(final Context context, final long id_user, final String email) {
+        StringRequest request = new StringRequest(Request.Method.PATCH,
+                mUrlAPIUtilizadores + id_user + "/email",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(context, "E-mail alterado com sucesso!", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("mail", email);
+                return parametros;
+            }
+        };
+        volleyQueue.add(request);
+    }
+
+
     private void onUpdateListaFeedbackBD(Feedback feedback, int operacao) {
         switch (operacao){
             case ADICIONAR_FEEDBACK_BD:
@@ -550,6 +576,7 @@ public class Singleton {
     public void setPacientesListener(PacientesListener pacientesListener) {
         this.pacientesListener = pacientesListener;
     }
+
 
 
 //    public Date stringToDate(String str){

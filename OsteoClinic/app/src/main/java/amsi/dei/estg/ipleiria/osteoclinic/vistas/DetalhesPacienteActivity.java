@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.PacientesListener;
@@ -40,7 +42,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     private long user_id;
 
     private Paciente paciente;
-    private String tarefa;
 
     private SharedPreferences sharedPreferences;
 
@@ -48,7 +49,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detalhes_paciente);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
 
@@ -91,28 +91,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
                 }
             });
         }
-
-        //Singleton.getInstance(getApplicationContext()).setPacientesListener(this);
-
-        //Singleton gestor = Singleton.getInstance(getApplicationContext());
-        //gestor.getPacienteAPI(getApplicationContext(), user_id);
-
-        /*btConfirmarDados.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(paciente == null){
-                    adicionarPaciente();
-                }else{
-                    alterarPaciente();
-                }
-            }
-        });*/
-
-//        Spinner dropdown = findViewById(R.id.spinner1);
-//        String[] items = new String[]{"Masculino", "Feminino"};
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
-//        dropdown.setAdapter(adapter);
-
     }
 
     @Override
@@ -134,7 +112,6 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
             Singleton.getInstance(getApplicationContext()).adicionarPacienteAPI(paciente, getApplicationContext());
         }
     }
-
 
 
     private void alterarPaciente() {
@@ -267,6 +244,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     }
 
     private void dialogAlterarEmail() {
+        final long user_id = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_USER, "-1"));
+
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
         builder.setTitle("Alterar Email !");
@@ -290,11 +269,20 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         builder.setPositiveButton("Guardar alterações", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                alterar = etAlterar.getText().toString().trim();
-                confirmar = etConfirmar.getText().toString().trim();
+                alterar = etAlterar.getText().toString();
+                confirmar = etConfirmar.getText().toString();
 
-                if(alterar.equals(confirmar)){
-
+                if(isEmailValido(alterar)){
+                    if(emailsMatch(alterar, confirmar)){
+                        Singleton.getInstance(getApplicationContext()).alterarEmail(getApplicationContext(), user_id, alterar);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Emails não coincidem", Toast.LENGTH_SHORT).show();
+                        etConfirmar.setText("");
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "Email inválido", Toast.LENGTH_SHORT).show();
+                    etAlterar.setText("");
+                    etConfirmar.setText("");
                 }
             }
         });
@@ -306,6 +294,16 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         });
 
         builder.show();
+    }
+
+    private boolean emailsMatch(String email, String confirm) {
+        if(email.equals(confirm))
+            return true;
+        return false;
+    }
+
+    private boolean isEmailValido(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
 

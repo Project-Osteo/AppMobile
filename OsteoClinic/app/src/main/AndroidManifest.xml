@@ -16,9 +16,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="DuplicateActivity">
         <activity
-            android:name=".vistas.DetalhesPacienteActivity"
-            android:parentActivityName=".vistas.MenuMainActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:name=".vistas.DetalhesPacienteActivity"/>
         <activity
             android:name=".vistas.CalcularIMCActivity"
             android:parentActivityName=".vistas.MenuMainActivity"/>
