@@ -71,7 +71,7 @@ public class ListaFeedbackAdapter extends BaseAdapter {
 
         public void update(Feedback feedback){
             this.tvNumFeedbackCard.setText(feedback.getId()+"");
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:MM:ss / yyyy-MM-dd");
             this.tvDataFeedback.setText(formatter.format(feedback.getDatahora()));
             this.tvMensagemFeedback.setText(feedback.getMensagem());
         }

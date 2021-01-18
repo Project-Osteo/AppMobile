@@ -75,7 +75,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         if(feedback == null){
             setTitle("Novo Feedback");
             Date currentTime = Calendar.getInstance().getTime();
-            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
+            SimpleDateFormat formatter = new SimpleDateFormat("HH:MM:ss / yyyy-MM-dd");
             tvDataHora.setText(formatter.format(currentTime));
             fab_action.setImageResource(R.drawable.ic_action_add);
         }

@@ -7,63 +7,69 @@
     android:background="@color/colorPrimary"
     tools:context=".vistas.InicialFragment">
 
-
-    <RelativeLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="20dp">
+        android:layout_height="match_parent">
 
-
-        <Button
-            android:id="@+id/btConsultas"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/colorSecondary"
-            android:background="@drawable/round_buttons_menu_inicial"
-            android:bottomRightRadius="10dp"
-            android:drawableStart="@mipmap/ic_footmassage2_foreground"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/consultas"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="24sp" />
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
 
-        <Button
-            android:id="@+id/btTreinos"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/btConsultas"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/colorSecondary"
-            android:background="@drawable/round_buttons_menu_inicial"
-            android:drawableStart="@mipmap/ic_workout_foreground"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/treinos"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="24sp" />
+            <Button
+                android:id="@+id/btConsultas"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/colorSecondary"
+                android:background="@drawable/round_buttons_menu_inicial"
+                android:bottomRightRadius="10dp"
+                android:drawableStart="@mipmap/ic_footmassage2_foreground"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/consultas"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="24sp" />
 
-        <Button
-            android:id="@+id/btCalcIMC"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@id/btTreinos"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
-            android:backgroundTint="@color/colorSecondary"
-            android:background="@drawable/round_buttons_menu_inicial"
-            android:drawableStart="@mipmap/ic_imc_calculator_foreground"
-            android:fontFamily="sans-serif-black"
-            android:text="@string/bt_calcular_imc"
-            android:textColor="@color/colorTextSecondary"
-            android:textSize="24sp" />
-    </RelativeLayout>
+
+            <Button
+                android:id="@+id/btTreinos"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/btConsultas"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/colorSecondary"
+                android:background="@drawable/round_buttons_menu_inicial"
+                android:drawableStart="@mipmap/ic_workout_foreground"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/treinos"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/btCalcIMC"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_below="@id/btTreinos"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="@color/colorSecondary"
+                android:background="@drawable/round_buttons_menu_inicial"
+                android:drawableStart="@mipmap/ic_imc_calculator_foreground"
+                android:fontFamily="sans-serif-black"
+                android:text="@string/bt_calcular_imc"
+                android:textColor="@color/colorTextSecondary"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+    </ScrollView>
+
 </FrameLayout>
