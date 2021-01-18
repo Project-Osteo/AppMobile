@@ -31,7 +31,6 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 public class ListaFeedbackFragment extends Fragment implements FeedbacksListener {
 
     private ListView listviewfeedback;
-    private ListaFeedbackAdapter adapter;
 
     private FloatingActionButton fab;
 

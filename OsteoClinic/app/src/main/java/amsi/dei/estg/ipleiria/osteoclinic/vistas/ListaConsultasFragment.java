@@ -29,8 +29,6 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
     private ListView listviewConsultas;
     private SharedPreferences sharedPreferences;
 
-    private ListaConsultasAdapter adapter;
-
 
     public ListaConsultasFragment() {
         // Required empty public constructor
