@@ -27,7 +27,7 @@
             android:bottomRightRadius="10dp"
             android:drawableStart="@mipmap/ic_footmassage2_foreground"
             android:fontFamily="sans-serif-black"
-            android:text="@string/bt_ir_consultas"
+            android:text="@string/consultas"
             android:textColor="@color/colorTextSecondary"
             android:textSize="24sp" />
 
@@ -45,7 +45,7 @@
             android:background="@drawable/round_buttons_menu_inicial"
             android:drawableStart="@mipmap/ic_workout_foreground"
             android:fontFamily="sans-serif-black"
-            android:text="@string/bt_ir_treinos"
+            android:text="@string/treinos"
             android:textColor="@color/colorTextSecondary"
             android:textSize="24sp" />
 

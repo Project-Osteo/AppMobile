@@ -11,46 +11,33 @@
     <string name="registar">Registar</string>
     <string name="titulo_registar">Registar nova conta:</string>
     <string name="inicio">Menu inicial</string>
-    <string name="perfil">Perfil Utilizador</string>
+    <string name="dadospessoais">Dados Pessoais</string>
     <string name="options">Definições</string>
     <string name="logout">Sair</string>
-
-
     <string name="consultas">Consultas</string>
-    <string name="bt_ir_consultas">Consultas</string>
     <string name="ultima_consulta">Última consulta</string>
     <string name="numero_consulta">N.º Consulta:</string>
-
     <string name="treinos">Treinos</string>
-    <string name="bt_ir_treinos">Treinos</string>
-    <string name="ultimo_treino">Último treino</string>
     <string name="numero_treino">N.º Treino:</string>
-    <string name="tipo_treino">Tipo:</string>
-    <string name="descricao_treino">Descrição do treino</string>
-    <string name="obs_treino">Cuidados a ter</string>
-
+    <string name="tipo_treino">Tipo de treino:</string>
+    <string name="observacoes">Observações:</string>
     <string name="bt_calcular_imc">Calcular IMC</string>
-
     <string name="descricao">Descrição:</string>
     <string name="data">Data:</string>
     <string name="recomendacoes">Recomendações:</string>
-
-    <string name="ndOpen">Open</string>
-    <string name="ndClose">Close</string>
-
     <string name="calc_imc">Calcular Índice de Massa Corporal</string>
     <string name="peso">Peso:</string>
     <string name="altura">Altura:</string>
     <string name="kilos">kg</string>
-    <string name="centimetros">m</string>
+    <string name="metros">m</string>
     <string name="calcular">Calcular</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="texto_feedback">Feedback:</string>
     <string name="mensagem_feedback_detalhe">Mensagem:</string>
     <string name="menuDetalheFeedbackRemove">menuDetalheFeedbackRemove</string>
-    <string name="bt_ListaFeedbackDetalhesConsulta">Mostrar Feedback</string>
+    <string name="bt_ListaFeedbackDetalhesConsulta">Mostrar Feedbacks</string>
     <string name="bt_confirmardados">Guardar</string>
     <string name="bt_alterar_password">Alterar Password</string>
     <string name="bt_altearar_email">Alterar Email</string>
+    <string name="ndOpen">Open</string>
+    <string name="ndClose">Close</string>
 </resources>

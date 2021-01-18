@@ -65,7 +65,7 @@
             android:layout_toRightOf="@id/etAltura"
             android:gravity="center"
             android:paddingLeft="10dp"
-            android:text="@string/centimetros"
+            android:text="@string/metros"
             android:textColor="@color/colorTextSecondary"
             android:textSize="20sp" />
 

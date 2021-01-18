@@ -66,7 +66,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/descricao_treino"
+                android:text="@string/descricao"
                 android:textSize="60px"
                 android:textColor="@color/colorText"/>
 
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/obs_treino"
+                android:text="@string/observacoes"
                 android:textSize="60px"
                 android:textColor="@color/colorText" />
 

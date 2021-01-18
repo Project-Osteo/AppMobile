@@ -23,7 +23,7 @@
             android:textAlignment="center"
             android:textColor="@color/colorText"
             android:textSize="45dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginBottom="20dp" />
 
         <EditText
             android:id="@+id/etNome"
