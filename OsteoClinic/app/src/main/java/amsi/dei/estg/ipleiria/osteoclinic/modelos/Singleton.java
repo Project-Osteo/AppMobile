@@ -138,11 +138,7 @@ public class Singleton {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-<<<<<<< HEAD
                         Toast.makeText(context, "Dados do Login inválidos", Toast.LENGTH_SHORT).show();
-=======
-                        Toast.makeText(context, "Dados do login inválidos!", Toast.LENGTH_SHORT).show();
->>>>>>> 910b1db65f59d4c301758e12923440411835144c
                     }
                 }){
             protected Map<String, String> getParams() {
