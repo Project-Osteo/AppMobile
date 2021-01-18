@@ -6,13 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     app:cardElevation="7dp"
-    app:cardUseCompatPadding="true"
-    android:padding="2dp">
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorSecondary">
+        android:background="@color/colorSecondary"
+        android:padding="2dp">
 
         <TextView
             android:id="@+id/tvNumFeedbackCard"
@@ -30,7 +30,7 @@
             android:layout_marginStart="20dp"
             android:layout_toRightOf="@+id/tvNumFeedbackCard"
             android:textColor="@color/colorTextSecondary"
-            android:textSize="18sp" />
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/tvFeedbackCard"

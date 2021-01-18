@@ -19,6 +19,8 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -54,7 +56,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
 
         setContentView(R.layout.activity_detalhes_feedback);
 
-        tvDataHora = findViewById(R.id.tvDataHora);
+        tvDataHora = findViewById(R.id.tvDataHoraFeedback);
         etMensagem = findViewById(R.id.etMensagemFeedbackDetalhe);
         fab_action = findViewById(R.id.fab_action);
         btVoltar = findViewById(R.id.btVoltar);
@@ -72,6 +74,9 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
 
         if(feedback == null){
             setTitle("Novo Feedback");
+            Date currentTime = Calendar.getInstance().getTime();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
+            tvDataHora.setText(formatter.format(currentTime));
             fab_action.setImageResource(R.drawable.ic_action_add);
         }
         else{
@@ -134,7 +139,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     }
 
     private void preencheDetalhe(Feedback feedback) {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
         tvDataHora.setText(formatter.format(feedback.getDatahora()));
         etMensagem.setText(feedback.getMensagem());
     }

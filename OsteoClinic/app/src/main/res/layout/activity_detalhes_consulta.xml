@@ -82,7 +82,8 @@
                 android:id="@+id/btListaFeedbackDetalheConsulta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorSecondary"
+                android:backgroundTint="@color/colorSecondary"
+                android:background="@drawable/round_buttons_menu_inicial"
                 android:text="@string/bt_ListaFeedbackDetalhesConsulta"
                 android:textColor="@color/colorTextSecondary" />
 
@@ -90,8 +91,8 @@
                 android:id="@+id/contentFeedback"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
             </FrameLayout>
+
         </LinearLayout>
 
     </LinearLayout>

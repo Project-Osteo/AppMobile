@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -60,15 +61,18 @@ public class ListaFeedbackAdapter extends BaseAdapter {
     }
 
     private class ViewHolderFeedback {
-        private TextView tvDataFeedback, tvMensagemFeedback;
+        private TextView tvDataFeedback, tvMensagemFeedback, tvNumFeedbackCard;
 
         public ViewHolderFeedback(View view){
+            tvNumFeedbackCard = view.findViewById(R.id.tvNumFeedbackCard);
             tvDataFeedback = view.findViewById(R.id.tvDataFeedbackCard);
             tvMensagemFeedback = view.findViewById(R.id.tvFeedbackCard);
         }
 
         public void update(Feedback feedback){
-            this.tvDataFeedback.setText(String.format("%tF", feedback.getDatahora()));
+            this.tvNumFeedbackCard.setText(feedback.getId()+"");
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:MM:ss");
+            this.tvDataFeedback.setText(formatter.format(feedback.getDatahora()));
             this.tvMensagemFeedback.setText(feedback.getMensagem());
         }
     }
