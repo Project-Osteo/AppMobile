@@ -3,32 +3,21 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
-import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaFeedbackAdapter;
-import amsi.dei.estg.ipleiria.osteoclinic.listeners.FeedbacksListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
-import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
-public class DetalhesConsultaActivity extends AppCompatActivity /*implements FeedbacksListener*/ {
+public class DetalhesConsultaActivity extends AppCompatActivity {
 
     public static final String ID_CONSULTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID_CONSULTA";
 

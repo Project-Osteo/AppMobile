@@ -15,11 +15,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -28,12 +26,6 @@ import amsi.dei.estg.ipleiria.osteoclinic.modelos.Paciente;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
 
 public class DetalhesPacienteActivity extends AppCompatActivity implements PacientesListener {
-
-    public static final String USER_ID = "amsi.dei.estg.ipleiria.osteoclinic.vistas.USER_ID";
-    public static final String ID_PACIENTE = "amsi.dei.estg.ipleiria.osteoclinic.vistas.ID_PACIENTE";
-    public static final int DETALHE_ADICIONAR = 1;
-    public static final int DETALHE_EDITAR = 2;
-    public static final String RESPOSTA = "amsi.dei.estg.ipleiria.osteoclinic.vistas.RESPOSTA";
 
     private EditText etNome, etSexo, etNacionalidade, etLocalidade, etTelemovel, etPeso, etAltura;
     private Button btConfirmarDados;

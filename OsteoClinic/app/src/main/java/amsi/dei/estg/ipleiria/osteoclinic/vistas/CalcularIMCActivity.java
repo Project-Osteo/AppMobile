@@ -60,8 +60,6 @@ public class CalcularIMCActivity extends AppCompatActivity {
 
                 String imc = String.format("%.1f", resultado);
 
-                //String imc = Double.toString(resultado);
-
                 tvResultado.setText(imc);
 
                 etPeso.setText("");

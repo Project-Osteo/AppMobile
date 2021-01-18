@@ -47,8 +47,6 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     private String tarefa;
     private long id_feedback;
 
-    private ListaFeedbackAdapter adapter;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

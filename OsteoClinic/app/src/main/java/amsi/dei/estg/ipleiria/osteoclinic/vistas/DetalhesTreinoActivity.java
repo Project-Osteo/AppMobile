@@ -1,7 +1,6 @@
 package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.widget.TextView;

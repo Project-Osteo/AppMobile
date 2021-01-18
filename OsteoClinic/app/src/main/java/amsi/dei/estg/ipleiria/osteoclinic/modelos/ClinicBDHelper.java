@@ -20,7 +20,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String ID_CONSULTA = "id_consulta";
     private static final String DATA_CONSULTA = "data_consulta";
     private static final String DESCRICAO_CONSULTA = "descricao_consulta";
-    private static final String PACIENTE_CONSULTA = "paciente_id";
     private static final String TRATAMENTO = "tratamento";
     private static final String OBS_CONSULTA = "obs_consulta";
     private static final String RECOMENDACAO_CONSULTA = "recomendacao";
@@ -30,7 +29,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
     private static final String ID_TREINO = "id_treino";
     private static final String DATA_TREINO = "data_treino";
     private static final String DESCRICAO_TREINO = "descricao_treino";
-    private static final String PACIENTE_TREINO = "paciente_id";
     private static final String TIPO_TREINO = "tipo_treino";
     private static final String OBS_TREINO = "obs_treino";
 
@@ -55,7 +53,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_CONSULTA + " INTEGER PRIMARY KEY, " +
                 DATA_CONSULTA + " DATE NOT NULL, " +
                 DESCRICAO_CONSULTA + " TEXT NOT NULL, " +
-//                PACIENTE_CONSULTA + " INTEGER," +
                 TRATAMENTO + " TEXT NOT NULL, " +
                 OBS_CONSULTA + " TEXT NOT NULL, " +
                 RECOMENDACAO_CONSULTA + " TEXT NOT NULL" +
@@ -66,7 +63,6 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
                 ID_TREINO + " INTEGER PRIMARY KEY, " +
                 DATA_TREINO + " DATE NOT NULL, " +
                 DESCRICAO_TREINO + " TEXT NOT NULL, " +
-//                PACIENTE_TREINO + " INTEGER, " +
                 TIPO_TREINO + " TEXT NOT NULL, " +
                 OBS_TREINO + " TEXT NOT NULL" +
                 ")";
@@ -105,8 +101,8 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
         if(cursor.moveToFirst()){
             do {
                 Consulta consulta = new Consulta(cursor.getLong(0), formatter.parse(cursor.getString(1)),
-                        cursor.getString(2), cursor.getString(4),
-                        cursor.getString(5), cursor.getString(6));
+                        cursor.getString(2), cursor.getString(3),
+                        cursor.getString(4), cursor.getString(5));
                 lista.add(consulta);
             }while(cursor.moveToNext());
         }

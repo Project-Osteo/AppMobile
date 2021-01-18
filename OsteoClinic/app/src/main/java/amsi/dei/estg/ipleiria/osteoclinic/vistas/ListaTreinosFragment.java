@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
@@ -29,7 +28,7 @@ public class ListaTreinosFragment extends Fragment implements TreinosListener {
     private SharedPreferences sharedPreferences;
 
     public ListaTreinosFragment() {
-        // Required empty public constructor
+
     }
 
     @Override

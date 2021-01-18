@@ -13,12 +13,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaConsultasAdapter;
-import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaFeedbackAdapter;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.ConsultasListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
@@ -31,7 +29,7 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
 
 
     public ListaConsultasFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
@@ -55,7 +53,6 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
         listviewConsultas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                //chamar atividade usando a posição do elemento clicado
                 Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesConsultaActivity.class);
                 intent.putExtra(DetalhesConsultaActivity.ID_CONSULTA, id);
                 startActivity(intent);

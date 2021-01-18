@@ -12,14 +12,10 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
-
-import org.w3c.dom.Text;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 

@@ -1,12 +1,9 @@
 package amsi.dei.estg.ipleiria.osteoclinic.modelos;
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.session.MediaSession;
 import android.widget.Toast;
 
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -28,7 +25,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.listeners.LoginListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.PacientesListener;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.TreinosListener;
 import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
-import amsi.dei.estg.ipleiria.osteoclinic.vistas.DetalhesPacienteActivity;
+
 
 public class Singleton {
     private static final int ADICIONAR_FEEDBACK_BD = 1;
@@ -138,7 +135,7 @@ public class Singleton {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(context, "Dados do Login inválidos", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "Problemas com o Login !", Toast.LENGTH_SHORT).show();
                     }
                 }){
             protected Map<String, String> getParams() {
