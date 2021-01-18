@@ -202,6 +202,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     }
 
     private void dialogAlterarPass() {
+        final long id_user = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_USER, "-1"));
+
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
         builder.setTitle("Alterar Password !");
@@ -228,8 +230,17 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
                 alterar = etAlterar.getText().toString();
                 confirmar = etConfirmar.getText().toString();
 
-                if(alterar.equals(confirmar)){
-
+                if(isPasswordValida(alterar)){
+                    if(passwordsMatch(alterar, confirmar)){
+                        Singleton.getInstance(getApplicationContext()).alterarPassword(getApplicationContext(), id_user, alterar);
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Passwords não coincidem", Toast.LENGTH_SHORT).show();
+                        etConfirmar.setText("");
+                    }
+                }else{
+                    Toast.makeText(getApplicationContext(), "Password com minimo de 4 caracteres", Toast.LENGTH_SHORT).show();
+                    etAlterar.setText("");
+                    etConfirmar.setText("");
                 }
             }
         });
@@ -244,7 +255,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
     }
 
     private void dialogAlterarEmail() {
-        final long user_id = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_USER, "-1"));
+        final long id_user = Long.parseLong(sharedPreferences.getString(MenuMainActivity.ID_USER, "-1"));
 
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
@@ -274,7 +285,7 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
 
                 if(isEmailValido(alterar)){
                     if(emailsMatch(alterar, confirmar)){
-                        Singleton.getInstance(getApplicationContext()).alterarEmail(getApplicationContext(), user_id, alterar);
+                        Singleton.getInstance(getApplicationContext()).alterarEmail(getApplicationContext(), id_user, alterar);
                     }else{
                         Toast.makeText(getApplicationContext(), "Emails não coincidem", Toast.LENGTH_SHORT).show();
                         etConfirmar.setText("");
@@ -306,5 +317,14 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
     }
 
+    private boolean passwordsMatch(String password, String confirm) {
+        if(password.equals(confirm))
+            return true;
+        return false;
+    }
+
+    private boolean isPasswordValida(String password) {
+        return password.length() >= 4;
+    }
 
 }

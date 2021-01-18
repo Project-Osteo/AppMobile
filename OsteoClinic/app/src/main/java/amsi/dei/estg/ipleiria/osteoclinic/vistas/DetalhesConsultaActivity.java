@@ -99,7 +99,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-
         outState.putLong("id_consulta", id);
     }
 
@@ -123,27 +122,11 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
         }
     }
 
-    /*public void preencherListaFeedbacks() {
-        ListaFeedbackFragment listaFeedbackFragment = new ListaFeedbackFragment();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
-    }*/
 
     public long getIdConsulta(){
         return id;
     }
 
-    /*@Override
-    public void onRefreshListaFeedbacks(ArrayList<Feedback> listafeedback) {
-        if(listafeedback != null) {
-            listviewfeedback.setAdapter(new ListaFeedbackAdapter(this, listafeedback));
-        }
-    }
-
-    @Override
-    public void onRefreshDetalhes() {
-
-    }*/
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

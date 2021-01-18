@@ -72,6 +72,10 @@ public class RegistoActivity extends AppCompatActivity implements LoginListener 
         return false;
     }
 
+    private boolean isPasswordValida(String password) {
+        return password.length() >= 4;
+    }
+
     private boolean emailsMatch(String email, String confirm) {
         if(email.equals(confirm))
             return true;
@@ -80,10 +84,6 @@ public class RegistoActivity extends AppCompatActivity implements LoginListener 
 
     private boolean isEmailValido(String email) {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches();
-    }
-
-    private boolean isPasswordValida(String password) {
-        return password.length() >= 4;
     }
 
     @Override

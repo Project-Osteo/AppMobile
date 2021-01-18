@@ -475,6 +475,33 @@ public class Singleton {
     }
 
 
+    public void alterarPassword(final Context context, final long id_user, final String password) {
+        StringRequest request = new StringRequest(Request.Method.PATCH,
+                mUrlAPIUtilizadores + id_user + "/password",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Toast.makeText(context, "Password alterada com sucesso!", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        error.printStackTrace();
+                        Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("pwd", password);
+                return parametros;
+            }
+        };
+        volleyQueue.add(request);
+    }
+
+
     private void onUpdateListaFeedbackBD(Feedback feedback, int operacao) {
         switch (operacao){
             case ADICIONAR_FEEDBACK_BD:

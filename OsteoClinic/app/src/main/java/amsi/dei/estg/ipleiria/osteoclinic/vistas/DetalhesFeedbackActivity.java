@@ -188,4 +188,5 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         setResult(RESULT_OK, intentresposta);
         finish();
     }
+
 }

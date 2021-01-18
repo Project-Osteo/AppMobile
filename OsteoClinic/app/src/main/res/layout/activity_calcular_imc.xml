@@ -3,35 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
     android:fillViewport="true"
-    android:background="@color/colorPrimary">
+    android:padding="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:orientation="vertical"
         tools:context=".vistas.CalcularIMCActivity">
-
-        <EditText
-            android:id="@+id/etPeso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Peso"
-            android:textColorHint="@color/colorSecondary"
-            android:textColor="@color/colorTextSecondary"
-            android:inputType="numberDecimal" />
-
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/etPeso"
-            android:paddingLeft="10dp"
-            android:text="@string/kilos"
-            android:textSize="20sp"
-            android:textColor="@color/colorTextSecondary"/>
 
 
         <EditText
@@ -39,32 +20,63 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etPeso"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="0dp"
             android:ems="10"
+            android:gravity="center"
             android:hint="Altura"
             android:inputType="numberDecimal"
-            android:textColorHint="@color/colorSecondary"
-            android:textColor="@color/colorTextSecondary"/>
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/etPeso"
+            android:gravity="center"
+            android:paddingLeft="10dp"
+            android:text="@string/kilos"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/etPeso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="false"
+            android:layout_marginLeft="60dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Peso"
+            android:inputType="numberDecimal"
+            android:textColor="@color/colorTextSecondary"
+            android:textColorHint="@color/colorSecondary" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etPeso"
+            android:layout_marginLeft="0dp"
             android:layout_marginTop="10dp"
             android:layout_toRightOf="@id/etAltura"
+            android:gravity="center"
             android:paddingLeft="10dp"
             android:text="@string/centimetros"
-            android:textSize="20sp"
-            android:textColor="@color/colorTextSecondary"/>
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/btCalcIMC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/etAltura"
-            android:text="@string/calcular"
             android:background="@color/colorSecondary"
-            android:textColor="@color/colorTextSecondary"/>
+            android:text="@string/calcular"
+            android:textColor="@color/colorTextSecondary" />
 
         <TextView
             android:id="@+id/textView5"
@@ -77,8 +89,8 @@
             android:layout_toEndOf="@+id/btCalcIMC"
             android:layout_toRightOf="@id/btCalcIMC"
             android:text="Resultado:"
-            android:textSize="20dp"
-            android:textColor="@color/colorText"/>
+            android:textColor="@color/colorText"
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/textView4"
@@ -90,13 +102,15 @@
             android:layout_marginTop="16dp"
             android:layout_toEndOf="@+id/btCalcIMC"
             android:layout_toRightOf="@id/btCalcIMC"
-            android:textSize="20dp"
-            android:textColor="@color/colorText"/>
+            android:textColor="@color/colorText"
+            android:textSize="20dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/btCalcIMC"
+            android:adjustViewBounds="true"
+            android:paddingTop="20dp"
             android:src="@drawable/tabela_calc_imc" />
 
     </RelativeLayout>
