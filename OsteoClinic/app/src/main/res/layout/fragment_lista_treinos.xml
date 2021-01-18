@@ -6,9 +6,14 @@
     tools:context=".vistas.ListaTreinosFragment"
     android:background="@color/colorPrimary">
 
-    <ListView
-        android:id="@+id/listview_treinos"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
 
+        <ListView
+            android:id="@+id/listview_treinos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </ScrollView>
 </FrameLayout>

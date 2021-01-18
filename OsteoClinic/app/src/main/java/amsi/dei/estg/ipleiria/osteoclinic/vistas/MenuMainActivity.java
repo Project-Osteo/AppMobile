@@ -12,9 +12,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
+
+import org.w3c.dom.Text;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 
@@ -29,7 +34,6 @@ public class MenuMainActivity extends AppCompatActivity
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +50,9 @@ public class MenuMainActivity extends AppCompatActivity
         toggle.syncState();
         drawer.addDrawerListener(toggle);
 
-        carregarFragmentoInicial();
-
         navigationView.setNavigationItemSelectedListener(this);
+
+        carregarFragmentoInicial();
 
 
     }
@@ -84,7 +88,7 @@ public class MenuMainActivity extends AppCompatActivity
                 finish();
                 break;
             case R.id.nav_logout:
-                SharedPreferences preferences = getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+                SharedPreferences preferences = getSharedPreferences(PREF_USER, Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.apply();

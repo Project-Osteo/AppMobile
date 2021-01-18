@@ -43,8 +43,7 @@
             android:name=".vistas.DetalhesConsultaActivity"
             android:parentActivityName=".vistas.MenuMainActivity"/>
         <activity
-            android:name=".vistas.DetalhesFeedbackActivity"
-            android:parentActivityName=".vistas.DetalhesConsultaActivity"/>
+            android:name=".vistas.DetalhesFeedbackActivity"/>
     </application>
 
 </manifest>

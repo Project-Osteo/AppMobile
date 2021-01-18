@@ -36,4 +36,5 @@
     <string name="bt_altearar_email">Alterar Email</string>
     <string name="ndOpen">Open</string>
     <string name="ndClose">Close</string>
+    <string name="voltar">Voltar</string>
 </resources>

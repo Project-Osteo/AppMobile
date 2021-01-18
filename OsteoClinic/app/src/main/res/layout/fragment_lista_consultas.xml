@@ -6,9 +6,15 @@
     tools:context=".vistas.ListaConsultasFragment"
     android:background="@color/colorPrimary">
 
-    <ListView
-        android:id="@+id/listview_consultas"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/listview_consultas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </ScrollView>
 
 </FrameLayout>

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -35,10 +36,10 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
     public static final int DETALHE_EDITAR = 2;
     public static final String RESPOSTA = "resposta";
 
-
     private TextView tvDataHora;
     private EditText etMensagem;
     private FloatingActionButton fab_action;
+    private Button btVoltar;
     private Feedback feedback;
     private long consulta_id;
     private String tarefa;
@@ -52,12 +53,11 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_detalhes_feedback);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
         tvDataHora = findViewById(R.id.tvDataHora);
         etMensagem = findViewById(R.id.etMensagemFeedbackDetalhe);
         fab_action = findViewById(R.id.fab_action);
+        btVoltar = findViewById(R.id.btVoltar);
 
         id_feedback = getIntent().getLongExtra(ID_FEEDBACK, -1);
         consulta_id = getIntent().getLongExtra(CONSULTA_ID, -1);
@@ -79,6 +79,17 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
             preencheDetalhe(feedback);
             fab_action.setImageResource(R.drawable.ic_action_save);
         }
+
+        btVoltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.putExtra(DetalhesConsultaActivity.ID_CONSULTA, consulta_id);
+                intent.putExtra(DetalhesFeedbackActivity.RESPOSTA, "voltar");
+                setResult(RESULT_OK, intent);
+                finish();
+            }
+        });
 
         fab_action.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +114,6 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
             Singleton.getInstance(getApplicationContext()).adicionarFeedbackAPI(getApplicationContext(), feedback);
             tarefa = "Adicionou";
         }
-
     }
 
     private void alterarFeedback() {
@@ -157,7 +167,7 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         AlertDialog.Builder builder;
         builder = new AlertDialog.Builder(this);
         builder.setTitle("Apagar Feedback ?")
-                .setMessage("Deseja mesmo remover o livro ?")
+                .setMessage("Deseja mesmo remover o feedback ?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -189,4 +199,13 @@ public class DetalhesFeedbackActivity extends AppCompatActivity implements Feedb
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent();
+        intent.putExtra(DetalhesConsultaActivity.ID_CONSULTA, consulta_id);
+        intent.putExtra(DetalhesFeedbackActivity.RESPOSTA, "voltar");
+        setResult(RESULT_OK, intent);
+        finish();
+    }
 }

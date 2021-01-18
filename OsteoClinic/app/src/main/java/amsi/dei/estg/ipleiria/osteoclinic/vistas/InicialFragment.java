@@ -40,8 +40,6 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
         button2 = view.findViewById(R.id.btTreinos);
         button3 = view.findViewById(R.id.btCalcIMC);
 
-        Singleton gestor = Singleton.getInstance(getActivity().getApplicationContext());
-
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
@@ -53,7 +51,7 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Fragment fragmento = null;
+        Fragment fragmento;
         switch (view.getId()) {
             case R.id.btConsultas:
                 fragmento = new ListaConsultasFragment();
@@ -66,16 +64,25 @@ public class InicialFragment extends Fragment implements View.OnClickListener {
                 break;
 
             case R.id.btCalcIMC:
-                Intent intent = new Intent(getActivity().getApplicationContext(), CalcularIMCActivity.class);
-                startActivity(intent);
-                break;
+                try {
+                    Intent intent = new Intent(getActivity().getApplicationContext(), CalcularIMCActivity.class);
+                    startActivity(intent);
+                    break;
+                } catch (NullPointerException e){
+                    e.printStackTrace();
+                }
+
         }
     }
 
     private void replaceFragment(Fragment fragmento) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.contentFragment, fragmento);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        try {
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.contentFragment, fragmento);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 }

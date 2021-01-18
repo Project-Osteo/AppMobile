@@ -7,12 +7,10 @@
     tools:context=".vistas.ListaFeedbackFragment"
     android:background="@color/colorPrimary">
 
-    <ListView
-        android:id="@+id/listview_feedback"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-
-    </ListView>
+        <ListView
+            android:id="@+id/listview_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_add_list"
@@ -20,8 +18,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="10dp"
-        android:backgroundTint="#E91E63"
+        android:backgroundTint="@color/colorSecondary"
         android:clickable="true"
-        app:srcCompat="@drawable/ic_action_add" />
+        app:srcCompat="@drawable/ic_action_add"
+        android:focusable="true"/>
 
 </FrameLayout>

@@ -131,7 +131,8 @@ public class DetalhesConsultaActivity extends AppCompatActivity /*implements Fee
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        long id = data.getLongExtra(ID_CONSULTA, -1);
+        getIntent().getStringExtra(DetalhesFeedbackActivity.RESPOSTA);
+        long id = getIntent().getLongExtra(DetalhesConsultaActivity.ID_CONSULTA, -1);
         carregarConsulta(id);
     }
 }

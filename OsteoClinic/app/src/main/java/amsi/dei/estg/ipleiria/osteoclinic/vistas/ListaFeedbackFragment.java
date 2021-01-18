@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -33,6 +34,7 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
     private ListaFeedbackAdapter adapter;
 
     private FloatingActionButton fab;
+    private Button btVoltar;
 
     private long consulta_id;
 
@@ -49,8 +51,7 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_lista_feedback, container, false);
-
-        setHasOptionsMenu(true);
+//        setHasOptionsMenu(true);
 
         DetalhesConsultaActivity detalhesConsultaActivity = (DetalhesConsultaActivity) getActivity();
         consulta_id = detalhesConsultaActivity.getIdConsulta();
@@ -60,7 +61,7 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
 
 
         try{
-            adapter = new ListaFeedbackAdapter(getActivity(), gestor.getListaFeedbackBD());
+            adapter = new ListaFeedbackAdapter(getActivity().getApplicationContext(), gestor.getListaFeedbackBD());
         }catch (ParseException e){
             e.printStackTrace();
         }
@@ -87,8 +88,8 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
             }
         });
 
-        Singleton.getInstance(getContext()).setFeedbackListener(this);
-        Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext(), consulta_id);
+        gestor.setFeedbackListener(this);
+        gestor.getAllFeedbacksAPI(getActivity().getApplicationContext(), consulta_id);
 
         return view;
     }
@@ -101,29 +102,28 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
 
                 case DetalhesFeedbackActivity.DETALHE_ADICIONAR:
                     Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext(), consulta_id);
-                    Snackbar.make(getView(), "Novo feedback adicionado",
-                            Snackbar.LENGTH_SHORT).show();
+                    String respostaAdd = data.getStringExtra(DetalhesFeedbackActivity.RESPOSTA);
+                    if(respostaAdd.equals("Adicionou")){
+                        Snackbar.make(getView(), "Novo feedback adicionado com sucesso",
+                                Snackbar.LENGTH_SHORT).show();
+                    }
                     break;
 
                 case DetalhesFeedbackActivity.DETALHE_EDITAR:
                     Singleton.getInstance(getContext()).getAllFeedbacksAPI(getContext(), consulta_id);
 
-                    String resposta = data.getStringExtra(DetalhesFeedbackActivity.RESPOSTA);
+                    String respostaEdit = data.getStringExtra(DetalhesFeedbackActivity.RESPOSTA);
 
-                    if(resposta.equals("Editou")){
-                        Snackbar.make(getView(), "Mensagem do feedback alterada.",
+                    if(respostaEdit.equals("Editou")){
+                        Snackbar.make(getView(), "Mensagem do feedback alterada com sucesso.",
                                 Snackbar.LENGTH_SHORT).show();
                     }
-                    else {
-                        Snackbar.make(getView(), "Feedback apagado",
+                    else if (respostaEdit.equals("Apagou")){
+                        Snackbar.make(getView(), "Feedback apagado com sucesso",
                                 Snackbar.LENGTH_SHORT).show();
                     }
                     break;
             }
-        }
-        else {
-            Snackbar.make(getView(), "Problemas a manipular informação",
-                    Snackbar.LENGTH_SHORT).show();
         }
     }
 
