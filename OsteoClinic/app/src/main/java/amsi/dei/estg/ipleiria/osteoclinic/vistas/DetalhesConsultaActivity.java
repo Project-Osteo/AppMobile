@@ -2,20 +2,24 @@ package amsi.dei.estg.ipleiria.osteoclinic.vistas;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 
 import amsi.dei.estg.ipleiria.osteoclinic.R;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Consulta;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
+import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
 public class DetalhesConsultaActivity extends AppCompatActivity {
 
@@ -46,7 +50,6 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
 
         carregarConsulta(id);
 
-
         btFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,19 +61,20 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putLong("id_consulta", id);
-    }
 
-    @Override
-    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
-        id = savedInstanceState.getLong("id_consulta");
-        carregarConsulta(id);
-    }
+//    @Override
+//    protected void onSaveInstanceState(@NonNull Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        outState.putLong("id_consulta", id);
+//    }
+//
+//    @Override
+//    protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//
+//        id = savedInstanceState.getLong("id_consulta");
+//        carregarConsulta(id);
+//    }
 
     private void carregarConsulta(long id) {
         Consulta consulta = Singleton.getInstance(getApplicationContext()).getConsulta(id);

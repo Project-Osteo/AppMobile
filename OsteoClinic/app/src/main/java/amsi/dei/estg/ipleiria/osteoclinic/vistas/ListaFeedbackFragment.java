@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -23,6 +24,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.adaptadores.ListaFeedbackAdapter;
 import amsi.dei.estg.ipleiria.osteoclinic.listeners.FeedbacksListener;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Feedback;
 import amsi.dei.estg.ipleiria.osteoclinic.modelos.Singleton;
+import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
 public class ListaFeedbackFragment extends Fragment implements FeedbacksListener {
 
@@ -62,16 +64,18 @@ public class ListaFeedbackFragment extends Fragment implements FeedbacksListener
             }
         });
 
-        fab = view.findViewById(R.id.fab_add_list);
+        if(ClinicJsonParser.isConnected(getActivity().getApplicationContext())){
+            fab = view.findViewById(R.id.fab_add_list);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesFeedbackActivity.class);
-                intent.putExtra(DetalhesFeedbackActivity.CONSULTA_ID, ((DetalhesConsultaActivity)getActivity()).getIdConsulta());
-                startActivityForResult(intent, DetalhesFeedbackActivity.DETALHE_ADICIONAR);
-            }
-        });
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity().getApplicationContext(), DetalhesFeedbackActivity.class);
+                    intent.putExtra(DetalhesFeedbackActivity.CONSULTA_ID, ((DetalhesConsultaActivity)getActivity()).getIdConsulta());
+                    startActivityForResult(intent, DetalhesFeedbackActivity.DETALHE_ADICIONAR);
+                }
+            });
+        }
 
         gestor.setFeedbackListener(this);
         gestor.getAllFeedbacksAPI(getActivity().getApplicationContext(), consulta_id);

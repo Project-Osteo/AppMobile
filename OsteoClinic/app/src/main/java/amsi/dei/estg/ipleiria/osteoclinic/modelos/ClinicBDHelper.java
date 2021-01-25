@@ -171,15 +171,15 @@ public class ClinicBDHelper extends SQLiteOpenHelper {
 
     // ------------ métodos CRUD feedback ------------------------
 
-    public ArrayList<Feedback> getAllFeedbackBD() throws ParseException {
+    public ArrayList<Feedback> getAllFeedbackBD(long id_consulta) throws ParseException {
         ArrayList<Feedback> lista = new ArrayList<>();
 
         SimpleDateFormat formatter =  new SimpleDateFormat("yyyy-mm-dd HH:MM:ss");
-
+        String[] args = { id_consulta+"" };
         Cursor cursor = this.database.query(
                 TABELA_FEEDBACK,
                 new String [] {ID_FEEDBACK, CONSULTA_ID, MENSAGEM, DATAHORA},
-                null, null, null, null, DATAHORA);
+                CONSULTA_ID + "= ?", args, null, null, DATAHORA);
         if(cursor.moveToFirst()){
             do{
                 Feedback feedback = new Feedback(cursor.getLong(0), cursor.getLong(1),

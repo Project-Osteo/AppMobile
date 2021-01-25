@@ -229,7 +229,7 @@ public class Singleton {
             Toast.makeText(contexto, "Erro na ligação!", Toast.LENGTH_SHORT).show();
             if(feedbacksListener != null)
                 try{
-                    feedbacksListener.onRefreshListaFeedbacks(getListaFeedbackBD());
+                    feedbacksListener.onRefreshListaFeedbacks(getListaFeedbackBD(consulta_id));
                 }catch (ParseException e){
                     e.printStackTrace();
                 }
@@ -539,8 +539,8 @@ public class Singleton {
     }
 
     /* ******************** Métodos BD feedback ************************ */
-    public ArrayList<Feedback> getListaFeedbackBD() throws ParseException {
-        lista_feedback = clinicBDHelper.getAllFeedbackBD();
+    public ArrayList<Feedback> getListaFeedbackBD(long id_consulta) throws ParseException {
+        lista_feedback = clinicBDHelper.getAllFeedbackBD(id_consulta);
         return lista_feedback;
     }
 
