@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,6 +22,7 @@ import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 public class LoginActivity extends AppCompatActivity implements LoginListener {
 
     private EditText etEmail, etPassword;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,13 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         this.etEmail = findViewById(R.id.etEmail);
         this.etPassword = findViewById(R.id.etPassword);
 
+        sharedPreferences = this.getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+
+        if(sharedPreferences.getBoolean(MenuMainActivity.LOGIN_BOOL, false)){
+            Intent intent = new Intent(getApplicationContext(), MenuMainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
         Singleton.getInstance(getApplicationContext()).setLoginListener(this);
 
@@ -94,8 +103,9 @@ public class LoginActivity extends AppCompatActivity implements LoginListener {
         String token = st.nextToken();
         String id_user = st.nextToken();
         String id_paciente = st.nextToken();
-        SharedPreferences sharedPreferences = getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
+        getSharedPreferences(MenuMainActivity.PREF_USER, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(MenuMainActivity.LOGIN_BOOL, true);
         editor.putString(MenuMainActivity.EMAIL, email);
         editor.putString(MenuMainActivity.TOKEN, token);
         editor.putString(MenuMainActivity.ID_USER, id_user);

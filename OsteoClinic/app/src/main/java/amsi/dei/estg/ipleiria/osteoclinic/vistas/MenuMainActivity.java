@@ -11,13 +11,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.navigation.NavigationView;
 
+import java.text.ParseException;
+
 import amsi.dei.estg.ipleiria.osteoclinic.R;
+import amsi.dei.estg.ipleiria.osteoclinic.utils.ClinicJsonParser;
 
 public class MenuMainActivity extends AppCompatActivity
     implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,6 +33,7 @@ public class MenuMainActivity extends AppCompatActivity
     public static final String TOKEN = "amsi.dei.estg.ipleiria.osteoclinic.vistas.token";
     public static final String ID_USER = "amsi.dei.estg.ipleiria.osteoclinic.vistas.id_user";
     public static final String ID_PACIENTE = "amsi.dei.estg.ipleiria.osteoclinic.vistas.id_paciente";
+    public static final String LOGIN_BOOL = "amsi.dei.estg.ipleiria.osteoclinic.vistas.login";
 
     private NavigationView navigationView;
     private DrawerLayout drawer;
@@ -76,12 +83,16 @@ public class MenuMainActivity extends AppCompatActivity
                 fragmento = new ListaTreinosFragment();
                 break;
             case R.id.nav_user_profile:
-                Bundle b = new Bundle();
-                b.putString("tarefa", "editar");
-                Intent intent = new Intent(getApplicationContext(), DetalhesPacienteActivity.class);
-                intent.putExtras(b);
-                startActivity(intent);
-                finish();
+                if(!ClinicJsonParser.isConnected(this)){
+                    Toast.makeText(this, "Erro na ligação! Não é possível aceder.", Toast.LENGTH_SHORT).show();
+                }else{
+                    Bundle b = new Bundle();
+                    b.putString("tarefa", "editar");
+                    Intent intent = new Intent(getApplicationContext(), DetalhesPacienteActivity.class);
+                    intent.putExtras(b);
+                    startActivity(intent);
+                    finish();
+                }
                 break;
             case R.id.nav_logout:
                 SharedPreferences preferences = getSharedPreferences(PREF_USER, Context.MODE_PRIVATE);
@@ -101,5 +112,10 @@ public class MenuMainActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
     }
 }
