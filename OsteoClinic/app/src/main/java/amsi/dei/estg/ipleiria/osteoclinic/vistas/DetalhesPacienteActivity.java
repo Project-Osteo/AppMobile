@@ -169,11 +169,8 @@ public class DetalhesPacienteActivity extends AppCompatActivity implements Pacie
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-
         MenuInflater inflate = getMenuInflater();
-
         inflate.inflate(R.menu.menu_detalhes_paciente, menu);
-
         return super.onCreateOptionsMenu(menu);
     }
 

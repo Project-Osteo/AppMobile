@@ -37,4 +37,7 @@
     <string name="ndOpen">Open</string>
     <string name="ndClose">Close</string>
     <string name="voltar">Voltar</string>
+    <string name="de_data">De:</string>
+    <string name="até_data">Até:</string>
+    <string name="pesquisar_data">Pesquisar por data</string>
 </resources>

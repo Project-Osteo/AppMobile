@@ -5,9 +5,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -69,6 +73,16 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
     public void onRefreshListaConsultas(ArrayList<Consulta> listaconsultas) {
         if(listaconsultas != null)
             listviewConsultas.setAdapter(new ListaConsultasAdapter(getContext(), listaconsultas));
+    }
+
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+
+        inflater.inflate(R.menu.menu_datas_listas, menu);
+
+        super.onCreateOptionsMenu(menu, inflater);
+
     }
 }
 
