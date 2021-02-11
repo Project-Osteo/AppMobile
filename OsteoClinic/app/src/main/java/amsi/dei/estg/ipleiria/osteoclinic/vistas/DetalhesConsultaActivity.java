@@ -53,9 +53,13 @@ public class DetalhesConsultaActivity extends AppCompatActivity {
         btFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListaFeedbackFragment listaFeedbackFragment = new ListaFeedbackFragment();
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
+                if(!ClinicJsonParser.isConnected(getApplicationContext())){
+                    Toast.makeText(getApplicationContext(), "Não é possivel carregar feedbacks, pois não existe ligação à internet!", Toast.LENGTH_LONG).show();
+                }else{
+                    ListaFeedbackFragment listaFeedbackFragment = new ListaFeedbackFragment();
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.contentFeedback, listaFeedbackFragment).commit();
+                }
             }
         });
 

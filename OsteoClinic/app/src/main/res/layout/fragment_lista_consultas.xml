@@ -7,16 +7,6 @@
     tools:context=".vistas.ListaConsultasFragment"
     android:background="@color/colorPrimary">
 
-        <Button
-            android:id="@+id/btPesquisar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/pesquisar_data"
-            android:textAlignment="center"
-            android:layout_marginTop="25dp"
-            android:backgroundTint="@color/colorSecondary"
-            android:background="@drawable/round_buttons_menu_inicial"/>
-
         <ListView
             android:layout_marginTop="100dp"
             android:id="@+id/listview_consultas"
