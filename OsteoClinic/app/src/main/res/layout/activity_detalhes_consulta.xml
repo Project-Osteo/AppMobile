@@ -46,7 +46,7 @@
             <TextView
                 android:id="@+id/tvDescricaoConsultaDetalhe"
                 android:layout_width="match_parent"
-                android:layout_height="63dp"
+                android:layout_height="match_parent"
                 android:textColor="@color/colorTextSecondary"
                 android:textSize="50px" />
         </LinearLayout>
@@ -67,10 +67,14 @@
             <TextView
                 android:id="@+id/tvRecomendacoesDetalhe"
                 android:layout_width="match_parent"
-                android:layout_height="63dp"
+                android:layout_height="match_parent"
                 android:textColor="@color/colorTextSecondary"
                 android:textSize="50px" />
         </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
