@@ -3,12 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".vistas.ListaConsultasFragment"
     android:background="@color/colorPrimary">
 
         <ListView
-            android:layout_marginTop="100dp"
             android:id="@+id/listview_consultas"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

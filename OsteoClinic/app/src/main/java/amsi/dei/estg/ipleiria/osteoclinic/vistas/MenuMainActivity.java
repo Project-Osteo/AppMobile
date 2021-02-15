@@ -116,27 +116,7 @@ public class MenuMainActivity extends AppCompatActivity
     }
 
     @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        return super.onPrepareOptionsMenu(menu);
-    }
+    public boolean onPrepareOptionsMenu(Menu menu) { return super.onPrepareOptionsMenu(menu); }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflate = getMenuInflater();
-        inflate.inflate(R.menu.menu_datas_listas, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.btPesquisar){
-            abrirPickers();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void abrirPickers() {
-    }
 }

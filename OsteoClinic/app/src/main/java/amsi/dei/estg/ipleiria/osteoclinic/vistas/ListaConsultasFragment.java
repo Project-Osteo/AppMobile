@@ -75,14 +75,5 @@ public class ListaConsultasFragment extends Fragment implements ConsultasListene
             listviewConsultas.setAdapter(new ListaConsultasAdapter(getContext(), listaconsultas));
     }
 
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-
-        inflater.inflate(R.menu.menu_datas_listas, menu);
-
-        super.onCreateOptionsMenu(menu, inflater);
-
-    }
 }
 
